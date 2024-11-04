@@ -39,6 +39,8 @@ public class Controller implements Observer {
 
 	}
 
+
+
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		try {
