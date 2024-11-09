@@ -11,7 +11,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import com.example.demo.LevelParent;
 
-public class Controller implements Observer {
+public class Controller implements Observer {  //change observer(leave it)
 
 	private static final String LEVEL_ONE_CLASS_NAME = "com.example.demo.LevelOne";
 	private final Stage stage;
@@ -25,6 +25,8 @@ public class Controller implements Observer {
 
 			stage.show();
 			goToLevel(LEVEL_ONE_CLASS_NAME);
+
+
 	}
 
 	private void goToLevel(String className) throws ClassNotFoundException, NoSuchMethodException, SecurityException,
@@ -35,7 +37,9 @@ public class Controller implements Observer {
 			myLevel.addObserver(this);
 			Scene scene = myLevel.initializeScene();
 			stage.setScene(scene);
+			//stage.setFullScreen(true);
 			myLevel.startGame();
+
 
 	}
 

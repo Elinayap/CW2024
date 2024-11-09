@@ -25,11 +25,10 @@ public class GameEndScreen {
         System.out.println("Attempting to initialize GameEndScreen...");  // Debug line
         if (isDisplayed) {
             System.out.println("GameEndScreen already displayed, skipping initialization.");  // Debug line
-            return;  // Prevent multiple displays
+            return;
         }
         isDisplayed = true;
 
-        // Run UI code on the JavaFX Application Thread
         Platform.runLater(() -> {
             System.out.println("Displaying GameEndScreen on JavaFX thread.");  // Debug line
             VBox layout = new VBox(15);
@@ -55,13 +54,12 @@ public class GameEndScreen {
 
     private void onRestartGame() {
         System.out.println("Restarting the game...");
-        isDisplayed = false;  // Reset flag to allow future displays
-        // Add restart logic here
+        isDisplayed = false;
+
     }
 
     private void returnToMainMenu() {
         System.out.println("Returning to main menu...");
-        isDisplayed = false;  // Reset flag to allow future displays
-        // Add return-to-menu logic here
+        isDisplayed = false;
     }
 }
