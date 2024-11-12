@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,7 +18,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
@@ -37,19 +35,26 @@ public class MainMenu {
         PlayMusic();
     }
 
+    //Play background music
     private void PlayMusic() {
         try {
             //getResource to make sure to locate the path correctly
             URL resource = getClass().getResource("/com/example/demo/audios/movement.mp3");
+            //Check if the file is found. If not, an error message is printed
             if (resource == null) {
                 System.err.println("Media file not found at /com/example/demo/audios/movement.mp3");
                 return;
             }
+            //Print external form of URL to make sure the path is correct
             System.out.println("Media file found: " + resource.toExternalForm());
+            //Create media object from the audio file
             Media sound = new Media(resource.toExternalForm());
+            //Manage playback of media
             mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); //Loop the music
-            mediaPlayer.play(); //Start playing music
+            //Loop the music
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); 
+            //Start playing music
+            mediaPlayer.play(); 
             System.out.println("MediaPlayer initialized and playing.");
         } catch (Exception e) {
             System.err.println("Error initializing MediaPlayer:");
@@ -78,7 +83,7 @@ public class MainMenu {
         titleLabel.setStyle("-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: #000000;");
         titleLabel.setAlignment(Pos.CENTER);
 
-          //Exit full screen label
+        //Exit full screen label
         Label exitFullScreenLabel = new Label("Press ESC to exit full-screen mode.");
         exitFullScreenLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: gray; -fx-background-color: rgba(0, 0, 0, 0.5); -fx-padding: 10; -fx-border-radius: 5; -fx-background-radius: 5;");
 

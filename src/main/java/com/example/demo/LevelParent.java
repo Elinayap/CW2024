@@ -26,6 +26,7 @@ public abstract class LevelParent extends Observable {
 	private final UserPlane user;
 	private final Scene scene;
 	private final ImageView background;
+	private boolean isPaused = false;
 
 	private final List<ActiveActorDestructible> friendlyUnits;
 	private final List<ActiveActorDestructible> enemyUnits;
@@ -77,6 +78,25 @@ public abstract class LevelParent extends Observable {
 		timeline.play();
 	}
 
+	public void pauseGame(){
+		if (!isPaused) {
+            timeline.pause();
+            isPaused = true;
+		}
+	}
+
+	public void resumeGame() {
+		if (isPaused) {
+            timeline.play();
+			isPaused = false;
+		}
+	}
+
+	public Scene getScene(){
+		return scene;
+	}
+
+
 	public void goToNextLevel(String levelName) {
 		if (!Updated){
 			setChanged();
@@ -93,18 +113,20 @@ public abstract class LevelParent extends Observable {
 	}
 
 	private void updateScene() {
-		spawnEnemyUnits();
-		updateActors();
-		generateEnemyFire();
-		updateNumberOfEnemies();
-		handleEnemyPenetration();
-		handleUserProjectileCollisions();
-		handleEnemyProjectileCollisions();
-		handlePlaneCollisions();
-		removeAllDestroyedActors();
-		updateKillCount();
-		updateLevelView();
-		checkIfGameOver();
+		if (!isPaused) {
+			spawnEnemyUnits();
+			updateActors();
+			generateEnemyFire();
+			updateNumberOfEnemies();
+			handleEnemyPenetration();
+			handleUserProjectileCollisions();
+			handleEnemyProjectileCollisions();
+			handlePlaneCollisions();
+			removeAllDestroyedActors();
+			updateKillCount();
+			updateLevelView();
+			checkIfGameOver();
+		}
 	}
 
 	private void initializeTimeline() {
@@ -127,8 +149,10 @@ public abstract class LevelParent extends Observable {
 		});
 		background.setOnKeyReleased(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
-				KeyCode kc = e.getCode();
-				if (kc == KeyCode.UP || kc == KeyCode.DOWN) user.stop();
+				if (!isPaused) {
+					KeyCode kc = e.getCode();
+					if (kc == KeyCode.UP || kc == KeyCode.DOWN) user.stop();
+				}
 			}
 		});
 		root.getChildren().add(background);
@@ -261,5 +285,7 @@ public abstract class LevelParent extends Observable {
 	private void updateNumberOfEnemies() {
 		currentNumberOfEnemies = enemyUnits.size();
 	}
+
+	
 
 }
