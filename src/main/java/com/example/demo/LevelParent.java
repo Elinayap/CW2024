@@ -143,6 +143,8 @@ public abstract class LevelParent extends Observable {
                 KeyCode kc = e.getCode();
                 if (kc == KeyCode.UP) user.moveUp();
                 if (kc == KeyCode.DOWN) user.moveDown();
+				if (kc == KeyCode.LEFT) user.moveLeft();
+				if (kc == KeyCode.RIGHT) user.moveRight();
                 if (kc == KeyCode.SPACE) fireProjectile();
             }
         });
@@ -150,7 +152,17 @@ public abstract class LevelParent extends Observable {
             public void handle(KeyEvent e) {
                 if (!isPaused) {
                     KeyCode kc = e.getCode();
-                    if (kc == KeyCode.UP || kc == KeyCode.DOWN) user.stop();
+					//Check if key is UP or DOWN
+                    if (kc == KeyCode.UP || kc == KeyCode.DOWN) {
+						//Stop the vertical move
+						user.stopVerticalMove();
+					}
+					//Check if key is LEFT or RIGHT
+					if (kc == KeyCode.LEFT || kc == KeyCode.RIGHT) {
+						//Stop the horizontal move
+						user.stopHorizontalMove();
+					}
+
                 }
             }
         });
