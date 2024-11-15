@@ -27,7 +27,7 @@ public class MainMenu {
     private final Stage stage;
     private final Controller controller;
     private MediaPlayer mediaPlayer;
-    private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background3.jpg";
+    private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background4.png";
 
     public MainMenu(Stage stage, Controller controller) {
         this.stage = stage;
@@ -71,11 +71,17 @@ public class MainMenu {
 
          //Set the background image
         BackgroundImage backgroundImage = new BackgroundImage(
-                new Image(this.getClass().getResource(BACKGROUND_IMAGE_NAME).toExternalForm()), 
-                BackgroundRepeat.REPEAT, 
+                //Load background image from path
+                new Image(this.getClass().getResource(BACKGROUND_IMAGE_NAME).toExternalForm()),
+                //Set background to not repeat horizontally
                 BackgroundRepeat.NO_REPEAT, 
-                BackgroundPosition.DEFAULT, 
-                BackgroundSize.DEFAULT);
+                //Set background to not repeat vertically
+                BackgroundRepeat.NO_REPEAT, 
+                //Set background to center
+                BackgroundPosition.CENTER, 
+                //A
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true)
+        );
         vBox.setBackground(new Background(backgroundImage));
 
         //Title Label

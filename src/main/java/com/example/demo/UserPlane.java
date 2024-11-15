@@ -97,11 +97,15 @@ public class UserPlane extends FighterPlane {
         numberOfKills++;
     }
 
-    private void moveVertical(double deltaY) {
-        this.setTranslateY(this.getTranslateY() + deltaY);
+	//Move the plane vertically by specified amount
+	//Move distance along Y-axis, positive values down and negative values up
+    private void moveVertical(double Yaxis) {
+        this.setTranslateY(this.getTranslateY() + Yaxis);
     }
 
-    private void moveHorizontal(double deltaX) {
-        this.setTranslateX(this.getTranslateX() + deltaX);
+	//Move the plane vertically by specified amount
+	//Move distance along X-axis, positive values right and negative values left
+    private void moveHorizontal(double Xaxis) {
+        this.setTranslateX(this.getTranslateX() + Xaxis);
     }
 }
