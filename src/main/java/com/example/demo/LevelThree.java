@@ -1,18 +1,16 @@
 package com.example.demo;
 
 
-public class LevelTwo extends LevelParent {
+public class LevelThree extends LevelParent {
 
-	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background2.jpg";
-	private static final String NEXT_LEVEL = "com.example.demo.LevelThree";
+	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background4.png";
 	private static final int PLAYER_INITIAL_HEALTH = 5;
 	private final Boss boss;
-	private static final int KILLS_TO_ADVANCE = 1;
-	private LevelViewLevelTwo levelView;
+	private LevelViewLevelThree levelView;
 	private ShieldImage shieldImage;
 	public static final int SHIELD_SIZE = 200;
 
-	public LevelTwo(double screenHeight, double screenWidth) {
+	public LevelThree(double screenHeight, double screenWidth) {
 		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
 
 		//Initialize the image at (0,0)
@@ -50,14 +48,10 @@ public class LevelTwo extends LevelParent {
 		if (userIsDestroyed()) {
 			loseGame();
 		}
-		else if (userHasReachedKillTarget()){
-			goToNextLevel(NEXT_LEVEL);
+		else if (boss.isDestroyed()) {
+			winGame();
 		}
 	}
-		// else if (boss.isDestroyed()) {
-		// 	winGame();
-		// }
-	
 
 	@Override
 	protected void spawnEnemyUnits() {
@@ -68,7 +62,7 @@ public class LevelTwo extends LevelParent {
 
 	@Override
 	protected LevelView instantiateLevelView() {
-		levelView = new LevelViewLevelTwo(getRoot(), PLAYER_INITIAL_HEALTH);
+		levelView = new LevelViewLevelThree(getRoot(), PLAYER_INITIAL_HEALTH);
 		return levelView;
 	}
 
@@ -87,12 +81,4 @@ public class LevelTwo extends LevelParent {
 			shieldImage.hideShield();
 		}
 
-		private boolean userHasReachedKillTarget() {
-
-			return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE && !ChangedState();
-		}
-
 }
-
-	
-
