@@ -1,14 +1,19 @@
 package com.example.demo;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class LevelThree extends LevelParent {
 
 	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background4.png";
 	private static final int PLAYER_INITIAL_HEALTH = 5;
 	private final Boss boss;
+	private final List<bombImage> bombs;
 	private LevelViewLevelThree levelView;
 	private ShieldImage shieldImage;
 	public static final int SHIELD_SIZE = 200;
+	private static final double BOMB_PROBABILITY = 0.02;
+	
 
 	public LevelThree(double screenHeight, double screenWidth) {
 		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
@@ -16,6 +21,8 @@ public class LevelThree extends LevelParent {
 		//Initialize the image at (0,0)
     	shieldImage = new ShieldImage(0, 0);
 		boss = new Boss(shieldImage);
+		bombs = new ArrayList<>();
+
 		//Adjust the position of the image
 		double xOffset = 100;  
     	double yOffset = 100; 
@@ -27,7 +34,7 @@ public class LevelThree extends LevelParent {
         .subtract(ShieldImage.SHIELD_SIZE / 2)
         .add(xOffset)
     );
-	///Match the shield's Y position with the boss plane's Y position
+	//Match the shield's Y position with the boss plane's Y position
     shieldImage.layoutYProperty().bind(
         boss.layoutYProperty()
         .add(boss.translateYProperty())
@@ -35,12 +42,14 @@ public class LevelThree extends LevelParent {
         .add(yOffset)
 	);
 		
+
 	}
 
 	@Override
 	protected void initializeFriendlyUnits() {
 		getRoot().getChildren().add(getUser());
 		getRoot().getChildren().add(shieldImage);
+
 	}
 
 	@Override
@@ -65,6 +74,31 @@ public class LevelThree extends LevelParent {
 		levelView = new LevelViewLevelThree(getRoot(), PLAYER_INITIAL_HEALTH);
 		return levelView;
 	}
+	
+	protected void updateScene() {
+        super.updateScene();
+
+		//Randomly spawn a bomb based on the probability
+        if (Math.random() < BOMB_PROBABILITY) {
+            spawnBomb();
+        }
+    }
+
+	private void spawnBomb() {
+        //Clear the existing bombs
+        bombs.forEach(bomb -> getRoot().getChildren().remove(bomb));
+        bombs.clear();
+
+        //Spawn a bomb
+        double x = Math.random() * (getScreenWidth() - bombImage.BOMB_SIZE);
+        double y = Math.random() * (getEnemyMaximumYPosition() - bombImage.BOMB_SIZE);
+        bombImage bomb = new bombImage(x, y);
+        bomb.setVisible(true);
+        bombs.add(bomb);
+        getRoot().getChildren().add(bomb);
+
+    }
+
 
 	@Override
     public void startGame() {
@@ -80,5 +114,4 @@ public class LevelThree extends LevelParent {
 		public void deactivateShield() {
 			shieldImage.hideShield();
 		}
-
 }

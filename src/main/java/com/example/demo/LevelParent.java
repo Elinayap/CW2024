@@ -111,7 +111,7 @@ public abstract class LevelParent extends Observable {
         return ChangedState;
     }
 
-    private void updateScene() {
+    protected void updateScene() {
         if (!isPaused) {
             spawnEnemyUnits();
             updateActors();

@@ -43,10 +43,8 @@ public class Controller implements Observer {  //change observer(leave it)
 			//Key handling event for pause screen
 			scene.setOnKeyPressed(event -> handleKeyPress(event.getCode()));
 			stage.setScene(scene);
-			//stage.setFullScreen(true);
 			currentLevel.startGame();
-			//scene.getRoot().requestFocus();
-
+			
 	}
 
 	//Handle the key press event for ESCAPE key
