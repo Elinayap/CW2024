@@ -2,155 +2,161 @@ package com.example.demo.controller;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
 
 public class MainMenu {
 
     private final Stage stage;
     private final Controller controller;
-    private MediaPlayer mediaPlayer;
-    private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background4.png";
+    private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background3.png";
+    private static final String PIXEL_FONT = "/com/example/demo/fonts/pixelFont.ttf";
+    private static final String MOUSE_ICON = "/com/example/demo/images/mouse_icon.png";
+
+    private final ImageCursor customCursor;
 
     public MainMenu(Stage stage, Controller controller) {
         this.stage = stage;
         this.controller = controller;
-        PlayMusic();
-    }
 
-    //Play background music
-    private void PlayMusic() {
-        try {
-            //getResource to make sure to locate the path correctly
-            URL resource = getClass().getResource("/com/example/demo/audios/movement.mp3");
-            //Check if the file is found. If not, an error message is printed
-            if (resource == null) {
-                System.err.println("Media file not found at /com/example/demo/audios/movement.mp3");
-                return;
-            }
-            //Print external form of URL to make sure the path is correct
-            System.out.println("Media file found: " + resource.toExternalForm());
-            //Create media object from the audio file
-            Media sound = new Media(resource.toExternalForm());
-            //Manage playback of media
-            mediaPlayer = new MediaPlayer(sound);
-            //Loop the music
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); 
-            //Start playing music
-            mediaPlayer.play(); 
-            System.out.println("MediaPlayer initialized and playing.");
-        } catch (Exception e) {
-            System.err.println("Error initializing MediaPlayer:");
-            e.printStackTrace();
-        }
+        //Load the custom cursor from the path
+        Image cursorMouse = new Image(this.getClass().getResource(MOUSE_ICON).toExternalForm());
+        this.customCursor = new ImageCursor(cursorMouse);
     }
 
     public void show() {
-        
-        //VBox to ensure it is center alignment
-        VBox vBox = new VBox(30); 
-        vBox.setPadding(new Insets(20));
-        vBox.setAlignment(Pos.CENTER); 
 
-         //Set the background image
+        //VBox for center alignment
+        VBox vBox = new VBox(30);
+        vBox.setPadding(new Insets(20));
+        vBox.setAlignment(Pos.CENTER);
+
+        //Set the background image
         BackgroundImage backgroundImage = new BackgroundImage(
-                //Load background image from path
                 new Image(this.getClass().getResource(BACKGROUND_IMAGE_NAME).toExternalForm()),
-                //Set background to not repeat horizontally
-                BackgroundRepeat.NO_REPEAT, 
-                //Set background to not repeat vertically
-                BackgroundRepeat.NO_REPEAT, 
-                //Set background to center
-                BackgroundPosition.CENTER, 
-                //A
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
                 new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true)
         );
         vBox.setBackground(new Background(backgroundImage));
 
-        //Title Label
+        //Load the custom pixel font for title only
+        Font titleFont = Font.loadFont(this.getClass().getResource(PIXEL_FONT).toExternalForm(), 48);
+
+        //Title Label with custom font
         Label titleLabel = new Label("Sky Battle");
-        titleLabel.setStyle("-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: #000000;");
+        if (titleFont != null) {
+            titleLabel.setFont(titleFont); 
+        } else {
+            System.err.println("Error: Pixel font could not be loaded.");
+        }
+        titleLabel.setStyle(
+            "-fx-text-fill: #000000;"
+            
+            
+            ); 
         titleLabel.setAlignment(Pos.CENTER);
 
-        //Exit full screen label
-        Label exitFullScreenLabel = new Label("Press ESC to exit full-screen mode.");
-        exitFullScreenLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: gray; -fx-background-color: rgba(0, 0, 0, 0.5); -fx-padding: 10; -fx-border-radius: 5; -fx-background-radius: 5;");
+        //Load the custom pixel font for the buttons
+        Font buttonFont = Font.loadFont(this.getClass().getResource(PIXEL_FONT).toExternalForm(), 20);
 
         //Start Game Button
-        Button startGameButton = new Button("Start Game");
+        Button startGameButton = new Button("");
         startGameButton.setPrefWidth(200);
-        startGameButton.setStyle("-fx-font-size: 16px;");
+        startGameButton.setPrefHeight(50);
+        startGameButton.setStyle(
+            "-fx-background-image: url('" + getClass().getResource("/com/example/demo/images/play_button.png").toExternalForm() + "');" +
+            "-fx-background-size: 100% 100%;" +
+            "-fx-background-repeat: no-repeat;" +
+            "-fx-text-fill: white;" +
+            "-fx-alignment: center;" +
+            "-fx-background-color: transparent;" +
+            "-fx-border-width: 0;"            
+        );
+        //Add custom cursor for hover
+        startGameButton.setOnMouseEntered(event -> startGameButton.setCursor(customCursor));
+        startGameButton.setOnMouseExited(event -> startGameButton.setCursor(null));
         startGameButton.setOnAction(event -> startGame());
 
-        //Instructions button
+        //Instructions button with custom font
         Button instructionsButton = new Button("Instructions");
+        if (buttonFont != null) {
+            instructionsButton.setFont(buttonFont); 
+        }
         instructionsButton.setPrefWidth(200);
-        instructionsButton.setStyle("-fx-font-size: 16px;");
+        instructionsButton.setPrefHeight(50);
+        instructionsButton.setStyle(
+            "-fx-background-image: url('" + getClass().getResource("/com/example/demo/images/wood_button.png").toExternalForm() + "');" +
+            "-fx-background-size: 100% 100%;" +
+            "-fx-background-repeat: no-repeat;" +
+            "-fx-text-fill: #A67C52;" +
+            "-fx-alignment: center;" +
+            "-fx-background-color: transparent;" +
+            "-fx-border-width: 0;"
+        );
+        //Add custom cursor for hover
+        Image cursorImage = new Image(this.getClass().getResource("/com/example/demo/images/mouse_icon.png").toExternalForm());
+        instructionsButton.setCursor(new ImageCursor(cursorImage));
         instructionsButton.setOnAction(event -> UserInstructions());
 
-        //Volume slider with label
-        Label volumeLabel = new Label("Volume:");
-        volumeLabel.setStyle("-fx-text-fill: #000000; -fx-font-size: 14px;");
-        Slider volumeSlider = new Slider(0, 100, 50);
-        volumeSlider.setShowTickLabels(true);
-        volumeSlider.setShowTickMarks(true);
-        volumeSlider.setMajorTickUnit(25);
-        volumeSlider.setPrefWidth(200);
-
-        //Connect the slider to the media
-        if (mediaPlayer != null) {
-            volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-                mediaPlayer.setVolume(newValue.doubleValue() / 100.0); // Convert to 0.0 - 1.0 range
-            });
-        } else {
-            System.err.println("MediaPlayer is not initialized. Volume slider will not control music volume.");
+        // Quit Game Button
+        Button quitGameButton = new Button("Quit Game");
+        if (buttonFont != null) {
+            quitGameButton.setFont(buttonFont); 
         }
+        quitGameButton.setPrefWidth(200);
+        quitGameButton.setPrefHeight(50);
+        quitGameButton.setStyle(
+            "-fx-background-image: url('" + getClass().getResource("/com/example/demo/images/wood_button.png").toExternalForm() + "');" +
+            "-fx-background-size: 100% 100%;" +
+            "-fx-background-repeat: no-repeat;" +
+            "-fx-text-fill: #A67C52;" +
+            "-fx-alignment: center;" +
+            "-fx-background-color: transparent;" +
+            "-fx-border-width: 0;"
+        );
+        //Add custom cursor for hover
+        quitGameButton.setOnMouseEntered(event -> quitGameButton.setCursor(customCursor));
+        quitGameButton.setOnMouseExited(event -> quitGameButton.setCursor(null));
+        quitGameButton.setOnAction(event -> stage.close());
 
-        //Volume layout
-        HBox volumeBox = new HBox(10, volumeLabel, volumeSlider); 
-        volumeBox.setAlignment(Pos.CENTER);
+        // Add components to the VBox
+        vBox.getChildren().addAll(titleLabel, startGameButton, instructionsButton, quitGameButton);
 
-        //Add to the vBox
-        vBox.getChildren().addAll(titleLabel, startGameButton, instructionsButton, volumeBox);
-
-        //Create Scene 
-        Scene scene = new Scene(vBox, 800, 600); 
+        // Create Scene
+        Scene scene = new Scene(vBox, 800, 600);
 
         stage.setScene(scene);
-        stage.setFullScreen(true); 
         stage.show();
-
     }
 
     private void startGame() {
-        System.out.println("Starting the game...");
+        System.out.println("Starting the game");
         try {
             controller.launchGame();
         } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException
                 | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();  //Print errors for debugging
+            e.printStackTrace(); //Print errors for debugging
         }
     }
 
     private void UserInstructions() {
-        //Create a box for instructions
+        // Create a box for instructions
         Stage instructionsStage = new Stage();
         instructionsStage.initModality(Modality.APPLICATION_MODAL);
         instructionsStage.setTitle("Sky Battle Instructions");

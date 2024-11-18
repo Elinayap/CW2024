@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import com.example.demo.LevelParent;
 
@@ -19,11 +21,38 @@ public class Controller implements Observer {  //change observer(leave it)
 	private Scene mainScene;
 	private LevelParent currentLevel;
 	private boolean isGamePaused = false;
+	private MediaPlayer mediaPlayer;
+	private double currentVolume = 0.5;
+
 
 	public Controller(Stage stage) {
 		this.stage = stage;
+		PlayMusic();
 	}
 
+	//Play background music
+	private void PlayMusic() {
+		//Create media object from the audio file
+        Media media = new Media(this.getClass().getResource("/com/example/demo/audios/movement.mp3").toExternalForm());
+		 //Manage playback of media
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setVolume(currentVolume);
+		//Loop the music
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		//Start playing music
+        mediaPlayer.play();
+    }
+	
+	//Retrieve the MediaPlayer
+	public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
+
+	//Control the volume of media player
+	public void setVolume(double volume) {
+        currentVolume = volume;
+        mediaPlayer.setVolume(volume);
+    }
 	public void launchGame() throws ClassNotFoundException, NoSuchMethodException, SecurityException,
 			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException  {
 
@@ -67,7 +96,7 @@ public class Controller implements Observer {  //change observer(leave it)
 		//Pause timeline in current level
 		currentLevel.pauseGame();
 		//Create pause screen and show the resume and settings options
-        PauseScreen pauseScreen = new PauseScreen(stage, this::resumeGame, this::openSettings);
+        PauseScreen pauseScreen = new PauseScreen(stage, this, this::resumeGame, this::openSettings);
         pauseScreen.show();  //Show the pause screen
     }
 	private void resumeGame() {
