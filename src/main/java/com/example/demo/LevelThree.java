@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LevelThree extends LevelParent {
 
-	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background4.png";
+	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/river.jpg";
 	private static final int PLAYER_INITIAL_HEALTH = 5;
 	private final Boss boss;
 	private final List<bombImage> bombs;
