@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.destructible;
 
 public interface Destructible {
 

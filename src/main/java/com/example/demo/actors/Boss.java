@@ -1,6 +1,9 @@
-package com.example.demo;
+package com.example.demo.actors;
 
 import java.util.*;
+
+import com.example.demo.destructible.ActiveActorDestructible;
+import com.example.demo.projectiles.BossProjectile;
 
 public class Boss extends FighterPlane {
 
@@ -24,6 +27,7 @@ public class Boss extends FighterPlane {
 	private int consecutiveMovesInSameDirection;
 	private int indexOfCurrentMove;
 	private int framesWithShieldActivated;
+	
 
 	public Boss() {
 		super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
