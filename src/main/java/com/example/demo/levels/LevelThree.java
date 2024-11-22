@@ -86,6 +86,8 @@ public class LevelThree extends LevelParent {
         if (Math.random() < BOMB_PROBABILITY) {
             spawnBomb();
         }
+
+		bombCollision();
     }
 
 	private void spawnBomb() {
@@ -102,6 +104,28 @@ public class LevelThree extends LevelParent {
         getRoot().getChildren().add(bomb);
 
     }
+
+	private void bombCollision() {
+        bombs.forEach(bomb -> {
+            //Check if the bomb intersects with user plane
+            if (bomb.getBoundsInParent().intersects(getUser().getBoundsInParent())) {
+                //Decrease the user's hearts
+                getUser().takeDamage();
+
+                //Update the UI 
+                levelView.removeHearts(getUser().getHealth());
+
+                //Remove the bomb from the screen
+                bomb.setVisible(false);
+                getRoot().getChildren().remove(bomb);
+            }
+        });
+
+        //Remove bombs that are not visible
+        bombs.removeIf(bomb -> !bomb.isVisible());
+    }
+
+	
 
 
 	@Override

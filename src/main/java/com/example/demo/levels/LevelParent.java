@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import com.example.demo.actors.FighterPlane;
 import com.example.demo.actors.UserPlane;
 import com.example.demo.destructible.ActiveActorDestructible;
+import com.example.demo.UI.GameEndScreen;
 
 import javafx.animation.*;
 import javafx.event.EventHandler;
@@ -298,5 +299,7 @@ public abstract class LevelParent extends Observable {
 	private void updateNumberOfEnemies() {
 		currentNumberOfEnemies = enemyUnits.size();
 	}
+
+	
 
 }
