@@ -116,7 +116,7 @@ public class MainMenu {
                 "-fx-background-image: url('" + getClass().getResource(imagePath).toExternalForm() + "');" +
                         "-fx-background-size: 100% 100%;" +
                         "-fx-background-repeat: no-repeat;" +
-                        "-fx-text-fill: white;" +
+                        "-fx-text-fill: #8B4513;" +
                         "-fx-alignment: center;" +
                         "-fx-background-color: transparent;" +
                         "-fx-border-width: 0;"

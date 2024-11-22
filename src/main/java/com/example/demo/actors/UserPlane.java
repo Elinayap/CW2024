@@ -15,11 +15,12 @@ public class UserPlane extends FighterPlane {
     private static final int IMAGE_HEIGHT = 150;
     private static final int VERTICAL_VELOCITY = 8;
     private static final int HORIZONTAL_VELOCITY = 8;
-    private static final int PROJECTILE_X_POSITION = 110;
-    private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
+
     private int verticalVelocityMultiplier;
     private int horizontalVelocityMultiplier;
     private int numberOfKills;
+
+    private UserProjectile activeProjectile; 
 
     public UserPlane(int initialHealth) {
         super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, initialHealth);
@@ -27,27 +28,43 @@ public class UserPlane extends FighterPlane {
         horizontalVelocityMultiplier = 0;
     }
 
+    //Control the position of user plane
     @Override
     public void updatePosition() {
         //Control vertical movement
         if (isMovingVertical()) {
             double initialTranslateY = getTranslateY();
-            this.moveVertical(VERTICAL_VELOCITY * verticalVelocityMultiplier);
+            moveVertical(VERTICAL_VELOCITY * verticalVelocityMultiplier);
             double newPositionY = getLayoutY() + getTranslateY();
             if (newPositionY < Y_UPPER_BOUND || newPositionY > Y_LOWER_BOUND) {
-                this.setTranslateY(initialTranslateY); 
+                setTranslateY(initialTranslateY);
             }
         }
 
         //Control horizontal movement
         if (isMovingHorizontal()) {
             double initialTranslateX = getTranslateX();
-            this.moveHorizontal(HORIZONTAL_VELOCITY * horizontalVelocityMultiplier);
+            moveHorizontal(HORIZONTAL_VELOCITY * horizontalVelocityMultiplier);
             double newPositionX = getLayoutX() + getTranslateX();
             if (newPositionX < X_LEFT_BOUND || newPositionX > X_RIGHT_BOUND) {
-                this.setTranslateX(initialTranslateX); 
+                setTranslateX(initialTranslateX);
             }
         }
+
+        //Sync with the user projectile
+        if (activeProjectile != null) {
+            //Get the position of the user plane
+            activeProjectile.syncWithPlane(
+                getBoundsInParent().getMinX(),
+                getBoundsInParent().getMinY(),
+                getBoundsInParent().getWidth(),
+                getBoundsInParent().getHeight()
+            );
+        }
+    }
+
+    public void assignProjectile(UserProjectile projectile) {
+        this.activeProjectile = projectile;
     }
 
     @Override
@@ -57,7 +74,24 @@ public class UserPlane extends FighterPlane {
 
     @Override
     public ActiveActorDestructible fireProjectile() {
-        return new UserProjectile(PROJECTILE_X_POSITION, getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
+        //Check if there is active projectile
+        if (activeProjectile != null) {
+            //Make the projectile to fire so it moves on its own
+            activeProjectile.fire(); 
+            //Remove it from being tracked so new one can be fired
+            activeProjectile = null; 
+        }
+
+        
+        UserProjectile projectile = new UserProjectile(
+            //Start to shoot at the tip of user plane
+            getBoundsInParent().getMaxX(), 
+            //Set the position at center vertically
+            getBoundsInParent().getMinY() + getBoundsInParent().getHeight() / 2 - UserProjectile.IMAGE_HEIGHT / 2 
+        );
+        //Assign projectile to active
+        assignProjectile(projectile); 
+        return projectile;
     }
 
     private boolean isMovingVertical() {
@@ -100,15 +134,15 @@ public class UserPlane extends FighterPlane {
         numberOfKills++;
     }
 
-	//Move the plane vertically by specified amount
+    //Move the plane vertically by specified amount
 	//Move distance along Y-axis, positive values down and negative values up
     private void moveVertical(double Yaxis) {
-        this.setTranslateY(this.getTranslateY() + Yaxis);
+        setTranslateY(getTranslateY() + Yaxis);
     }
 
-	//Move the plane vertically by specified amount
+    //Move the plane vertically by specified amount
 	//Move distance along X-axis, positive values right and negative values left
     private void moveHorizontal(double Xaxis) {
-        this.setTranslateX(this.getTranslateX() + Xaxis);
+        setTranslateX(getTranslateX() + Xaxis);
     }
 }
