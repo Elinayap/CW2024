@@ -25,7 +25,6 @@ public class LevelOne extends LevelParent {
 			return; 
 		}
 		if (userIsDestroyed()) {
-			System.out.println("User destroyed, triggering game over...");
 			loseGame();
 		}
 		else if (userHasReachedKillTarget())

@@ -7,6 +7,7 @@ import com.example.demo.actors.FighterPlane;
 import com.example.demo.actors.UserPlane;
 import com.example.demo.destructible.ActiveActorDestructible;
 import com.example.demo.UI.GameEndScreen;
+import com.example.demo.UI.GameWinScreen;
 
 import javafx.animation.*;
 import javafx.event.EventHandler;
@@ -153,7 +154,6 @@ public abstract class LevelParent extends Observable {
 	
 		background.setOnKeyPressed(event -> {
 			if (isGameOver && event.getCode() != KeyCode.TAB) {
-				System.out.println("Key press blocked: Game is already over.");
 				return;
 			}
 			if (!isGameOver) {
@@ -272,19 +272,34 @@ public abstract class LevelParent extends Observable {
     }
 
     protected void winGame() {
-        timeline.stop();
-        levelView.showWinImage();
+        if (isGameOver || isTransitioning) {
+        	return; // Prevent triggering win logic if the game is over or transitioning
+    	}
+
+    	timeline.stop(); // Stop the game animations
+    	levelView.showWinImage(); // Display the "win image"
+
+    	isGameOver = true;
+    	isTransitioning = true; // Prevent duplicate transitions
+
+    	//Delay the game win screen
+    	PauseTransition delay = new PauseTransition(Duration.seconds(1)); 
+    	delay.setOnFinished(event -> {
+        	System.out.println("Transitioning to GameWinScreen...");
+        	int finalScore = getUser().getKillCount(); // Fetch the final score
+        	GameWinScreen.showGameWinScreen(gameStage, finalScore); // Show the GameWinScreen
+        	isTransitioning = false; // Reset transitioning state
+    	});
+    	delay.play();
     }
 
 	private boolean isTransitioning = false;
 
     protected void loseGame() {
 		if (isGameOver || isTransitioning) {
-			System.out.println("Game over already triggered or transitioning. Skipping...");
 			return;
 		}
 	
-		System.out.println("Game over triggered!");
 		isGameOver = true;
 		isTransitioning = true; // Set transitioning state
 	
@@ -294,7 +309,7 @@ public abstract class LevelParent extends Observable {
 		// Disable player input except for the Tab key
 		getScene().setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.TAB && !isGameEndScreenTriggered) {
-				System.out.println("Tab key pressed, showing Game End Screen...");
+				System.out.println("Showing Game End Screen");
 				isGameEndScreenTriggered = true; // Prevent multiple triggers
 				transitionToGameEndScreen(); // Show the Game End Screen
 			}
@@ -307,7 +322,7 @@ public abstract class LevelParent extends Observable {
 			System.out.println("Transitioning to GameEndScreen...");
 			int finalScore = getUser().getKillCount(); // Fetch the final score
 			GameEndScreen.showGameEndScreen(gameStage, finalScore);
-			isTransitioning = false; // Reset transitioning state
+			isTransitioning = false;
 		});
 		delay.play();
 	}
@@ -318,14 +333,18 @@ public abstract class LevelParent extends Observable {
 	
 	protected void checkIfGameOver() {
 		if (isGameOver || isTransitioning) {
-			System.out.println("Game over already triggered or transitioning. Skipping check.");
-			return; // Prevent further execution if game is already over or transitioning
+			return; 
 		}
 	
 		if (userIsDestroyed()) {
-			System.out.println("User destroyed, triggering game over...");
-			loseGame(); // Trigger the game-over logic
+			loseGame(); 
+		}else if (allEnemiesDefeated()) { 
+			winGame(); 
 		}
+	}
+
+	private boolean allEnemiesDefeated() {
+		return enemyUnits.isEmpty();
 	}
 	
 	

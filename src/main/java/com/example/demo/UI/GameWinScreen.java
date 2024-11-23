@@ -13,38 +13,38 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class GameEndScreen {
+public class GameWinScreen {
 
-    private static boolean isGameEndScreenVisible = false;
-    private static Stage gameEndStage = null;
+    private static boolean isGameWinScreenVisible = false;
+    private static Stage gameWinStage = null;
 
     private static final String BACKGROUND_IMAGE = "/com/example/demo/images/pause.png";
     private static final String PIXEL_FONT = "/com/example/demo/fonts/pixelFont.ttf";
 
-    private GameEndScreen() {
+    private GameWinScreen() {
         
     }
 
-    public static void showGameEndScreen(Stage displayStage, int score) {
-        if (isGameEndScreenVisible) {
+    public static void showGameWinScreen(Stage displayStage, int score) {
+        if (isGameWinScreenVisible) {
             return;
         }
 
-        isGameEndScreenVisible = true;
+        isGameWinScreenVisible = true;
 
         Platform.runLater(() -> {
             try {
-                gameEndStage = new Stage();
-                gameEndStage.initModality(Modality.APPLICATION_MODAL);
-                gameEndStage.initStyle(StageStyle.TRANSPARENT);
-                gameEndStage.initOwner(displayStage);
+                gameWinStage = new Stage();
+                gameWinStage.initModality(Modality.APPLICATION_MODAL);
+                gameWinStage.initStyle(StageStyle.TRANSPARENT);
+                gameWinStage.initOwner(displayStage);
 
                 BorderPane rootLayout = new BorderPane();
 
                 // Set background image
                 try {
                     BackgroundImage backgroundImage = new BackgroundImage(
-                        new Image(GameEndScreen.class.getResource(BACKGROUND_IMAGE).toExternalForm()),
+                        new Image(GameWinScreen.class.getResource(BACKGROUND_IMAGE).toExternalForm()),
                         BackgroundRepeat.NO_REPEAT,
                         BackgroundRepeat.NO_REPEAT,
                         BackgroundPosition.CENTER,
@@ -63,15 +63,15 @@ public class GameEndScreen {
                 Font titleFont;
                 Font buttonFont;
                 try {
-                    titleFont = Font.loadFont(GameEndScreen.class.getResource(PIXEL_FONT).toExternalForm(), 40);
-                    buttonFont = Font.loadFont(GameEndScreen.class.getResource(PIXEL_FONT).toExternalForm(), 20);
+                    titleFont = Font.loadFont(GameWinScreen.class.getResource(PIXEL_FONT).toExternalForm(), 40);
+                    buttonFont = Font.loadFont(GameWinScreen.class.getResource(PIXEL_FONT).toExternalForm(), 20);
                 } catch (Exception e) {
                     System.out.println("Error loading font: " + e.getMessage());
                     titleFont = Font.font("Arial", 40);
                     buttonFont = Font.font("Arial", 20);
                 }
 
-                Label titleLabel = new Label("Game Over");
+                Label titleLabel = new Label("You Win!");
                 titleLabel.setFont(titleFont);
                 titleLabel.setStyle("-fx-text-fill: #000000;");
 
@@ -79,12 +79,12 @@ public class GameEndScreen {
                 scoreLabel.setFont(buttonFont);
                 scoreLabel.setStyle("-fx-text-fill: #000000;");
 
-                Button restartButton = new Button("Restart");
-                restartButton.setFont(buttonFont);
-                restartButton.setPrefWidth(200);
-                restartButton.setPrefHeight(50);
-                restartButton.setStyle(
-                    "-fx-background-image: url('" + GameEndScreen.class.getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
+                Button playAgainButton = new Button("Play Again");
+                playAgainButton.setFont(buttonFont);
+                playAgainButton.setPrefWidth(200);
+                playAgainButton.setPrefHeight(50);
+                playAgainButton.setStyle(
+                    "-fx-background-image: url('" + GameWinScreen.class.getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
                     "-fx-background-size: 100% 100%;" +
                     "-fx-background-repeat: no-repeat;" +
                     "-fx-text-fill: #000000;" +
@@ -92,17 +92,17 @@ public class GameEndScreen {
                     "-fx-background-color: transparent;" +
                     "-fx-border-width: 0;"
                 );
-                restartButton.setOnAction(event -> {
-                    gameEndStage.close();
+                playAgainButton.setOnAction(event -> {
+                    gameWinStage.close();
                     resetGame();
                 });
-                
+
                 Button mainMenuButton = new Button("Return to Menu");
                 mainMenuButton.setFont(buttonFont);
                 mainMenuButton.setPrefWidth(200);
                 mainMenuButton.setPrefHeight(50);
                 mainMenuButton.setStyle(
-                    "-fx-background-image: url('" + GameEndScreen.class.getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
+                    "-fx-background-image: url('" + GameWinScreen.class.getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
                     "-fx-background-size: 100% 100%;" +
                     "-fx-background-repeat: no-repeat;" +
                     "-fx-text-fill: #000000;" +
@@ -111,21 +111,19 @@ public class GameEndScreen {
                     "-fx-border-width: 0;"
                 );
                 mainMenuButton.setOnAction(event -> {
-                    gameEndStage.close();
+                    gameWinStage.close();
                 });
-                
 
-                layout.getChildren().addAll(titleLabel, scoreLabel, restartButton, mainMenuButton);
+                layout.getChildren().addAll(titleLabel, scoreLabel, playAgainButton, mainMenuButton);
                 rootLayout.setCenter(layout);
 
-                Scene gameEndScene = new Scene(rootLayout, 500, 500);
-                //Make the scene transparent
-                gameEndScene.setFill(null);
-                gameEndStage.setScene(gameEndScene);
+                Scene gameWinScene = new Scene(rootLayout, 500, 500);
+                gameWinScene.setFill(null); // Make the scene transparent
+                gameWinStage.setScene(gameWinScene);
 
-                gameEndStage.setOnHidden(event -> isGameEndScreenVisible = false);
+                gameWinStage.setOnHidden(event -> isGameWinScreenVisible = false);
 
-                gameEndStage.showAndWait();
+                gameWinStage.showAndWait();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -133,7 +131,7 @@ public class GameEndScreen {
     }
 
     private static void resetGame() {
-        System.out.println("Game restarted!");
-        isGameEndScreenVisible = false; 
+        System.out.println("Play again");
+        isGameWinScreenVisible = false; 
     }
 }
