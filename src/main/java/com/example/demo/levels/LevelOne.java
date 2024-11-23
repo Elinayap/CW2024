@@ -3,6 +3,8 @@ package com.example.demo.levels;
 import com.example.demo.actors.EnemyPlane;
 import com.example.demo.destructible.ActiveActorDestructible;
 
+import javafx.stage.Stage;
+
 public class LevelOne extends LevelParent {
 	
 	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background1.jpg";
@@ -12,13 +14,18 @@ public class LevelOne extends LevelParent {
 	private static final double ENEMY_SPAWN_PROBABILITY = .20;
 	private static final int PLAYER_INITIAL_HEALTH = 5;
 
-	public LevelOne(double screenHeight, double screenWidth) {
-		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+	public LevelOne(double screenHeight, double screenWidth, Stage gameStage) {
+		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH, gameStage);
+		
 	}
 
 	@Override
 	protected void checkIfGameOver() {
+		if (isGameOver) {
+			return; 
+		}
 		if (userIsDestroyed()) {
+			System.out.println("User destroyed, triggering game over...");
 			loseGame();
 		}
 		else if (userHasReachedKillTarget())
@@ -48,7 +55,7 @@ public class LevelOne extends LevelParent {
 	}
 
 	private boolean userHasReachedKillTarget() {
-		return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE && !ChangedState();
+		return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE && !isChangedState();
 	}
 
 }

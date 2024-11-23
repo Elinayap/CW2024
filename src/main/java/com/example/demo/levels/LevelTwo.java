@@ -3,6 +3,8 @@ package com.example.demo.levels;
 import com.example.demo.actors.Boss;
 import com.example.demo.assets.ShieldImage;
 
+import javafx.stage.Stage;
+
 public class LevelTwo extends LevelParent {
 
 	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background2.jpg";
@@ -14,8 +16,8 @@ public class LevelTwo extends LevelParent {
 	private ShieldImage shieldImage;
 	public static final int SHIELD_SIZE = 200;
 
-	public LevelTwo(double screenHeight, double screenWidth) {
-		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+	public LevelTwo(double screenHeight, double screenWidth, Stage gameStage) {
+		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH, gameStage);
 
 		//Initialize the image at (0,0)
     	shieldImage = new ShieldImage(0, 0);
@@ -88,7 +90,7 @@ public class LevelTwo extends LevelParent {
 
 		private boolean userHasReachedKillTarget() {
 
-			return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE && !ChangedState();
+			return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE && !isChangedState();
 		}
 
 }

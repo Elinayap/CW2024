@@ -134,6 +134,10 @@ public class UserPlane extends FighterPlane {
         numberOfKills++;
     }
 
+    public int getKillCount() {
+        return numberOfKills;
+    }
+
     //Move the plane vertically by specified amount
 	//Move distance along Y-axis, positive values down and negative values up
     private void moveVertical(double Yaxis) {
@@ -145,4 +149,6 @@ public class UserPlane extends FighterPlane {
     private void moveHorizontal(double Xaxis) {
         setTranslateX(getTranslateX() + Xaxis);
     }
+
+    
 }

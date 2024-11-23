@@ -7,7 +7,6 @@ import java.util.Observer;
 
 import com.example.demo.levels.LevelParent;
 import com.example.demo.UI.PauseScreen;
-import com.example.demo.UI.MainMenu;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -17,7 +16,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-import com.example.demo.levels.LevelParent;
+
 
 public class Controller implements Observer {  //change observer(leave it)
 
@@ -67,19 +66,18 @@ public class Controller implements Observer {  //change observer(leave it)
 	}
 
 	private void goToLevel(String className) throws ClassNotFoundException, NoSuchMethodException, SecurityException,
-			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-			Class<?> levelClass = Class.forName(className);
-			Constructor<?> constructor = levelClass.getConstructor(double.class, double.class);
-			currentLevel = (LevelParent) constructor.newInstance(stage.getHeight(), stage.getWidth());
-			currentLevel.addObserver(this);
-			Scene scene = currentLevel.initializeScene();
+        InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        Class<?> levelClass = Class.forName(className);
+        Constructor<?> constructor = levelClass.getConstructor(double.class, double.class, Stage.class);
+        currentLevel = (LevelParent) constructor.newInstance(stage.getHeight(), stage.getWidth(), stage);
+        currentLevel.addObserver(this);
+        Scene scene = currentLevel.initializeScene();
 
-			//Key handling event for pause screen
-			scene.setOnKeyPressed(event -> handleKeyPress(event.getCode()));
-			stage.setScene(scene);
-			currentLevel.startGame();
-			
-	}
+        // Key handling event for pause screen
+        scene.setOnKeyPressed(event -> handleKeyPress(event.getCode()));
+        stage.setScene(scene);
+        currentLevel.startGame();
+}
 
 	//Handle the key press event for ESCAPE key
 	private void handleKeyPress(KeyCode code){

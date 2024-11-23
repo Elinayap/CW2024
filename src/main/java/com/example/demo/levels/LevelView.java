@@ -36,8 +36,15 @@ public class LevelView {
 	}
 	
 	public void showGameOverImage() {
-		root.getChildren().add(gameOverImage);
+		if (!root.getChildren().contains(gameOverImage)) {
+            root.getChildren().add(gameOverImage);
+        }
 	}
+
+	public void clearGameView() {
+		root.getChildren().removeIf(node -> node != gameOverImage);
+       
+    }
 	
 	public void removeHearts(int heartsRemaining) {
 		int currentNumberOfHearts = heartDisplay.getContainer().getChildren().size();

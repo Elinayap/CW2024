@@ -1,66 +1,140 @@
 package com.example.demo.UI;
 
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import javafx.stage.StageStyle;
 
 public class GameEndScreen {
-    private final Stage displayStage;
-    private final int score;
-    private boolean isDisplayed;
 
-    public GameEndScreen(Stage displayStage, int score) {
-        this.displayStage = displayStage;
-        this.score = score;
-        this.isDisplayed = false;
+    private static boolean isGameEndScreenVisible = false;
+    private static Stage gameEndStage = null;
 
-        initializeUI();
+    private static final String BACKGROUND_IMAGE = "/com/example/demo/images/pause.png";
+    private static final String PIXEL_FONT = "/com/example/demo/fonts/pixelFont.ttf";
+
+    private GameEndScreen() {
+        
     }
 
-    private void initializeUI() {
-        System.out.println("Attempting to initialize GameEndScreen...");  // Debug line
-        if (isDisplayed) {
-            System.out.println("GameEndScreen already displayed, skipping initialization.");  // Debug line
+    public static void showGameEndScreen(Stage displayStage, int score) {
+        if (isGameEndScreenVisible) {
+            System.out.println("GameEndScreen already visible.");
             return;
         }
-        isDisplayed = true;
+
+        isGameEndScreenVisible = true;
 
         Platform.runLater(() -> {
-            System.out.println("Displaying GameEndScreen on JavaFX thread.");  // Debug line
-            VBox layout = new VBox(15);
-            layout.setAlignment(Pos.CENTER);
+            try {
+                gameEndStage = new Stage();
+                gameEndStage.initModality(Modality.APPLICATION_MODAL);
+                gameEndStage.initStyle(StageStyle.TRANSPARENT);
+                gameEndStage.initOwner(displayStage);
 
-            Label finalScoreLabel = new Label("Your Score: " + score);
-            finalScoreLabel.setStyle("-fx-font-size: 18px;");
-            layout.getChildren().add(finalScoreLabel);
+                BorderPane rootLayout = new BorderPane();
 
-            Button restartButton = new Button("Restart");
-            restartButton.setOnAction(event -> onRestartGame());
-            layout.getChildren().add(restartButton);
+                // Set background image
+                try {
+                    BackgroundImage backgroundImage = new BackgroundImage(
+                        new Image(GameEndScreen.class.getResource(BACKGROUND_IMAGE).toExternalForm()),
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.CENTER,
+                        new BackgroundSize(1.0, 1.0, true, true, false, false)
+                    );
+                    rootLayout.setBackground(new Background(backgroundImage));
+                } catch (Exception e) {
+                    System.out.println("Error loading background image: " + e.getMessage());
+                }
 
-            Button mainMenuButton = new Button("Return to menu");
-            mainMenuButton.setOnAction(event -> returnToMainMenu());
-            layout.getChildren().add(mainMenuButton);
+                VBox layout = new VBox(20);
+                layout.setAlignment(Pos.CENTER);
+                layout.setPadding(Insets.EMPTY);
+                rootLayout.setPadding(Insets.EMPTY);
 
-            Scene scene = new Scene(layout, 300, 200);
-            displayStage.setScene(scene);
-            displayStage.show();
+                Font titleFont;
+                Font buttonFont;
+                try {
+                    titleFont = Font.loadFont(GameEndScreen.class.getResource(PIXEL_FONT).toExternalForm(), 40);
+                    buttonFont = Font.loadFont(GameEndScreen.class.getResource(PIXEL_FONT).toExternalForm(), 20);
+                } catch (Exception e) {
+                    System.out.println("Error loading font: " + e.getMessage());
+                    titleFont = Font.font("Arial", 40);
+                    buttonFont = Font.font("Arial", 20);
+                }
+
+                Label titleLabel = new Label("Game Over");
+                titleLabel.setFont(titleFont);
+                titleLabel.setStyle("-fx-text-fill: #000000;");
+
+                Label scoreLabel = new Label("Your Score: " + score);
+                scoreLabel.setFont(buttonFont);
+                scoreLabel.setStyle("-fx-text-fill: #000000;");
+
+                Button restartButton = new Button("Restart");
+                restartButton.setFont(buttonFont);
+                restartButton.setPrefWidth(200);
+                restartButton.setPrefHeight(50);
+                restartButton.setStyle(
+                    "-fx-background-image: url('" + GameEndScreen.class.getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
+                    "-fx-background-size: 100% 100%;" +
+                    "-fx-background-repeat: no-repeat;" +
+                    "-fx-text-fill: #000000;" +
+                    "-fx-alignment: center;" +
+                    "-fx-background-color: transparent;" +
+                    "-fx-border-width: 0;"
+                );
+                restartButton.setOnAction(event -> {
+                    gameEndStage.close();
+                    resetGame();
+                });
+                
+                Button mainMenuButton = new Button("Return to Menu");
+                mainMenuButton.setFont(buttonFont);
+                mainMenuButton.setPrefWidth(200);
+                mainMenuButton.setPrefHeight(50);
+                mainMenuButton.setStyle(
+                    "-fx-background-image: url('" + GameEndScreen.class.getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
+                    "-fx-background-size: 100% 100%;" +
+                    "-fx-background-repeat: no-repeat;" +
+                    "-fx-text-fill: #000000;" +
+                    "-fx-alignment: center;" +
+                    "-fx-background-color: transparent;" +
+                    "-fx-border-width: 0;"
+                );
+                mainMenuButton.setOnAction(event -> {
+                    gameEndStage.close();
+                });
+                
+
+                layout.getChildren().addAll(titleLabel, scoreLabel, restartButton, mainMenuButton);
+                rootLayout.setCenter(layout);
+
+                Scene gameEndScene = new Scene(rootLayout, 500, 500);
+                //Make the scene transparent
+                gameEndScene.setFill(null);
+                gameEndStage.setScene(gameEndScene);
+
+                gameEndStage.setOnHidden(event -> isGameEndScreenVisible = false);
+
+                gameEndStage.showAndWait();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
     }
 
-    private void onRestartGame() {
-        System.out.println("Restarting the game...");
-        isDisplayed = false;
-
-    }
-
-    private void returnToMainMenu() {
-        System.out.println("Returning to main menu...");
-        isDisplayed = false;
+    private static void resetGame() {
+        System.out.println("Game restarted!");
+        isGameEndScreenVisible = false; 
     }
 }

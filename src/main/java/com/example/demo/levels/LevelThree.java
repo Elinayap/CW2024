@@ -7,6 +7,8 @@ import com.example.demo.actors.Boss;
 import com.example.demo.assets.ShieldImage;
 import com.example.demo.assets.bombImage;
 
+import javafx.stage.Stage;
+
 public class LevelThree extends LevelParent {
 
 	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/river.jpg";
@@ -19,8 +21,8 @@ public class LevelThree extends LevelParent {
 	private static final double BOMB_PROBABILITY = 0.02;
 	
 
-	public LevelThree(double screenHeight, double screenWidth) {
-		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+	public LevelThree(double screenHeight, double screenWidth, Stage gameStage) {
+		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH , gameStage);
 
 		//Initialize the image at (0,0)
     	shieldImage = new ShieldImage(0, 0);
