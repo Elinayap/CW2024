@@ -40,6 +40,8 @@ public abstract class LevelParent extends Observable {
     private final Scene scene;
     private final ImageView background;
     private boolean isPaused = false;
+	private int playerScore;
+	
 
     private final List<ActiveActorDestructible> friendlyUnits;
     private final List<ActiveActorDestructible> enemyUnits;
@@ -62,6 +64,8 @@ public abstract class LevelParent extends Observable {
         this.isUpdated = false;
         this.isChangedState = false;
         this.gameStage = gameStage;
+		this.playerScore = 0;
+		
 
         this.background = new ImageView(new Image(getClass().getResource(backgroundImageName).toExternalForm()));
         this.screenHeight = screenHeight;
@@ -85,6 +89,7 @@ public abstract class LevelParent extends Observable {
         initializeBackground();
         initializeFriendlyUnits();
         levelView.showHeartDisplay();
+		levelView.updateScore(playerScore);
         return scene;
     }
 
@@ -117,12 +122,21 @@ public abstract class LevelParent extends Observable {
             notifyObservers(levelName);
             isUpdated = true;
             isChangedState = true;
+			resetScore();
         }
     }
 
     public boolean isChangedState() {
         return isChangedState;
     }
+
+	private void resetScore() {
+		playerScore = 0; // Reset score to 0
+		levelView.updateScore(playerScore); // Update the score display
+		System.out.println("Score reset to 0 for the next level.");
+	}
+
+	
 
     protected void updateScene() {
         if (!isPaused && !isTransitioning) {
@@ -230,8 +244,38 @@ public abstract class LevelParent extends Observable {
     }
 
     private void handleUserProjectileCollisions() {
-        handleCollisions(userProjectiles, enemyUnits);
-    }
+		List<ActiveActorDestructible> destroyedProjectiles = new ArrayList<>();
+		List<ActiveActorDestructible> destroyedEnemies = new ArrayList<>();
+	
+		for (ActiveActorDestructible projectile : userProjectiles) {
+			boolean projectileHit = false;
+	
+			for (ActiveActorDestructible enemy : enemyUnits) {
+				
+				if (projectile.getBoundsInParent().intersects(enemy.getBoundsInParent()) && !projectileHit) {
+					projectile.takeDamage();
+					enemy.takeDamage();
+	
+					// Add score only if the enemy is destroyed
+					if (enemy.isDestroyed()) {
+						destroyedEnemies.add(enemy); 
+						addScore(10); 
+					}
+	
+					destroyedProjectiles.add(projectile); 
+					projectileHit = true; 
+				}
+			}
+		}
+	
+		// Cleanup: Remove destroyed projectiles and enemies
+		root.getChildren().removeAll(destroyedProjectiles);
+		userProjectiles.removeAll(destroyedProjectiles);
+		root.getChildren().removeAll(destroyedEnemies);
+		enemyUnits.removeAll(destroyedEnemies);
+	}
+	
+	
 
     private void handleEnemyProjectileCollisions() {
         handleCollisions(enemyProjectiles, friendlyUnits);
@@ -259,6 +303,7 @@ public abstract class LevelParent extends Observable {
 
     private void updateLevelView() {
         levelView.removeHearts(user.getHealth());
+		levelView.updateScore(playerScore);
     }
 
     private void updateKillCount() {
@@ -271,77 +316,48 @@ public abstract class LevelParent extends Observable {
         return Math.abs(enemy.getTranslateX()) > screenWidth;
     }
 
-    protected void winGame() {
-        if (isGameOver || isTransitioning) {
-        	return; // Prevent triggering win logic if the game is over or transitioning
-    	}
-
-    	timeline.stop(); // Stop the game animations
-    	levelView.showWinImage(); // Display the "win image"
-
-    	isGameOver = true;
-    	isTransitioning = true; // Prevent duplicate transitions
-
-    	//Delay the game win screen
-    	PauseTransition delay = new PauseTransition(Duration.seconds(1)); 
-    	delay.setOnFinished(event -> {
-        	System.out.println("Transitioning to GameWinScreen...");
-        	int finalScore = getUser().getKillCount(); // Fetch the final score
-        	GameWinScreen.showGameWinScreen(gameStage, finalScore); // Show the GameWinScreen
-        	isTransitioning = false; // Reset transitioning state
-    	});
-    	delay.play();
+	private void addScore(int points) {
+        playerScore += points;
+        System.out.println("Score: " + playerScore);
     }
 
+
+    protected void winGame(String nextLevel) {
+		if (isGameOver) return;
+		timeline.stop();
+		isGameOver = true;
+	
+		if (nextLevel == null) {
+			//Remove the "go to next level" button for level 3
+			GameWinScreen.showlvl3WinScreen(gameStage, playerScore);
+		} else {
+			//Show the "go to next level" button
+			GameWinScreen.showGameWinScreen(gameStage, playerScore, () -> goToNextLevel(nextLevel));
+		}
+	}
 	private boolean isTransitioning = false;
 
-    protected void loseGame() {
-		if (isGameOver || isTransitioning) {
-			return;
-		}
-	
-		isGameOver = true;
-		isTransitioning = true; // Set transitioning state
-	
-		timeline.stop(); // Stop all animations
-		levelView.showGameOverImage(); // Display the "Game Over" image
-	
-		// Disable player input except for the Tab key
-		getScene().setOnKeyPressed(event -> {
-			if (event.getCode() == KeyCode.TAB && !isGameEndScreenTriggered) {
-				System.out.println("Showing Game End Screen");
-				isGameEndScreenTriggered = true; // Prevent multiple triggers
-				transitionToGameEndScreen(); // Show the Game End Screen
-			}
-		});
-	}
-	
-	private void transitionToGameEndScreen() {
-		PauseTransition delay = new PauseTransition(Duration.seconds(1)); // Optional delay
-		delay.setOnFinished(event -> {
-			System.out.println("Transitioning to GameEndScreen...");
-			int finalScore = getUser().getKillCount(); // Fetch the final score
-			GameEndScreen.showGameEndScreen(gameStage, finalScore);
-			isTransitioning = false;
-		});
-		delay.play();
-	}
-	
-	
-	
+	protected void loseGame() {
+        if (isGameOver) return;
+        timeline.stop();
+        isGameOver = true;
+        GameEndScreen.showGameEndScreen(gameStage, playerScore);
+    }
 		
 	
 	protected void checkIfGameOver() {
 		if (isGameOver || isTransitioning) {
-			return; 
+			return;
 		}
 	
 		if (userIsDestroyed()) {
 			loseGame(); 
-		}else if (allEnemiesDefeated()) { 
-			winGame(); 
+		} else if (allEnemiesDefeated()) { 
+			//Go to next level
+			winGame("com.example.demo.levels.LevelTwo"); 
 		}
 	}
+	
 
 	private boolean allEnemiesDefeated() {
 		return enemyUnits.isEmpty();
@@ -356,6 +372,7 @@ public abstract class LevelParent extends Observable {
     protected Group getRoot() {
         return root;
     }
+
 
     protected int getCurrentNumberOfEnemies() {
         return enemyUnits.size();
@@ -380,5 +397,16 @@ public abstract class LevelParent extends Observable {
 
     private void updateNumberOfEnemies() {
         currentNumberOfEnemies = enemyUnits.size();
+    }
+
+
+
+    private void updateScoreDisplay() {
+        // If you have a LevelView or score label, update it here
+        System.out.println("Player Score Updated: " + playerScore);
+    }
+
+    public int getPlayerScore() {
+        return playerScore;
     }
 }

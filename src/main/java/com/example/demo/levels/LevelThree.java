@@ -64,7 +64,7 @@ public class LevelThree extends LevelParent {
 			loseGame();
 		}
 		else if (boss.isDestroyed()) {
-			winGame();
+			winGame(null);
 		}
 	}
 

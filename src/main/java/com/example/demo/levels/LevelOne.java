@@ -13,6 +13,7 @@ public class LevelOne extends LevelParent {
 	private static final int KILLS_TO_ADVANCE = 1;
 	private static final double ENEMY_SPAWN_PROBABILITY = .20;
 	private static final int PLAYER_INITIAL_HEALTH = 5;
+	private static final int SCORE_TO_ADVANCE = 40;
 
 	public LevelOne(double screenHeight, double screenWidth, Stage gameStage) {
 		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH, gameStage);
@@ -27,8 +28,9 @@ public class LevelOne extends LevelParent {
 		if (userIsDestroyed()) {
 			loseGame();
 		}
-		else if (userHasReachedKillTarget())
-			goToNextLevel(NEXT_LEVEL);
+		else if (userHasReachedKillTarget()) {
+            winGame(NEXT_LEVEL); 
+        }
 	}
 
 	@Override

@@ -52,13 +52,12 @@ public class LevelTwo extends LevelParent {
 
 	@Override
 	protected void checkIfGameOver() {
-		if (userIsDestroyed()) {
-			loseGame();
-		}
-		else if (userHasReachedKillTarget()){
-			goToNextLevel(NEXT_LEVEL);
-		}
-	}
+        if (userIsDestroyed()) {
+            loseGame();
+        } else if (boss.isDestroyed()) {
+            winGame(NEXT_LEVEL); 
+        }
+    }
 
 	@Override
 	protected void spawnEnemyUnits() {
@@ -92,5 +91,7 @@ public class LevelTwo extends LevelParent {
 
 			return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE && !isChangedState();
 		}
+		
+
 
 }
