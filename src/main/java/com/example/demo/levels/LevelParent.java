@@ -259,7 +259,16 @@ public abstract class LevelParent extends Observable {
 					// Add score only if the enemy is destroyed
 					if (enemy.isDestroyed()) {
 						destroyedEnemies.add(enemy); 
-						addScore(10); 
+						if (this instanceof LevelOne) {
+							addScore(40); //Add 40 points for LevelOne
+						}
+						if (this instanceof LevelTwo) {
+							addScore(60); //Add 60 points for LevelTwo
+						}
+						if (this instanceof LevelThree) {
+							addScore(100); //Add 100 points for LevelTwo
+						}
+						
 					}
 	
 					destroyedProjectiles.add(projectile); 
