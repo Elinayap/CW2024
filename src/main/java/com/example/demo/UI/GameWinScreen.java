@@ -94,6 +94,8 @@ public class GameWinScreen {
                     "-fx-background-color: transparent;" +
                     "-fx-border-width: 0;"
                 );
+                //Ensure other keys does not trigger the screen 
+                playAgainButton.setFocusTraversable(false);
                 playAgainButton.setOnAction(event -> {
                     gameWinStage.close();
                     resetGame();
@@ -112,6 +114,8 @@ public class GameWinScreen {
                     "-fx-background-color: transparent;" +
                     "-fx-border-width: 0;"
                 );
+                //Ensure other keys does not trigger the screen 
+                nextLevelButton.setFocusTraversable(false);
                 nextLevelButton.setOnAction(event -> {
                     gameWinStage.close();
                     isGameWinScreenVisible = false;
@@ -132,6 +136,8 @@ public class GameWinScreen {
                     "-fx-background-color: transparent;" +
                     "-fx-border-width: 0;"
                 );
+                //Ensure other keys does not trigger the screen 
+                mainMenuButton.setFocusTraversable(false);
                 mainMenuButton.setOnAction(event -> {
                     gameWinStage.close();
                     isGameWinScreenVisible = false;
@@ -225,6 +231,8 @@ public class GameWinScreen {
                     "-fx-background-color: transparent;" +
                     "-fx-border-width: 0;"
                 );
+                //Ensure other keys does not trigger the screen 
+                mainMenuButton.setFocusTraversable(false);
                 mainMenuButton.setOnAction(event -> {
                     gameWinStage.close();
                     isGameWinScreenVisible = false;

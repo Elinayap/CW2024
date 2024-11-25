@@ -92,6 +92,8 @@ public class GameEndScreen {
                     "-fx-background-color: transparent;" +
                     "-fx-border-width: 0;"
                 );
+                //Ensure other keys does not trigger the screen 
+                restartButton.setFocusTraversable(false);
                 restartButton.setOnAction(event -> {
                     gameEndStage.close();
                     resetGame();
@@ -110,6 +112,8 @@ public class GameEndScreen {
                     "-fx-background-color: transparent;" +
                     "-fx-border-width: 0;"
                 );
+                //Ensure other keys does not trigger the screen 
+                mainMenuButton.setFocusTraversable(false);
                 mainMenuButton.setOnAction(event -> {
                     gameEndStage.close();
                 });
