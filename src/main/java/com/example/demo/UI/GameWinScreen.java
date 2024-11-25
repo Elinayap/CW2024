@@ -81,11 +81,11 @@ public class GameWinScreen {
                 scoreLabel.setFont(buttonFont);
                 scoreLabel.setStyle("-fx-text-fill: #000000;");
 
-                Button playAgainButton = new Button("Shop");
-                playAgainButton.setFont(buttonFont);
-                playAgainButton.setPrefWidth(200);
-                playAgainButton.setPrefHeight(50);
-                playAgainButton.setStyle(
+                Button shopButton = new Button("Shop");
+                shopButton.setFont(buttonFont);
+                shopButton.setPrefWidth(200);
+                shopButton.setPrefHeight(50);
+                shopButton.setStyle(
                     "-fx-background-image: url('" + GameWinScreen.class.getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
                     "-fx-background-size: 100% 100%;" +
                     "-fx-background-repeat: no-repeat;" +
@@ -95,10 +95,10 @@ public class GameWinScreen {
                     "-fx-border-width: 0;"
                 );
                 //Ensure other keys does not trigger the screen 
-                playAgainButton.setFocusTraversable(false);
-                playAgainButton.setOnAction(event -> {
-                    gameWinStage.close();
-                    resetGame();
+                shopButton.setFocusTraversable(false);
+                shopButton.setOnAction(event -> {
+                Shop shop = new Shop(displayStage); // Ensure the Shop instance is created
+                shop.show();
                 });
 
                 Button nextLevelButton = new Button("Go to Next Level");
@@ -147,7 +147,7 @@ public class GameWinScreen {
                     new MainMenu(displayStage, controller).show();
                 });
 
-                layout.getChildren().addAll(titleLabel, scoreLabel, nextLevelButton, playAgainButton, mainMenuButton);
+                layout.getChildren().addAll(titleLabel, scoreLabel, nextLevelButton, shopButton, mainMenuButton);
                 rootLayout.setCenter(layout);
 
                 Scene gameWinScene = new Scene(rootLayout, 500, 500);

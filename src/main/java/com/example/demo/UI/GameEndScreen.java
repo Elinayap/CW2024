@@ -1,5 +1,7 @@
 package com.example.demo.UI;
 
+import com.example.demo.controller.Controller;
+
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -79,25 +81,25 @@ public class GameEndScreen {
                 scoreLabel.setFont(buttonFont);
                 scoreLabel.setStyle("-fx-text-fill: #000000;");
 
-                Button restartButton = new Button("Restart");
-                restartButton.setFont(buttonFont);
-                restartButton.setPrefWidth(200);
-                restartButton.setPrefHeight(50);
-                restartButton.setStyle(
-                    "-fx-background-image: url('" + GameEndScreen.class.getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
-                    "-fx-background-size: 100% 100%;" +
-                    "-fx-background-repeat: no-repeat;" +
-                    "-fx-text-fill: #000000;" +
-                    "-fx-alignment: center;" +
-                    "-fx-background-color: transparent;" +
-                    "-fx-border-width: 0;"
-                );
-                //Ensure other keys does not trigger the screen 
-                restartButton.setFocusTraversable(false);
-                restartButton.setOnAction(event -> {
-                    gameEndStage.close();
-                    resetGame();
-                });
+                // Button restartButton = new Button("Restart");
+                // restartButton.setFont(buttonFont);
+                // restartButton.setPrefWidth(200);
+                // restartButton.setPrefHeight(50);
+                // restartButton.setStyle(
+                //     "-fx-background-image: url('" + GameEndScreen.class.getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
+                //     "-fx-background-size: 100% 100%;" +
+                //     "-fx-background-repeat: no-repeat;" +
+                //     "-fx-text-fill: #000000;" +
+                //     "-fx-alignment: center;" +
+                //     "-fx-background-color: transparent;" +
+                //     "-fx-border-width: 0;"
+                // );
+                // //Ensure other keys does not trigger the screen 
+                // restartButton.setFocusTraversable(false);
+                // restartButton.setOnAction(event -> {
+                //     gameEndStage.close();
+                //     resetGame();
+                // });
                 
                 Button mainMenuButton = new Button("Return to Menu");
                 mainMenuButton.setFont(buttonFont);
@@ -116,10 +118,15 @@ public class GameEndScreen {
                 mainMenuButton.setFocusTraversable(false);
                 mainMenuButton.setOnAction(event -> {
                     gameEndStage.close();
+                    isGameEndScreenVisible = false;
+                    displayStage.setWidth(1300);  
+                    displayStage.setHeight(730);
+                    Controller controller = new Controller(displayStage); 
+                    new MainMenu(displayStage, controller).show();
                 });
                 
 
-                layout.getChildren().addAll(titleLabel, scoreLabel, restartButton, mainMenuButton);
+                layout.getChildren().addAll(titleLabel, scoreLabel, mainMenuButton);
                 rootLayout.setCenter(layout);
 
                 Scene gameEndScene = new Scene(rootLayout, 500, 500);
@@ -136,8 +143,5 @@ public class GameEndScreen {
         });
     }
 
-    private static void resetGame() {
-        System.out.println("Game restarted!");
-        isGameEndScreenVisible = false; 
-    }
+    
 }
