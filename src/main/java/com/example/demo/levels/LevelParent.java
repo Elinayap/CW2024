@@ -240,8 +240,28 @@ public abstract class LevelParent extends Observable {
     }
 
     private void handlePlaneCollisions() {
-        handleCollisions(friendlyUnits, enemyUnits);
+        List<ActiveActorDestructible> collidedEnemies = new ArrayList<>();
+    
+        for (ActiveActorDestructible enemy : new ArrayList<>(enemyUnits)) {
+            if (getUser().getBoundsInParent().intersects(enemy.getBoundsInParent())) {
+                collidedEnemies.add(enemy); // Add enemy to the list of collided enemies
+                getUser().takeDamage();    // Deduct one heart for each collision
+            }
+        }
+    
+        // Remove all collided enemies after processing
+        for (ActiveActorDestructible enemy : collidedEnemies) {
+            root.getChildren().remove(enemy);
+            enemyUnits.remove(enemy);
+        }
+    
+        // Check if the user is destroyed
+        if (userIsDestroyed()) {
+            loseGame(); // Trigger game-over logic
+        }
     }
+    
+    
 
     private void handleUserProjectileCollisions() {
 		List<ActiveActorDestructible> destroyedProjectiles = new ArrayList<>();
@@ -364,7 +384,7 @@ public abstract class LevelParent extends Observable {
 			GameWinScreen.showGameWinScreen(gameStage, playerScore, () -> goToNextLevel(nextLevel));
 		}
 	}
-	private boolean isTransitioning = false;
+	protected boolean isTransitioning = false;
 
 	protected void loseGame() {
         if (isGameOver) return;

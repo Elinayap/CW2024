@@ -21,17 +21,17 @@ public class LevelOne extends LevelParent {
 	}
 
 	@Override
-	protected void checkIfGameOver() {
-		if (isGameOver) {
-			return;
-		}
-		if (userIsDestroyed()) {
-			loseGame();
-		}
-		else if (userHasReachedKillTarget()) {
-            winGame(NEXT_LEVEL); 
-        }
-	}
+protected void checkIfGameOver() {
+    if (isGameOver) {
+        return;
+    }
+    if (userIsDestroyed()) {
+        loseGame(); // Trigger game-over logic only when health is zero
+    } else if (userHasReachedKillTarget() && !isTransitioning) {
+        winGame(NEXT_LEVEL); // Trigger win condition only when user meets the kill target
+    }
+}
+
 
 	@Override
 	protected void initializeFriendlyUnits() {
@@ -56,7 +56,10 @@ public class LevelOne extends LevelParent {
 	}
 
 	private boolean userHasReachedKillTarget() {
-		return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE && !isChangedState();
+		return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE 
+			&& getPlayerScore() >= SCORE_TO_ADVANCE 
+			&& !isGameOver;
 	}
+	
 
 }
