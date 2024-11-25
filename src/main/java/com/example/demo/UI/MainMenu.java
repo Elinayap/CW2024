@@ -56,6 +56,7 @@ public class MainMenu {
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
                 new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true)
+
         );
         vBox.setBackground(new Background(backgroundImage));
 

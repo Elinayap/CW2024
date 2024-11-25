@@ -13,6 +13,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import com.example.demo.controller.Controller;
+
 public class GameWinScreen {
 
     private static boolean isGameWinScreenVisible = false;
@@ -79,7 +81,7 @@ public class GameWinScreen {
                 scoreLabel.setFont(buttonFont);
                 scoreLabel.setStyle("-fx-text-fill: #000000;");
 
-                Button playAgainButton = new Button("Play Again");
+                Button playAgainButton = new Button("Shop");
                 playAgainButton.setFont(buttonFont);
                 playAgainButton.setPrefWidth(200);
                 playAgainButton.setPrefHeight(50);
@@ -132,6 +134,11 @@ public class GameWinScreen {
                 );
                 mainMenuButton.setOnAction(event -> {
                     gameWinStage.close();
+                    isGameWinScreenVisible = false;
+                    displayStage.setWidth(1300);  
+                    displayStage.setHeight(730);
+                    Controller controller = new Controller(displayStage); 
+                    new MainMenu(displayStage, controller).show();
                 });
 
                 layout.getChildren().addAll(titleLabel, scoreLabel, nextLevelButton, playAgainButton, mainMenuButton);
