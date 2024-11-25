@@ -149,6 +149,7 @@ public class UserPlane extends FighterPlane {
     private void moveHorizontal(double Xaxis) {
         setTranslateX(getTranslateX() + Xaxis);
     }
+    
 
     
 }

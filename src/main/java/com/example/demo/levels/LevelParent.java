@@ -302,14 +302,29 @@ public abstract class LevelParent extends Observable {
     }
 
     private void handleEnemyPenetration() {
-        for (ActiveActorDestructible enemy : enemyUnits) {
-            if (enemyHasPenetratedDefenses(enemy)) {
-                user.takeDamage();
-                enemy.destroy();
-            }
-        }
-    }
-
+		for (ActiveActorDestructible enemy : new ArrayList<>(enemyUnits)) {
+			if (enemyHasPenetratedDefenses(enemy)) {
+				System.out.println("Enemy exited the screen! Deducting all hearts.");
+	
+				// Deduct all hearts from the user
+				while (user.getHealth() > 0) {
+					user.takeDamage();
+				}
+	
+				// Remove the enemy and trigger game over
+				enemy.destroy();
+				root.getChildren().remove(enemy);
+				enemyUnits.remove(enemy);
+	
+				// Trigger game over logic
+				if (userIsDestroyed()) {
+					loseGame();
+				}
+			}
+		}
+	}
+	
+	
     private void updateLevelView() {
         levelView.removeHearts(user.getHealth());
 		levelView.updateScore(playerScore);
@@ -321,9 +336,14 @@ public abstract class LevelParent extends Observable {
         }
     }
 
-    private boolean enemyHasPenetratedDefenses(ActiveActorDestructible enemy) {
-        return Math.abs(enemy.getTranslateX()) > screenWidth;
-    }
+	private boolean enemyHasPenetratedDefenses(ActiveActorDestructible enemy) {
+		return enemy.getBoundsInParent().getMaxX() < 0 || // Off-screen to the left
+			   enemy.getBoundsInParent().getMinX() > screenWidth || // Off-screen to the right
+			   enemy.getBoundsInParent().getMaxY() < 0 || // Off-screen above
+			   enemy.getBoundsInParent().getMinY() > screenHeight; // Off-screen below
+	}
+	
+	
 
 	private void addScore(int points) {
         playerScore += points;

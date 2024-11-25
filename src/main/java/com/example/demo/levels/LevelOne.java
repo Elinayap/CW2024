@@ -23,7 +23,7 @@ public class LevelOne extends LevelParent {
 	@Override
 	protected void checkIfGameOver() {
 		if (isGameOver) {
-			return; 
+			return;
 		}
 		if (userIsDestroyed()) {
 			loseGame();
