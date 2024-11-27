@@ -27,7 +27,7 @@ public class Controller implements Observer {
 	private Scene mainScene;
 	private LevelParent currentLevel;
 	private boolean isGamePaused = false;
-	private MediaPlayer mediaPlayer;
+	private static MediaPlayer mediaPlayer; 
 	private double currentVolume = 0.5;
 
 
@@ -37,7 +37,9 @@ public class Controller implements Observer {
 	}
 
 	//Play background music
-	private void PlayMusic() {
+	public void PlayMusic() {
+
+		stopMusic();
 		//Create media object from the audio file
         Media media = new Media(this.getClass().getResource("/com/example/demo/audios/movement.mp3").toExternalForm());
 		 //Manage playback of media
@@ -48,6 +50,15 @@ public class Controller implements Observer {
 		//Start playing music
         mediaPlayer.play();
     }
+
+	//Stop and dispose of the current MediaPlayer instance
+    public void stopMusic() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.dispose();
+            mediaPlayer = null; // Ensure the reference is cleared
+        }
+    }
 	
 	//Retrieve the MediaPlayer
 	public MediaPlayer getMediaPlayer() {
@@ -57,7 +68,9 @@ public class Controller implements Observer {
 	//Control the volume of media player
 	public void setVolume(double volume) {
         currentVolume = volume;
-        mediaPlayer.setVolume(volume);
+		if (mediaPlayer != null) {
+            mediaPlayer.setVolume(volume);
+        }
     }
 	public void launchGame() throws ClassNotFoundException, NoSuchMethodException, SecurityException,
 			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException  {
@@ -139,6 +152,16 @@ public class Controller implements Observer {
         } else {
             System.out.println("Shop is not available for this level.");
         }
+
+		
     }
+	 // Return to menu logic
+	 public void returnToMenu() {
+        stopMusic(); // Stop the current music
+        PlayMusic(); // Restart the music
+        System.out.println("Returned to Menu");
+    }
+
+	
 
 }

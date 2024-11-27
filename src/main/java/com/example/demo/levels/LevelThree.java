@@ -14,7 +14,7 @@ public class LevelThree extends LevelParent {
     private static final int PLAYER_INITIAL_HEALTH = 5;
     private final Boss boss;
     private final List<bombImage> bombs;
-    private LevelView levelView; // Use LevelView directly for consistency
+    private LevelView levelView;
     private ShieldImage shieldImage;
     public static final int SHIELD_SIZE = 200;
     private static final double BOMB_PROBABILITY = 0.02;
