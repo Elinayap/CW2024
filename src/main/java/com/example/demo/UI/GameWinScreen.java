@@ -13,7 +13,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import com.example.demo.GameState.GameState;
 import com.example.demo.controller.Controller;
+import com.example.demo.levels.LevelParent;
+import com.example.demo.levels.LevelTwo;
 
 public class GameWinScreen {
 
@@ -27,7 +30,7 @@ public class GameWinScreen {
         
     }
 
-    public static void showGameWinScreen(Stage displayStage, int score,Runnable onNextLevel) {
+    public static void showGameWinScreen(Stage displayStage, int score, LevelParent currentLevel, Runnable onNextLevel) {
         if (isGameWinScreenVisible) {
             return;
         }
@@ -97,10 +100,15 @@ public class GameWinScreen {
                 //Ensure other keys does not trigger the screen 
                 shopButton.setFocusTraversable(false);
                 shopButton.setOnAction(event -> {
-                Shop shop = new Shop(displayStage); // Ensure the Shop instance is created
-                shop.show();
+                    if (currentLevel instanceof LevelTwo) {
+                        // Display a popup message when clicking the shop button in Level 2
+                        Shop.showShopPopup("Shop", "Sorry, you can't purchase extra hearts for this level");
+                    } else {
+                        Shop shop = new Shop(displayStage, currentLevel); 
+                        shop.show();
+                    }
                 });
-
+                
                 Button nextLevelButton = new Button("Go to Next Level");
                 nextLevelButton.setFont(buttonFont);
                 nextLevelButton.setPrefWidth(200);
@@ -139,6 +147,7 @@ public class GameWinScreen {
                 //Ensure other keys does not trigger the screen 
                 mainMenuButton.setFocusTraversable(false);
                 mainMenuButton.setOnAction(event -> {
+                    GameState.getInstance().resetAll(); 
                     gameWinStage.close();
                     isGameWinScreenVisible = false;
                     displayStage.setWidth(1300);  
@@ -260,8 +269,6 @@ public class GameWinScreen {
     }
     
 
-    private static void resetGame() {
-        System.out.println("Play again");
-        isGameWinScreenVisible = false; 
-    }
+    
 }
+

@@ -81,26 +81,6 @@ public class GameEndScreen {
                 scoreLabel.setFont(buttonFont);
                 scoreLabel.setStyle("-fx-text-fill: #000000;");
 
-                // Button restartButton = new Button("Restart");
-                // restartButton.setFont(buttonFont);
-                // restartButton.setPrefWidth(200);
-                // restartButton.setPrefHeight(50);
-                // restartButton.setStyle(
-                //     "-fx-background-image: url('" + GameEndScreen.class.getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
-                //     "-fx-background-size: 100% 100%;" +
-                //     "-fx-background-repeat: no-repeat;" +
-                //     "-fx-text-fill: #000000;" +
-                //     "-fx-alignment: center;" +
-                //     "-fx-background-color: transparent;" +
-                //     "-fx-border-width: 0;"
-                // );
-                // //Ensure other keys does not trigger the screen 
-                // restartButton.setFocusTraversable(false);
-                // restartButton.setOnAction(event -> {
-                //     gameEndStage.close();
-                //     resetGame();
-                // });
-                
                 Button mainMenuButton = new Button("Return to Menu");
                 mainMenuButton.setFont(buttonFont);
                 mainMenuButton.setPrefWidth(200);

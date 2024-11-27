@@ -6,7 +6,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 import com.example.demo.levels.LevelParent;
+import com.example.demo.levels.LevelTwo;
 import com.example.demo.UI.PauseScreen;
+import com.example.demo.UI.Shop;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,7 +20,7 @@ import javafx.stage.Stage;
 
 
 
-public class Controller implements Observer {  //change observer(leave it)
+public class Controller implements Observer { 
 
 	private static final String LEVEL_ONE_CLASS_NAME = "com.example.demo.levels.LevelOne";
 	private final Stage stage;
@@ -128,5 +130,15 @@ public class Controller implements Observer {  //change observer(leave it)
 			alert.show();
 		}
 	}
+
+	 public void openShop() {
+        // Ensure the shop is initialized with the current level
+        if (currentLevel instanceof LevelTwo) {
+            Shop shop = new Shop(stage, (LevelTwo) currentLevel); // Pass the currentLevel
+            shop.show();
+        } else {
+            System.out.println("Shop is not available for this level.");
+        }
+    }
 
 }

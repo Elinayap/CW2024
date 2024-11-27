@@ -10,13 +10,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class LevelView {
-    
+
     private static final double HEART_DISPLAY_X_POSITION = 5;
     private static final double HEART_DISPLAY_Y_POSITION = 25;
     private static final int WIN_IMAGE_X_POSITION = 355;
     private static final int WIN_IMAGE_Y_POSITION = 175;
     private static final int LOSS_SCREEN_X_POSITION = -160;
-    private static final int LOSS_SCREEN_Y_POSISITION = -375;
+    private static final int LOSS_SCREEN_Y_POSITION = -375;
     private static final double SCORE_LABEL_X_POSITION = 700; // Position the score label
     private static final double SCORE_LABEL_Y_POSITION = 25;
 
@@ -30,7 +30,7 @@ public class LevelView {
         this.root = root;
         this.heartDisplay = new HeartDisplay(HEART_DISPLAY_X_POSITION, HEART_DISPLAY_Y_POSITION, heartsToDisplay);
         this.winImage = new WinImage(WIN_IMAGE_X_POSITION, WIN_IMAGE_Y_POSITION);
-        this.gameOverImage = new GameOverImage(LOSS_SCREEN_X_POSITION, LOSS_SCREEN_Y_POSISITION);
+        this.gameOverImage = new GameOverImage(LOSS_SCREEN_X_POSITION, LOSS_SCREEN_Y_POSITION);
 
         this.scoreLabel = new Label("Score: 0");
         this.scoreLabel.setFont(new Font("Arial", 20));
@@ -65,15 +65,22 @@ public class LevelView {
         }
     }
 
-    //Update the score
+    // Update the score
     public void updateScore(int score) {
         scoreLabel.setText("Score: " + score); 
     }
 
-    //Add score label to root
+    // Add score label to root
     public void showScoreDisplay() {
         if (!root.getChildren().contains(scoreLabel)) {
             root.getChildren().add(scoreLabel);
         }
     }
+
+    // Method to update the heart display
+    public void updateHeartDisplay(int hearts) {
+        heartDisplay.updateHeartCount(hearts);
+        System.out.println("Updated hearts to: " + hearts);
+    }
 }
+

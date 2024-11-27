@@ -78,14 +78,17 @@ public class MainMenu {
         // Start Game Button
         Button startGameButton = createStyledButton("", "/com/example/demo/images/play_button.png", 200, 50, buttonFont);
         startGameButton.setOnAction(event -> startGame());
+        startGameButton.setFocusTraversable(false);
 
         // Instructions Button
         Button instructionsButton = createStyledButton("Instructions", "/com/example/demo/images/wood_button.png", 200, 50, buttonFont);
         instructionsButton.setOnAction(event -> showInstructions());
+        instructionsButton.setFocusTraversable(false);
 
         // Quit Game Button
         Button quitGameButton = createStyledButton("Quit Game", "/com/example/demo/images/wood_button.png", 200, 50, buttonFont);
         quitGameButton.setOnAction(event -> stage.close());
+        quitGameButton.setFocusTraversable(false);
 
         // Add components to the VBox
         vBox.getChildren().addAll(titleLabel, startGameButton, instructionsButton, quitGameButton);
