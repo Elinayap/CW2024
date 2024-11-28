@@ -7,6 +7,7 @@ import java.util.Observer;
 
 import com.example.demo.levels.LevelParent;
 import com.example.demo.levels.LevelTwo;
+import com.example.demo.GameState.GameState;
 import com.example.demo.UI.PauseScreen;
 import com.example.demo.UI.Shop;
 
@@ -75,6 +76,7 @@ public class Controller implements Observer {
 	public void launchGame() throws ClassNotFoundException, NoSuchMethodException, SecurityException,
 			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException  {
 
+			GameState.getInstance().resetAll();
 			goToLevel(LEVEL_ONE_CLASS_NAME);
 
 
@@ -159,6 +161,7 @@ public class Controller implements Observer {
 	 public void returnToMenu() {
         stopMusic(); // Stop the current music
         PlayMusic(); // Restart the music
+		GameState.getInstance().resetAll();
         System.out.println("Returned to Menu");
     }
 

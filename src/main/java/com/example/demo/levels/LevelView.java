@@ -82,5 +82,11 @@ public class LevelView {
         heartDisplay.updateHeartCount(hearts);
         System.out.println("Updated hearts to: " + hearts);
     }
+
+     // Method to reset hearts
+     public void resetHearts(int heartsToDisplay) {
+        heartDisplay.resetHearts(heartsToDisplay);
+        System.out.println("Hearts reset to: " + heartsToDisplay);
+    }
 }
 

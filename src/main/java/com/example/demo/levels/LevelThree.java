@@ -3,6 +3,7 @@ package com.example.demo.levels;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.demo.GameState.GameState;
 import com.example.demo.actors.Boss;
 import com.example.demo.assets.ShieldImage;
 import com.example.demo.assets.bombImage;
@@ -124,9 +125,15 @@ public class LevelThree extends LevelParent {
     }
 
     @Override
-    public void startGame() {
-        super.startGame();
+public void startGame() {
+    super.startGame();
+    if (levelView != null) {
+        levelView.resetHearts(PLAYER_INITIAL_HEALTH); // Reset hearts to initial value
     }
+     GameState.getInstance().setLevel1Hearts(PLAYER_INITIAL_HEALTH);
+    System.out.println("Game started with hearts: " + PLAYER_INITIAL_HEALTH);
+}
+
 
     public void activateShield() {
         shieldImage.showShield();
@@ -135,4 +142,6 @@ public class LevelThree extends LevelParent {
     public void deactivateShield() {
         shieldImage.hideShield();
     }
+
+    
 }

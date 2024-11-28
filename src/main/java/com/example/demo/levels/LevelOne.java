@@ -1,5 +1,6 @@
 package com.example.demo.levels;
 
+import com.example.demo.GameState.GameState;
 import com.example.demo.actors.EnemyPlane;
 import com.example.demo.destructible.ActiveActorDestructible;
 
@@ -66,6 +67,17 @@ public class LevelOne extends LevelParent {
             && getPlayerScore() >= SCORE_TO_ADVANCE 
             && !isGameOver;
     }
+
+    @Override
+public void startGame() {
+    super.startGame();
+    if (levelView != null) {
+        levelView.resetHearts(PLAYER_INITIAL_HEALTH); // Reset hearts to initial value
+    }
+
+     GameState.getInstance().setLevel1Hearts(PLAYER_INITIAL_HEALTH);
+    System.out.println("Game started with hearts: " + PLAYER_INITIAL_HEALTH);
+}
 }
 
 

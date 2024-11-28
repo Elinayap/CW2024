@@ -76,6 +76,11 @@ public class LevelTwo extends LevelParent {
     @Override
     public void startGame() {
         super.startGame();
+        if (levelView != null) {
+            levelView.resetHearts(PLAYER_INITIAL_HEALTH); // Reset hearts to initial value
+        }
+        GameState.getInstance().setLevel1Hearts(PLAYER_INITIAL_HEALTH);
+        System.out.println("Game started with hearts: " + PLAYER_INITIAL_HEALTH);
     }
         //To show the shield image
         public void activateShield() {

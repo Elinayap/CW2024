@@ -9,17 +9,18 @@ public class HeartDisplay {
     private static final String HEART_IMAGE_NAME = "/com/example/demo/images/hearts.png";
     private static final int HEART_HEIGHT = 50;
 
-    private final HBox heartContainer; // Container for hearts
+    private final HBox heartContainer; 
     private final double containerXPosition;
     private final double containerYPosition;
+    
 
     public HeartDisplay(double xPosition, double yPosition, int initialHeartCount) {
         this.containerXPosition = xPosition;
         this.containerYPosition = yPosition;
-        this.heartContainer = new HBox(); // Initialize heart container
+        this.heartContainer = new HBox(); 
         this.heartContainer.setLayoutX(containerXPosition);
         this.heartContainer.setLayoutY(containerYPosition);
-        updateHeartCount(initialHeartCount); // Initialize hearts
+        updateHeartCount(initialHeartCount); 
     }
 
     public HBox getContainer() {
@@ -42,7 +43,7 @@ public class HeartDisplay {
 				heartImage.setPreserveRatio(true);
 				heartContainer.getChildren().add(heartImage);
 			} catch (NullPointerException e) {
-				throw new IllegalArgumentException("Heart image resource not found: " + HEART_IMAGE_NAME, e);
+				throw new IllegalArgumentException("Heart image not found: " + HEART_IMAGE_NAME, e);
 			}
 		}
 	}
@@ -59,5 +60,10 @@ public class HeartDisplay {
         heart.setFitHeight(HEART_HEIGHT);
         heart.setPreserveRatio(true);
         heartContainer.getChildren().add(heart);
+    }
+
+     // Reset the number of hearts displayed
+     public void resetHearts(int heartsToDisplay) {
+        updateHeartCount(heartsToDisplay);
     }
 }

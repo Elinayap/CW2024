@@ -2,7 +2,7 @@ package com.example.demo.GameState;
 
 public class GameState {
 
-    private int level1Hearts;
+    private int level1Hearts; // Player health for Level 1
     private int level2Hearts; 
     private int shopItem1PurchaseCount; 
     private boolean shopLocked; 
@@ -43,9 +43,9 @@ public class GameState {
     // Reset hearts to default
     public void resetLevel1Hearts() {
         this.level1Hearts = 5;
-        System.out.println("Level 2 hearts reset to default: " + level1Hearts);
+        System.out.println("Level 1 hearts reset to default: " + level1Hearts);
     }
-    // Reset hearts to default
+
     public void resetLevel2Hearts() {
         this.level2Hearts = 5;
         System.out.println("Level 2 hearts reset to default: " + level2Hearts);
@@ -78,7 +78,7 @@ public class GameState {
     // Reset shop purchase count
     public void resetShop() {
         this.shopItem1PurchaseCount = 0; 
-        this.shopLocked = false; //Unlock the shop
+        this.shopLocked = false; // Unlock the shop
         System.out.println("Shop reset to initial values.");
     }
 
@@ -87,11 +87,12 @@ public class GameState {
         System.out.println("Shop locked status set to: " + locked);
     }
 
-     // Reset all game states
-     public void resetAll() {
-        resetLevel1Hearts();
-        resetLevel2Hearts();
-        resetShop(); // Reset shop state
+    // Reset all game states
+    public void resetAll() {
+        this.level1Hearts = 5;  // Default hearts for Level 1
+        this.level2Hearts = 5;  // Default hearts for Level 2
+        this.shopItem1PurchaseCount = 0; // Reset shop purchases
+        this.shopLocked = false; // Unlock shop
         System.out.println("GameState reset to initial values.");
     }
 }
