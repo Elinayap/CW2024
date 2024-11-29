@@ -88,7 +88,7 @@ public class PauseScreen {
             "-fx-background-image: url('" + getClass().getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
             "-fx-background-size: 100% 100%;" +
             "-fx-background-repeat: no-repeat;" +
-            "-fx-text-fill: white;" +
+            "-fx-text-fill: #000000;" +
             "-fx-alignment: center;" +
             "-fx-background-color: transparent;" +
             "-fx-border-width: 0;"
@@ -112,7 +112,7 @@ public class PauseScreen {
             "-fx-background-image: url('" + getClass().getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
             "-fx-background-size: 100% 100%;" +
             "-fx-background-repeat: no-repeat;" +
-            "-fx-text-fill: white;" +
+            "-fx-text-fill: #000000;" +
             "-fx-alignment: center;" +
             "-fx-background-color: transparent;" +
             "-fx-border-width: 0;"
@@ -136,7 +136,7 @@ public class PauseScreen {
             "-fx-background-image: url('" + getClass().getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
             "-fx-background-size: 100% 100%;" +
             "-fx-background-repeat: no-repeat;" +
-            "-fx-text-fill: white;" +
+            "-fx-text-fill: #000000;" +
             "-fx-alignment: center;" +
             "-fx-background-color: transparent;" +
             "-fx-border-width: 0;"
