@@ -25,6 +25,7 @@ public class MainMenu {
     private static final String PIXEL_FONT = "/com/example/demo/fonts/pixelFont.ttf";
     private static final String MOUSE_ICON = "/com/example/demo/images/mouse_icon.png";
     private static final String TRIANGLE_MOUSE_ICON = "/com/example/demo/images/triangle_mouse.png";
+    
 
     private final ImageCursor hoverCursor;
     private final ImageCursor mouseCursor;

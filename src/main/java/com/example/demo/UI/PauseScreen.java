@@ -2,6 +2,7 @@ package com.example.demo.UI;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,6 +27,8 @@ public class PauseScreen {
     private static final String PAUSE_IMAGE = "/com/example/demo/images/pause.png";
     private static final String PIXEL_FONT = "/com/example/demo/fonts/pixelFont.ttf";
     private static final String SETTING_IMAGE = "/com/example/demo/images/setting.png";
+    private static final String TRIANGLE_MOUSE_ICON = "/com/example/demo/images/triangle_mouse.png";
+    private static final String MOUSE_ICON = "/com/example/demo/images/mouse_icon.png";
 
     public PauseScreen(Stage stage, Controller controller, Runnable resumeAction, Runnable settingsAction) {
         this.stage = stage;
@@ -76,24 +79,17 @@ public class PauseScreen {
 
         //Load the custom pixel font
         Font buttonFont = Font.loadFont(this.getClass().getResource(PIXEL_FONT).toExternalForm(), 20);
-    
+        // Load cursor images
+        Image triangleCursorImage = new Image(this.getClass().getResource(TRIANGLE_MOUSE_ICON).toExternalForm());
+        Image hoverCursorImage = new Image(this.getClass().getResource(MOUSE_ICON).toExternalForm());
+        ImageCursor triangleCursor = new ImageCursor(triangleCursorImage);
+        ImageCursor hoverCursor = new ImageCursor(hoverCursorImage);
+
         //Resume button
-        Button resumeButton = new Button("Resume");
+        Button resumeButton = createStyledButton("Resume", buttonFont, hoverCursor, triangleCursor);
         if (buttonFont != null) {
             resumeButton.setFont(buttonFont); 
         }
-        resumeButton.setPrefWidth(200);
-        resumeButton.setPrefHeight(50);
-        resumeButton.setStyle(
-            "-fx-background-image: url('" + getClass().getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
-            "-fx-background-size: 100% 100%;" +
-            "-fx-background-repeat: no-repeat;" +
-            "-fx-text-fill: #000000;" +
-            "-fx-alignment: center;" +
-            "-fx-background-color: transparent;" +
-            "-fx-border-width: 0;"
-        );
-       
         resumeButton.setOnAction(event -> {
             if (resume != null) {
                 resume.run();
@@ -102,22 +98,10 @@ public class PauseScreen {
         });
     
         //Settings button
-        Button settingsButton = new Button("Settings");
+        Button settingsButton = createStyledButton("Settings", buttonFont, hoverCursor, triangleCursor);
         if (buttonFont != null) {
             settingsButton.setFont(buttonFont); 
         }
-        settingsButton.setPrefWidth(200);
-        settingsButton.setPrefHeight(50);
-        settingsButton.setStyle(
-            "-fx-background-image: url('" + getClass().getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
-            "-fx-background-size: 100% 100%;" +
-            "-fx-background-repeat: no-repeat;" +
-            "-fx-text-fill: #000000;" +
-            "-fx-alignment: center;" +
-            "-fx-background-color: transparent;" +
-            "-fx-border-width: 0;"
-        );
-        
         settingsButton.setOnAction(event -> {
             if (settings != null) {
                 settings.run();
@@ -126,22 +110,10 @@ public class PauseScreen {
         });
 
         //Exit button
-        Button exitButton = new Button("Exit");
+        Button exitButton = createStyledButton("Exit", buttonFont, hoverCursor, triangleCursor);
         if (buttonFont != null) {
             exitButton.setFont(buttonFont); 
         }
-        exitButton.setPrefWidth(200);
-        exitButton.setPrefHeight(50);
-        exitButton.setStyle(
-            "-fx-background-image: url('" + getClass().getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
-            "-fx-background-size: 100% 100%;" +
-            "-fx-background-repeat: no-repeat;" +
-            "-fx-text-fill: #000000;" +
-            "-fx-alignment: center;" +
-            "-fx-background-color: transparent;" +
-            "-fx-border-width: 0;"
-        );
-       
         exitButton.setOnAction(event -> {
             System.out.println("Exit game");
             pauseStage.close();
@@ -156,6 +128,10 @@ public class PauseScreen {
 
         //Create scene with transparency
         Scene pauseScene = new Scene(rootLayout, 600, 400);
+        // Set the custom cursor
+        Image cursorImage = new Image(this.getClass().getResource(TRIANGLE_MOUSE_ICON).toExternalForm());
+        pauseScene.setCursor(new ImageCursor(cursorImage));
+
         pauseScene.setFill(null);
 
         //Set scene to the stage
@@ -163,6 +139,29 @@ public class PauseScreen {
 
         //Show the pause screen until it is closed
         pauseStage.showAndWait();
+    }
+
+    //Create style button
+    private Button createStyledButton(String text, Font font, ImageCursor hoverCursor, ImageCursor defaultCursor) {
+        Button button = new Button(text);
+        button.setFont(font);
+        button.setPrefWidth(200);
+        button.setPrefHeight(50);
+        button.setStyle(
+            "-fx-background-image: url('" + getClass().getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
+            "-fx-background-size: 100% 100%;" +
+            "-fx-background-repeat: no-repeat;" +
+            "-fx-text-fill: #000000;" +
+            "-fx-alignment: center;" +
+            "-fx-background-color: transparent;" +
+            "-fx-border-width: 0;"
+        );
+
+        // Set hover and default cursors
+        button.setOnMouseEntered(event -> button.setCursor(hoverCursor));
+        button.setOnMouseExited(event -> button.setCursor(defaultCursor));
+
+        return button;
     }
 
     public void showSettings() {
