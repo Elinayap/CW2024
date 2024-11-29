@@ -7,11 +7,15 @@ import com.example.demo.GameState.GameState;
 import com.example.demo.actors.Boss;
 import com.example.demo.assets.ShieldImage;
 import com.example.demo.assets.bombImage;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class LevelThree extends LevelParent {
 
     private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/river.jpg";
+    private static final String BOMB_COLLISION_SOUND = "/com/example/demo/audios/bomb.mp3";
     private static final int PLAYER_INITIAL_HEALTH = 5;
     private final Boss boss;
     private final List<bombImage> bombs;
@@ -109,6 +113,7 @@ public class LevelThree extends LevelParent {
             // Check if the bomb intersects with the user plane
             if (bomb.getBoundsInParent().intersects(getUser().getBoundsInParent())) {
                 getUser().takeDamage();
+                playBombSound(); 
 
                 // Update level view hearts display
                 if (levelView != null) {
@@ -122,6 +127,19 @@ public class LevelThree extends LevelParent {
             }
         });
         bombs.removeIf(bomb -> !bomb.isVisible());
+    }
+
+    
+    private void playBombSound() {
+        try {
+            Media bombSound = new Media(getClass().getResource(BOMB_COLLISION_SOUND).toExternalForm());
+            MediaPlayer mediaPlayer = new MediaPlayer(bombSound);
+            mediaPlayer.play();
+        } catch (NullPointerException e) {
+            System.err.println("Bomb sound file not found: " + BOMB_COLLISION_SOUND);
+        } catch (Exception e) {
+            System.err.println("Error " + e.getMessage());
+        }
     }
 
     @Override
