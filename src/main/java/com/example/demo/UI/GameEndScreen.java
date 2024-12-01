@@ -62,16 +62,9 @@ public class GameEndScreen {
                 layout.setPadding(Insets.EMPTY);
                 rootLayout.setPadding(Insets.EMPTY);
 
-                Font titleFont;
-                Font buttonFont;
-                try {
-                    titleFont = Font.loadFont(GameEndScreen.class.getResource(PIXEL_FONT).toExternalForm(), 40);
-                    buttonFont = Font.loadFont(GameEndScreen.class.getResource(PIXEL_FONT).toExternalForm(), 20);
-                } catch (Exception e) {
-                    System.out.println("Error loading font: " + e.getMessage());
-                    titleFont = Font.font("Arial", 40);
-                    buttonFont = Font.font("Arial", 20);
-                }
+               // Load fonts
+               Font titleFont = loadCustomFont(PIXEL_FONT, 40);
+               Font buttonFont = loadCustomFont(PIXEL_FONT, 20);
 
                 Label titleLabel = new Label("Game Over");
                 titleLabel.setFont(titleFont);
@@ -122,6 +115,18 @@ public class GameEndScreen {
             }
         });
     }
+
+     // Load fonts
+     private static Font loadCustomFont(String fontPath, int size) {
+        try {
+            return Font.loadFont(GameWinScreen.class.getResource(fontPath).toExternalForm(), size);
+        } catch (Exception e) {
+            System.err.println("Error loading font: " + fontPath);
+            e.printStackTrace();
+            return Font.font("Arial", size); // Default font fallback
+        }
+    }
+
 
     
 }

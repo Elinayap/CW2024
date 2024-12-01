@@ -3,6 +3,7 @@ package com.example.demo.UI;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,6 +26,7 @@ public class GameWinScreen {
 
     private static final String BACKGROUND_IMAGE = "/com/example/demo/images/pause.png";
     private static final String PIXEL_FONT = "/com/example/demo/fonts/pixelFont.ttf";
+    private static final String BUTTON_IMAGE = "/com/example/demo/images/grass_button.png";
 
     private GameWinScreen() {
         
@@ -65,16 +67,9 @@ public class GameWinScreen {
                 layout.setPadding(Insets.EMPTY);
                 rootLayout.setPadding(Insets.EMPTY);
 
-                Font titleFont;
-                Font buttonFont;
-                try {
-                    titleFont = Font.loadFont(GameWinScreen.class.getResource(PIXEL_FONT).toExternalForm(), 40);
-                    buttonFont = Font.loadFont(GameWinScreen.class.getResource(PIXEL_FONT).toExternalForm(), 20);
-                } catch (Exception e) {
-                    System.out.println("Error loading font: " + e.getMessage());
-                    titleFont = Font.font("Arial", 40);
-                    buttonFont = Font.font("Arial", 20);
-                }
+                // Load fonts
+                Font titleFont = loadCustomFont(PIXEL_FONT, 40);
+                Font buttonFont = loadCustomFont(PIXEL_FONT, 20);
 
                 Label titleLabel = new Label("You Win!");
                 titleLabel.setFont(titleFont);
@@ -84,19 +79,8 @@ public class GameWinScreen {
                 scoreLabel.setFont(buttonFont);
                 scoreLabel.setStyle("-fx-text-fill: #000000;");
 
-                Button shopButton = new Button("Shop");
-                shopButton.setFont(buttonFont);
-                shopButton.setPrefWidth(200);
-                shopButton.setPrefHeight(50);
-                shopButton.setStyle(
-                    "-fx-background-image: url('" + GameWinScreen.class.getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
-                    "-fx-background-size: 100% 100%;" +
-                    "-fx-background-repeat: no-repeat;" +
-                    "-fx-text-fill: #000000;" +
-                    "-fx-alignment: center;" +
-                    "-fx-background-color: transparent;" +
-                    "-fx-border-width: 0;"
-                );
+                // Shop button
+                Button shopButton = createStyledButton("Shop", buttonFont);
                 //Ensure other keys does not trigger the screen 
                 shopButton.setFocusTraversable(false);
                 shopButton.setOnAction(event -> {
@@ -108,44 +92,21 @@ public class GameWinScreen {
                         shop.show();
                     }
                 });
-                
-                Button nextLevelButton = new Button("Go to Next Level");
-                nextLevelButton.setFont(buttonFont);
-                nextLevelButton.setPrefWidth(200);
-                nextLevelButton.setPrefHeight(50);
-                nextLevelButton.setStyle(
-                    "-fx-background-image: url('" + GameWinScreen.class.getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
-                    "-fx-background-size: 100% 100%;" +
-                    "-fx-background-repeat: no-repeat;" +
-                    "-fx-text-fill: #000000;" +
-                    "-fx-alignment: center;" +
-                    "-fx-background-color: transparent;" +
-                    "-fx-border-width: 0;"
-                );
+                // Go to next level button
+                Button nextLevelButton = createStyledButton("Go to Next Level", buttonFont);
                 //Ensure other keys does not trigger the screen 
                 nextLevelButton.setFocusTraversable(false);
+                nextLevelButton.setFont(buttonFont);
                 nextLevelButton.setOnAction(event -> {
                     gameWinStage.close();
                     isGameWinScreenVisible = false;
                     //Go to next level
                     onNextLevel.run();
                 });
-
-                Button mainMenuButton = new Button("Return to Menu");
-                mainMenuButton.setFont(buttonFont);
-                mainMenuButton.setPrefWidth(200);
-                mainMenuButton.setPrefHeight(50);
-                mainMenuButton.setStyle(
-                    "-fx-background-image: url('" + GameWinScreen.class.getResource("/com/example/demo/images/grass_button.png").toExternalForm() + "');" +
-                    "-fx-background-size: 100% 100%;" +
-                    "-fx-background-repeat: no-repeat;" +
-                    "-fx-text-fill: #000000;" +
-                    "-fx-alignment: center;" +
-                    "-fx-background-color: transparent;" +
-                    "-fx-border-width: 0;"
-                );
-                //Ensure other keys does not trigger the screen 
-                mainMenuButton.setFocusTraversable(false);
+                // Return to main menu button
+                Button mainMenuButton = createStyledButton("Return to Menu", buttonFont);
+                 //Ensure other keys does not trigger the screen 
+                 mainMenuButton.setFocusTraversable(false);
                 mainMenuButton.setOnAction(event -> {
                     GameState.getInstance().resetAll(); 
                     gameWinStage.close();
@@ -171,6 +132,33 @@ public class GameWinScreen {
                 e.printStackTrace();
             }
         });
+    }
+    // Styled buttons
+    private static Button createStyledButton(String text, Font font) {
+        Button button = new Button(text);
+        button.setFont(font);
+        button.setPrefWidth(200);
+        button.setPrefHeight(50);
+        button.setStyle(
+            "-fx-background-image: url('" + GameWinScreen.class.getResource(BUTTON_IMAGE).toExternalForm() + "');" +
+            "-fx-background-size: 100% 100%;" +
+            "-fx-background-repeat: no-repeat;" +
+            "-fx-text-fill: #000000;" +
+            "-fx-alignment: center;" +
+            "-fx-background-color: transparent;" +
+            "-fx-border-width: 0;"
+        );
+        return button;
+    }
+    // Load fonts
+    private static Font loadCustomFont(String fontPath, int size) {
+        try {
+            return Font.loadFont(GameWinScreen.class.getResource(fontPath).toExternalForm(), size);
+        } catch (Exception e) {
+            System.err.println("Error loading font: " + fontPath);
+            e.printStackTrace();
+            return Font.font("Arial", size); // Default font fallback
+        }
     }
 
     public static void showlvl3WinScreen(Stage displayStage, int score) {
@@ -266,6 +254,8 @@ public class GameWinScreen {
                 e.printStackTrace();
             }
         });
+
+        
     }
     
 

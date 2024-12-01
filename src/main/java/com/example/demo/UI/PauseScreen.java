@@ -87,6 +87,8 @@ public class PauseScreen {
 
         //Resume button
         Button resumeButton = createStyledButton("Resume", buttonFont, hoverCursor, triangleCursor);
+        //Ensure other keys does not trigger the screen 
+        resumeButton.setFocusTraversable(false);
         if (buttonFont != null) {
             resumeButton.setFont(buttonFont); 
         }
@@ -99,6 +101,8 @@ public class PauseScreen {
     
         //Settings button
         Button settingsButton = createStyledButton("Settings", buttonFont, hoverCursor, triangleCursor);
+        //Ensure other keys does not trigger the screen 
+        settingsButton.setFocusTraversable(false);
         if (buttonFont != null) {
             settingsButton.setFont(buttonFont); 
         }
@@ -111,6 +115,8 @@ public class PauseScreen {
 
         //Exit button
         Button exitButton = createStyledButton("Exit", buttonFont, hoverCursor, triangleCursor);
+        //Ensure other keys does not trigger the screen 
+        exitButton.setFocusTraversable(false);
         if (buttonFont != null) {
             exitButton.setFont(buttonFont); 
         }

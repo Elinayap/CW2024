@@ -64,6 +64,7 @@ public class Shop {
 
         //Create close button
         Button closeButton = createCloseButton(shopStage);
+        closeButton.setFocusTraversable(false);
         topBar.getChildren().add(closeButton);
 
         VBox layout = new VBox(20);
@@ -100,7 +101,7 @@ public class Shop {
             "-fx-background-color: transparent;" +
             "-fx-border-width: 0;"
         );
-
+        item1Button.setFocusTraversable(false);
         item1Button.setOnAction(event -> {
             if (GameState.getInstance().getShopItem1PurchaseCount() < 2) {
                 GameState.getInstance().incrementShopItem1PurchaseCount();
@@ -195,7 +196,7 @@ public class Shop {
         } catch (NullPointerException e) {
             System.err.println("Close button image not found: " + CLOSE_BUTTON_IMAGE);
         }
-    
+        closeButton.setFocusTraversable(false);
         closeButton.setOnAction(event -> popupStage.close());
         topBar.getChildren().add(closeButton);
         rootLayout.setTop(topBar);
