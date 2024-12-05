@@ -40,7 +40,7 @@ public class LevelThree extends LevelParent {
 
         // Initialize the shield image
         shieldImage = new ShieldImage(0, 0);
-        boss = new Boss(shieldImage);
+        boss = new Boss(shieldImage, "LevelThree");
         bombs = new ArrayList<>();
 
         // Initialize LevelView for consistency across all levels

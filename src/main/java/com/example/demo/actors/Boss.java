@@ -34,15 +34,16 @@ public class Boss extends FighterPlane {
 	private int indexOfCurrentMove;
 	private int framesWithShieldActivated;
 	private final ShieldImage shieldImage;
-
+	private final String currentLevel;
 	/**
      * Construct the Boss object with a shield image.
      *
      * @param shieldImage Link the ShieldImage object with the boss.
      */
-	public Boss(ShieldImage shieldImage) {
+	public Boss(ShieldImage shieldImage, String currentLevel) {
 		super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
 		this.shieldImage = shieldImage;
+		this.currentLevel = currentLevel;
 		movePattern = new ArrayList<>();
 		consecutiveMovesInSameDirection = 0;
 		indexOfCurrentMove = 0;
@@ -80,7 +81,15 @@ public class Boss extends FighterPlane {
      */
 	@Override
 	public ActiveActorDestructible fireProjectile() {
-		return bossFiresInCurrentFrame() ? new BossProjectile(getProjectileInitialPosition()) : null;
+		int velocity = speedProjectileVelocity();
+		return bossFiresInCurrentFrame() ? new BossProjectile(getProjectileInitialPosition(),velocity) : null;
+	}
+
+	private int speedProjectileVelocity() {
+		if ("LevelThree".equals(currentLevel)) {
+			return -24; // Faster velocity for Level Three
+		}
+		return -15; // Default velocity for other levels
 	}
 	
 	/**

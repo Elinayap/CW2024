@@ -33,7 +33,7 @@ public class LevelTwo extends LevelParent {
 
         //Initialize the image at (0,0)
         shieldImage = new ShieldImage(0, 0);
-        boss = new Boss(shieldImage);
+        boss = new Boss(shieldImage ,"LevelTwo");
         //Adjust the position of the image
         double xOffset = 100;  
         double yOffset = 100; 

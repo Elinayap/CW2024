@@ -8,7 +8,7 @@ public class BossProjectile extends Projectile {
 	
 	private static final String IMAGE_NAME = "fireball.png";
 	private static final int IMAGE_HEIGHT = 75;
-	private static final int HORIZONTAL_VELOCITY = -15;
+	private int horizontalVelocity;
 	private static final int INITIAL_X_POSITION = 950;
 
 	 /**
@@ -16,8 +16,9 @@ public class BossProjectile extends Projectile {
      *
      * @param initialYPos The initial y-coordinate position of the projectile.
      */
-	public BossProjectile(double initialYPos) {
+	public BossProjectile(double initialYPos, int velocity) {
 		super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, initialYPos);
+		this.horizontalVelocity = velocity;
 	}
 
 	/**
@@ -26,7 +27,7 @@ public class BossProjectile extends Projectile {
      */
 	@Override
 	public void updatePosition() {
-		moveHorizontally(HORIZONTAL_VELOCITY);
+		moveHorizontally(horizontalVelocity);
 	}
 	
 	/**
