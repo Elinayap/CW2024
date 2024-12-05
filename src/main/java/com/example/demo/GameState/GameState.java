@@ -1,5 +1,9 @@
 package com.example.demo.GameState;
 
+/**
+ * This class is to manage game state.
+ * Track the player's health and other game variables.
+ */
 public class GameState {
 
     private int level1Hearts; // Player health for Level 1
@@ -8,10 +12,19 @@ public class GameState {
     private boolean shopLocked; 
     private static GameState instance = null; 
 
+    /**
+     * Private constructor ensure only one instance is created.
+     * Reset the game to default values.
+     */
     private GameState() {
         resetAll();
     }
 
+     /**
+     * Gets the single instance of the GameState.
+     * 
+     * @return The single instance of GameState.
+     */
     public static GameState getInstance() {
         if (instance == null) {
             instance = new GameState();
@@ -19,49 +32,83 @@ public class GameState {
         return instance;
     }
 
-    // Getter for level2Hearts
+    /**
+     * Gets the player's health in LevelTwo,
+     * 
+     * @return The player's health for LevelTwo.
+     */
     public int getLevel2Hearts() {
         return level2Hearts;
     }
 
-    // Add hearts to LevelTwo
+    /**
+     * Adds extra hearts to the player's health for LevelTwo.
+     * 
+     * @param extraHearts Number of extra hearts add.
+     */
     public void addLevel2Hearts(int extraHearts) {
         this.level2Hearts += extraHearts;
         System.out.println("Level 2 hearts updated to: " + level2Hearts);
     }
 
+     /**
+     * Gets the player's health for LevelOne.
+     * 
+     * @return The player's health in LevelOne.
+     */
     public int getLevel1Hearts() {
         return level1Hearts;
     }
 
-    // Setter for level1Hearts
+    /**
+     * Sets the player's health for LevelOne.
+     * 
+     * @param hearts New LevelOne health.
+     */
     public void setLevel1Hearts(int hearts) {
         this.level1Hearts = hearts;
         System.out.println("Level 1 hearts updated to: " + hearts);
     }
     
-    // Reset hearts to default
+     /**
+     * Resets the player's health in LevelOne to default value.
+     */
     public void resetLevel1Hearts() {
         this.level1Hearts = 5;
         System.out.println("Level 1 hearts reset to default: " + level1Hearts);
     }
 
+    /**
+     * Resets the player's health in LevelTwo to default value.
+     */
     public void resetLevel2Hearts() {
         this.level2Hearts = 5;
         System.out.println("Level 2 hearts reset to default: " + level2Hearts);
     }
 
+    /**
+     * Sets the player's health for LevelTwo.
+     * 
+     * @param hearts New LevelTwo health.
+     */
     public void setLevel2Hearts(int hearts) {
         level2Hearts = hearts;
         System.out.println("Level 2 hearts updated to: " + hearts);
     }
 
-    // Getter for shop purchase count
+    /**
+     * Gets the number of times an item has been purchased in the shop.
+     * 
+     * @return The number of item purchases.
+     */
     public int getShopItem1PurchaseCount() {
         return shopItem1PurchaseCount;
     }
 
-    // Increment shop purchase count
+    /**
+     * Increments the number of times an item has been purchased in the shop.
+     * Ensure the number of purchases does not exceed the limit.
+     */
     public void incrementShopItem1PurchaseCount() {
         if (shopItem1PurchaseCount < 2) {
             shopItem1PurchaseCount++;
@@ -71,23 +118,38 @@ public class GameState {
         }
     }
 
+    /**
+     * Checks if shop is locked.
+     * 
+     * @return True if the shop is locked, otherwise false.
+     */
     public boolean isShopLocked() {
         return shopLocked;
     }
 
-    // Reset shop purchase count
+    /**
+     * Resets the shop's purchase count and unlocks the shop.
+     */
     public void resetShop() {
         this.shopItem1PurchaseCount = 0; 
-        this.shopLocked = false; // Unlock the shop
+        this.shopLocked = false; 
         System.out.println("Shop reset to initial values.");
     }
 
+     /**
+     * Shop locked status set to lock.
+     * 
+     * @param locked True to lock the shop, false to unlock it.
+     */
     public void setShopLocked(boolean locked) {
         this.shopLocked = locked;
         System.out.println("Shop locked status set to: " + locked);
     }
 
-    // Reset all game states
+    /**
+     * Resets all game state to their default values.
+     * Includes player's health, shop status, and purchase counts.
+     */
     public void resetAll() {
         this.level1Hearts = 5;  // Default hearts for Level 1
         this.level2Hearts = 5;  // Default hearts for Level 2

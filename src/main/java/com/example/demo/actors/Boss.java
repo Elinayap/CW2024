@@ -6,6 +6,11 @@ import com.example.demo.assets.ShieldImage;
 import com.example.demo.destructible.ActiveActorDestructible;
 import com.example.demo.projectiles.BossProjectile;
 
+/**
+ * Represents the boss.
+ * Extends the FighterPlane class.
+ * Includes the shield, firirng projectile and movement pattern.
+ */
 public class Boss extends FighterPlane {
 
 	private static final String IMAGE_NAME = "bossplane.png";
@@ -30,6 +35,11 @@ public class Boss extends FighterPlane {
 	private int framesWithShieldActivated;
 	private final ShieldImage shieldImage;
 
+	/**
+     * Construct the Boss object with a shield image.
+     *
+     * @param shieldImage Link the ShieldImage object with the boss.
+     */
 	public Boss(ShieldImage shieldImage) {
 		super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
 		this.shieldImage = shieldImage;
@@ -41,6 +51,9 @@ public class Boss extends FighterPlane {
 		initializeMovePattern();
 	}
 
+	/**
+     * Updates the boss's position based on its movement pattern.
+     */
 	@Override
 	public void updatePosition() {
 		double initialTranslateY = getTranslateY();
@@ -51,17 +64,28 @@ public class Boss extends FighterPlane {
 		}
 	}
 	
+	/**
+     * Updates the boss's state like the position and shield.
+     */
 	@Override
 	public void updateActor() {
 		updatePosition();
 		updateShield();
 	}
 
+	/**
+     * Fires a projectile.
+     *
+     * @return A new BossProjectile object if the boss fires in the current frame, otherwise null.
+     */
 	@Override
 	public ActiveActorDestructible fireProjectile() {
 		return bossFiresInCurrentFrame() ? new BossProjectile(getProjectileInitialPosition()) : null;
 	}
 	
+	/**
+     * Deduct boss's health if shield is not visible.
+     */
 	@Override
 	public void takeDamage() {
 		// Only take damage if the shield is not visible
@@ -70,6 +94,9 @@ public class Boss extends FighterPlane {
 		}
 	}
 
+	/**
+     * Initializes the movement pattern for the boss.
+     */
 	private void initializeMovePattern() {
 		for (int i = 0; i < MOVE_FREQUENCY_PER_CYCLE; i++) {
 			movePattern.add(VERTICAL_VELOCITY);
@@ -79,6 +106,9 @@ public class Boss extends FighterPlane {
 		Collections.shuffle(movePattern);
 	}
 
+	/**
+     * Updates the boss's shield state to either active or inactive.
+     */
 	private void updateShield() {
 		if (isShielded) {
 			framesWithShieldActivated++;
@@ -90,6 +120,11 @@ public class Boss extends FighterPlane {
 		}
 	}
 
+	/**
+     * Gets the next move for the boss.
+     *
+     * @return The next movement value.
+     */
 	private int getNextMove() {
 		int currentMove = movePattern.get(indexOfCurrentMove);
 		consecutiveMovesInSameDirection++;
@@ -104,28 +139,54 @@ public class Boss extends FighterPlane {
 		return currentMove;
 	}
 
+	/**
+     * Check if the boss fires a projectile in the current frame.
+     *
+     * @return True if the boss fires, false otherwise.
+     */
 	private boolean bossFiresInCurrentFrame() {
 		return Math.random() < BOSS_FIRE_RATE;
 	}
 
+	/**
+     * Gets the initial position of the projectile.
+     *
+     * @return The Y-coordinate of the projectile's initial position.
+     */
 	private double getProjectileInitialPosition() {
 		return getLayoutY() + getTranslateY() + PROJECTILE_Y_POSITION_OFFSET;
 	}
 
+	/**
+     * Check if the shield should be activated.
+     *
+     * @return True if the shield should be activated, false otherwise.
+     */
 	private boolean shieldShouldBeActivated() {
 		return Math.random() < BOSS_SHIELD_PROBABILITY;
 	}
 
+	/**
+     * Checks if the shield is exhausted.
+     *
+     * @return True if the shield is exhausted, false otherwise.
+     */
 	private boolean shieldExhausted() {
 		return framesWithShieldActivated == MAX_FRAMES_WITH_SHIELD;
 	}
 
+	/**
+     * Activates the shield and show the shield image.
+     */
 	private void activateShield() {
 		isShielded = true;
 		//Show the shield image
 		shieldImage.showShield(); 
 	}
 
+	/**
+     * Deactivates the shield and hide the shield image.
+     */
 	private void deactivateShield() {
 		isShielded = false;
 		framesWithShieldActivated = 0;

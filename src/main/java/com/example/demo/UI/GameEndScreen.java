@@ -15,6 +15,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * Represents the game end screen that appears when the game is over.
+ * It displays the final score and allows the user to return to the main menu.
+ */
 public class GameEndScreen {
 
     private static boolean isGameEndScreenVisible = false;
@@ -27,6 +31,12 @@ public class GameEndScreen {
         
     }
 
+    /**
+     * Displays the game end screen with the final score and options to return to the main menu.
+     *
+     * @param displayStage The primary stage on which the game is displayed.
+     * @param score        The final score win by the player.
+     */
     public static void showGameEndScreen(Stage displayStage, int score) {
         if (isGameEndScreenVisible) {
             return;
@@ -116,7 +126,13 @@ public class GameEndScreen {
         });
     }
 
-     // Load fonts
+    /**
+     * Loads a custom font from the file path.
+     *
+     * @param fontPath The path to the custom font.
+     * @param size     The size of the font.
+     * @return The loaded Font object, or a default font if cannot load.
+     */
      private static Font loadCustomFont(String fontPath, int size) {
         try {
             return Font.loadFont(GameWinScreen.class.getResource(fontPath).toExternalForm(), size);

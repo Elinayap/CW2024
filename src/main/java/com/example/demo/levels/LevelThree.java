@@ -12,6 +12,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
+/**
+ * Represents Level Three.
+ * Includes a boss with shield and random bomb spawns.
+ */
 public class LevelThree extends LevelParent {
 
     private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/river.jpg";
@@ -24,6 +28,13 @@ public class LevelThree extends LevelParent {
     public static final int SHIELD_SIZE = 200;
     private static final double BOMB_PROBABILITY = 0.02;
 
+    /**
+     * Constructs the LevelThree object.
+     *
+     * @param screenHeight the height of the game screen.
+     * @param screenWidth  the width of the game screen.
+     * @param gameStage    the stage of the game screen.
+     */
     public LevelThree(double screenHeight, double screenWidth, Stage gameStage) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH, gameStage);
 
@@ -55,12 +66,18 @@ public class LevelThree extends LevelParent {
         );
     }
 
+    /**
+     * Initializes the user's friendly units in the game.
+     */
     @Override
     protected void initializeFriendlyUnits() {
         getRoot().getChildren().add(getUser());
         getRoot().getChildren().add(shieldImage);
     }
 
+    /**
+     * Checks whether the game is over if the user died or boss is destroyed.
+     */
     @Override
     protected void checkIfGameOver() {
         if (userIsDestroyed()) {
@@ -70,6 +87,10 @@ public class LevelThree extends LevelParent {
         }
     }
 
+    /**
+     * Spawns enemy units.
+     * Ensures the boss is added if there is no other enemies.
+     */
     @Override
     protected void spawnEnemyUnits() {
         if (getCurrentNumberOfEnemies() == 0) {
@@ -77,11 +98,19 @@ public class LevelThree extends LevelParent {
         }
     }
 
+    /**
+     * Returns the level view for LevelThree.
+     *
+     * @return the level view.
+     */
     @Override
     public LevelView getLevelView() {
         return levelView; // Use the general LevelView class
     }
 
+    /**
+     * Updates the game scene to include bomb spawns and bomb collisions.
+     */
     @Override
     protected void updateScene() {
         super.updateScene();
@@ -94,6 +123,9 @@ public class LevelThree extends LevelParent {
         bombCollision();
     }
 
+    /**
+     * Spawns a new bomb at a random position.
+     */
     private void spawnBomb() {
         // Remove all existing bombs from the scene
         bombs.forEach(bomb -> getRoot().getChildren().remove(bomb));
@@ -108,6 +140,10 @@ public class LevelThree extends LevelParent {
         getRoot().getChildren().add(bomb);
     }
 
+    /**
+     * Handles bomb collisions with user.
+     * Updates the game state.
+     */
     private void bombCollision() {
         bombs.forEach(bomb -> {
             // Check if the bomb intersects with the user plane
@@ -129,7 +165,9 @@ public class LevelThree extends LevelParent {
         bombs.removeIf(bomb -> !bomb.isVisible());
     }
 
-    
+    /**
+     * Plays the bomb sound effect for a bomb collision.
+     */
     private void playBombSound() {
         try {
             Media bombSound = new Media(getClass().getResource(BOMB_COLLISION_SOUND).toExternalForm());
@@ -142,21 +180,29 @@ public class LevelThree extends LevelParent {
         }
     }
 
+    /**
+     * Start game and resets player's health to the initial value.
+     */
     @Override
-public void startGame() {
-    super.startGame();
-    if (levelView != null) {
-        levelView.resetHearts(PLAYER_INITIAL_HEALTH); // Reset hearts to initial value
+    public void startGame() {
+        super.startGame();
+        if (levelView != null) {
+            levelView.resetHearts(PLAYER_INITIAL_HEALTH); // Reset hearts to initial value
+        }
+        GameState.getInstance().setLevel1Hearts(PLAYER_INITIAL_HEALTH);
+        System.out.println("Game started with hearts: " + PLAYER_INITIAL_HEALTH);
     }
-     GameState.getInstance().setLevel1Hearts(PLAYER_INITIAL_HEALTH);
-    System.out.println("Game started with hearts: " + PLAYER_INITIAL_HEALTH);
-}
 
-
+    /**
+     * Activates the shield, to show the image.
+     */
     public void activateShield() {
         shieldImage.showShield();
     }
 
+    /**
+     * Deactivates the shield, to hide the image.
+     */
     public void deactivateShield() {
         shieldImage.hideShield();
     }

@@ -6,6 +6,10 @@ import com.example.demo.assets.ShieldImage;
 
 import javafx.stage.Stage;
 
+/**
+ * Represents Level Two.
+ * Includes a boss with a shield and allows the player to go to next level.
+ */
 public class LevelTwo extends LevelParent {
 
     private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background2.jpg";
@@ -17,6 +21,13 @@ public class LevelTwo extends LevelParent {
     private ShieldImage shieldImage;
     public static final int SHIELD_SIZE = 200;
 
+    /**
+     * Constructs a LevelTwo object.
+     *
+     * @param screenHeight the height of the game screen.
+     * @param screenWidth  the width of the game screen.
+     * @param gameStage    the primary stage for the game.
+     */
     public LevelTwo(double screenHeight, double screenWidth, Stage gameStage) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth,  GameState.getInstance().getLevel2Hearts(), gameStage);
 
@@ -45,12 +56,18 @@ public class LevelTwo extends LevelParent {
             
     }
 
+    /**
+     * Initializes the user's friendly units in the game.
+     */
     @Override
     protected void initializeFriendlyUnits() {
         getRoot().getChildren().add(getUser());
         getRoot().getChildren().add(shieldImage);
     }
 
+    /**
+     * Checks whether the game is over if the user died or boss is destroyed.
+     */
     @Override
     protected void checkIfGameOver() {
         if (userIsDestroyed()) {
@@ -60,6 +77,10 @@ public class LevelTwo extends LevelParent {
         }
     }
 
+    /**
+     * Spawns enemy units.
+     * Ensures the boss is added if there is no other enemies.
+     */
     @Override
     protected void spawnEnemyUnits() {
         if (getCurrentNumberOfEnemies() == 0) {
@@ -67,12 +88,21 @@ public class LevelTwo extends LevelParent {
         }
     }
 
+    /**
+     * Instantiates the level view for LevelTwo.
+     * Update user's hearts from game state.
+     *
+     * @return the level view instance.
+     */
     @Override
     protected LevelView instantiateLevelView() {
         int updatedHearts = GameState.getInstance().getLevel2Hearts();
         return new LevelView(getRoot(), updatedHearts);
     }
 
+    /**
+     * Start the game by resetting user hearts and updating the game state.
+     */
     @Override
     public void startGame() {
         super.startGame();
@@ -82,22 +112,36 @@ public class LevelTwo extends LevelParent {
         GameState.getInstance().setLevel1Hearts(PLAYER_INITIAL_HEALTH);
         System.out.println("Game started with hearts: " + PLAYER_INITIAL_HEALTH);
     }
-        //To show the shield image
+        /**
+         * Activates the shield, to show the image.
+         */
         public void activateShield() {
             shieldImage.showShield();
             
         }
 
-        //To hide the shield image
+        /**
+         * Deactivates the shield, to hide the image.
+         */
         public void deactivateShield() {
             shieldImage.hideShield();
         }
 
+        /**
+         * Checks if the user has reached the number of kills to advance.
+         *
+         * @return true if the user has reached the kill target; false otherwise.
+         */
         private boolean userHasReachedKillTarget() {
 
             return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE && !isChangedState();
         }
         
+        /**
+         * Returns the level view for LevelTwo.
+         *
+         * @return the level view.
+         */
         @Override
         public LevelView getLevelView() {
             return levelView;

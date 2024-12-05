@@ -15,6 +15,10 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * The Shop class is the shop interface in the game,
+ * allowing players to purchase item.
+ */
 public class Shop {
 
     private final Stage stage; 
@@ -25,12 +29,19 @@ public class Shop {
     private static final String CLOSE_BUTTON_IMAGE = "/com/example/demo/images/x_button.png";
     private static final String HEARTS_IMAGE = "/com/example/demo/images/hearts.png";
     private static final String GRASS_BUTTON_IMAGE = "/com/example/demo/images/grass_button.png";
-
+      /**
+     * Constructor for the Shop class.
+     *
+     * @param stage The stage which the shop will be displayed.
+     * @param currentLevel The current game level for which the shop is active.
+     */
     public Shop(Stage stage, LevelParent currentLevel) {
         this.stage = stage;
         this.currentLevel = currentLevel;
     }
-
+     /**
+     * Displays the shop, allow players to purchase item.
+     */
     public void show() {
 
         if (GameState.getInstance().isShopLocked()) {
@@ -130,7 +141,12 @@ public class Shop {
         shopStage.show();
     }
 
-    //Create close button
+    /**
+     * Creates the close button for the shop.
+     *
+     * @param shopStage The stage of the shop to be closed.
+     * @return A custom button to close the shop.
+     */
     private Button createCloseButton(Stage shopStage) {
         Button closeButton = new Button();
         closeButton.setStyle("-fx-background-color: transparent; -fx-border-width: 0; -fx-background-size: 50px 40px;");
@@ -149,6 +165,13 @@ public class Shop {
         return closeButton;
     }
 
+    /**
+     * Loads a custom font.
+     *
+     * @param fontPath The path to the font file.
+     * @param size The size of the font.
+     * @return The loaded Font, or a default font if not found.
+     */
     private Font loadFont(String fontPath, int size) {
         try {
             return Font.loadFont(this.getClass().getResource(fontPath).toExternalForm(), size);
@@ -158,7 +181,12 @@ public class Shop {
         }
     }
 
-    /* Pop up screen for level2 shop */
+     /**
+     * Displays a popup message for the shop.
+     *
+     * @param title The title of the popup message.
+     * @param message The message to display.
+     */
 
     public static void showShopPopup(String title, String message) {
         Stage popupStage = new Stage();
@@ -246,7 +274,7 @@ public class Shop {
         popupStage.setScene(popupScene);
         popupStage.showAndWait();
     }
-    /*--------------------------------------------*/
+   
 
 
 }

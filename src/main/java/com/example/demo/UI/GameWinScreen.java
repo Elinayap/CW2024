@@ -19,6 +19,10 @@ import com.example.demo.controller.Controller;
 import com.example.demo.levels.LevelParent;
 import com.example.demo.levels.LevelTwo;
 
+/**
+ * Represents the Game Win Screen, shown to the user upon successfully completing a level.
+ * Provides options to proceed to the next level, return to the main menu, or access the shop.
+ */
 public class GameWinScreen {
 
     private static boolean isGameWinScreenVisible = false;
@@ -32,6 +36,14 @@ public class GameWinScreen {
         
     }
 
+    /**
+     * Displays the Game Win Screen for the level.
+     *
+     * @param displayStage   The stage where the Game Win Screen will be displayed.
+     * @param score          The player's score.
+     * @param currentLevel   The current level completed by the player.
+     * @param onNextLevel    A runnable action to proceed to the next level.
+     */
     public static void showGameWinScreen(Stage displayStage, int score, LevelParent currentLevel, Runnable onNextLevel) {
         if (isGameWinScreenVisible) {
             return;
@@ -133,7 +145,13 @@ public class GameWinScreen {
             }
         });
     }
-    // Styled buttons
+    /**
+     * Creates a styled button with a custom font and background image.
+     *
+     * @param text The text displayed on the button.
+     * @param font The font used for the button text.
+     * @return The styled button.
+     */
     private static Button createStyledButton(String text, Font font) {
         Button button = new Button(text);
         button.setFont(font);
@@ -150,7 +168,14 @@ public class GameWinScreen {
         );
         return button;
     }
-    // Load fonts
+    
+    /**
+     * Loads a custom font from the file path.
+     *
+     * @param fontPath The path to the font file.
+     * @param size     The font size.
+     * @return The loaded font, or the font if the specified font cannot be loaded.
+     */
     private static Font loadCustomFont(String fontPath, int size) {
         try {
             return Font.loadFont(GameWinScreen.class.getResource(fontPath).toExternalForm(), size);
@@ -161,6 +186,12 @@ public class GameWinScreen {
         }
     }
 
+    /**
+     * Displays the Game Win Screen in Level 3.
+     *
+     * @param displayStage The stage where the Game Win Screen will be displayed.
+     * @param score        The player's score.
+     */
     public static void showlvl3WinScreen(Stage displayStage, int score) {
         if (isGameWinScreenVisible) {
             return;

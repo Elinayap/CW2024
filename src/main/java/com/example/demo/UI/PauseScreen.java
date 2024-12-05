@@ -17,6 +17,10 @@ import javafx.stage.StageStyle;
 
 import com.example.demo.controller.Controller;
 
+/**
+ * PauseScreen is for displaying the pause menu in the game.
+ * It provides options to resume the game, access settings, or exit the game.
+ */
 public class PauseScreen {
 
     private final Stage stage;
@@ -30,6 +34,14 @@ public class PauseScreen {
     private static final String TRIANGLE_MOUSE_ICON = "/com/example/demo/images/triangle_mouse.png";
     private static final String MOUSE_ICON = "/com/example/demo/images/mouse_icon.png";
 
+    /**
+     * Create PauseScreen.
+     *
+     * @param stage           The primary stage of the game.
+     * @param controller      The controller managing game events.
+     * @param resumeAction    The action to perform when resuming the game.
+     * @param settingsAction  The action to perform when accessing settings.
+     */
     public PauseScreen(Stage stage, Controller controller, Runnable resumeAction, Runnable settingsAction) {
         this.stage = stage;
         this.mainScene = stage.getScene();
@@ -38,6 +50,9 @@ public class PauseScreen {
         this.resume = resumeAction;
     }
 
+    /**
+     * Displays the pause screen with options to resume, access settings, or exit.
+     */
     public void show() {
         Stage pauseStage = new Stage();
         //Make the default box transparent
@@ -147,7 +162,15 @@ public class PauseScreen {
         pauseStage.showAndWait();
     }
 
-    //Create style button
+     /**
+     * Creates a styled button with hover and default cursor effects.
+     *
+     * @param text           The text to display on the button.
+     * @param font           The font for the button.
+     * @param hoverCursor    The cursor displayed when hovering the button.
+     * @param defaultCursor  The default cursor for the button.
+     * @return The styled button.
+     */
     private Button createStyledButton(String text, Font font, ImageCursor hoverCursor, ImageCursor defaultCursor) {
         Button button = new Button(text);
         button.setFont(font);
@@ -170,6 +193,9 @@ public class PauseScreen {
         return button;
     }
 
+    /**
+     * Displays the settings screen where users can adjust the volume.
+     */
     public void showSettings() {
         //Create new screen for settings
         Stage settingsStage = new Stage();

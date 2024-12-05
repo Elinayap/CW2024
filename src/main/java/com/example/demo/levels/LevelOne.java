@@ -6,6 +6,10 @@ import com.example.demo.destructible.ActiveActorDestructible;
 
 import javafx.stage.Stage;
 
+/**
+ * Represents Level One.
+ * Hnadles initialization, gameplay, and allows player go to next level.
+ */
 public class LevelOne extends LevelParent {
 
     private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background1.jpg";
@@ -18,11 +22,21 @@ public class LevelOne extends LevelParent {
 
     private final LevelView levelView;
 
+    /**
+     * Constructs a LevelOne object.
+     *
+     * @param screenHeight the height of the game screen.
+     * @param screenWidth  the width of the game screen.
+     * @param gameStage    the primary stage for the game.
+     */
     public LevelOne(double screenHeight, double screenWidth, Stage gameStage) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH, gameStage);
         this.levelView = new LevelView(getRoot(), PLAYER_INITIAL_HEALTH);
     }
 
+    /**
+     * Checks whether the game is over if the user died or meets the kill target.
+     */
     @Override
     protected void checkIfGameOver() {
         if (isGameOver) {
@@ -35,11 +49,18 @@ public class LevelOne extends LevelParent {
         }
     }
 
+    /**
+     * Initializes the user's friendly units in the game.
+     */
     @Override
     protected void initializeFriendlyUnits() {
         getRoot().getChildren().add(getUser());
     }
 
+    /**
+     * Spawns enemy units.
+     * Limits the total number of enemies to TOTAL_ENEMIES.
+     */
     @Override
     protected void spawnEnemyUnits() {
         int currentNumberOfEnemies = getCurrentNumberOfEnemies();
@@ -52,22 +73,40 @@ public class LevelOne extends LevelParent {
         }
     }
 
+    /**
+     * Instantiates the level view for LevelOne.
+     *
+     * @return the level view instance.
+     */
     @Override
     protected LevelView instantiateLevelView() {
         return new LevelView(getRoot(), PLAYER_INITIAL_HEALTH);
     }
 
+    /**
+     * Returns the level view for LevelOne.
+     *
+     * @return the level view.
+     */
     @Override
     public LevelView getLevelView() {
-        return levelView; // Return the LevelView instance
+        return levelView;
     }
 
+    /**
+     * Checks if the user has met the kill target before going to the next level.
+     * 
+     * @return True if the user meets the kill target and score , false otherwise.
+     */
     private boolean userHasReachedKillTarget() {
         return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE 
             && getPlayerScore() >= SCORE_TO_ADVANCE 
             && !isGameOver;
     }
 
+    /**
+     * Start the game by resetting user hearts and updating the game state.
+     */
     @Override
 public void startGame() {
     super.startGame();

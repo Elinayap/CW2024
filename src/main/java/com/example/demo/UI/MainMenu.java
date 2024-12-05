@@ -17,6 +17,12 @@ import javafx.stage.StageStyle;
 import java.lang.reflect.InvocationTargetException;
 import com.example.demo.controller.Controller;
 
+/**
+ * MainMenu is the entry point for the Sky Battle game.
+ * It provides a main menu for the user to start the game,
+ * view instructions, or quit the game. 
+ * It also includes custom styling and cursors.
+ */
 public class MainMenu {
 
     private final Stage stage;
@@ -30,6 +36,12 @@ public class MainMenu {
     private final ImageCursor hoverCursor;
     private final ImageCursor mouseCursor;
 
+    /**
+     * Constructs the MainMenu with the specified stage and controller.
+     * 
+     * @param stage      The primary stage where the main menu is displayed.
+     * @param controller The game controller to manage game transitions.
+     */
     public MainMenu(Stage stage, Controller controller) {
         this.stage = stage;
         this.controller = controller;
@@ -43,6 +55,10 @@ public class MainMenu {
         this.mouseCursor = new ImageCursor(cursorMouseT);
     }
 
+
+    /**
+     * Displays the main menu screen.
+     */
     public void show() {
 
         // VBox for center alignment
@@ -102,6 +118,13 @@ public class MainMenu {
         stage.show();
     }
 
+    /**
+     * Loads a custom font from the specified file path.
+     * 
+     * @param fontPath The file path to the custom font.
+     * @param size     The size of the font.
+     * @return The loaded Font object, or null if the font could not be loaded.
+     */
     private Font loadCustomFont(String fontPath, int size) {
         try {
             return Font.loadFont(this.getClass().getResource(fontPath).toExternalForm(), size);
@@ -112,6 +135,16 @@ public class MainMenu {
         }
     }
 
+     /**
+     * Creates a styled button.
+     * 
+     * @param text      The text displayed on the button.
+     * @param imagePath The background image for the button.
+     * @param width     The width of the button.
+     * @param height    The height of the button.
+     * @param font      The font for the button text.
+     * @return The styled Button object.
+     */
     private Button createStyledButton(String text, String imagePath, int width, int height, Font font) {
         Button button = new Button(text);
         button.setFont(font);
@@ -131,6 +164,9 @@ public class MainMenu {
         return button;
     }
 
+    /**
+     * Starts the game by calling the launchGame method in Controller.
+     */
     private void startGame() {
         System.out.println("Starting the game");
         try {
@@ -140,7 +176,9 @@ public class MainMenu {
             e.printStackTrace(); // Print errors for debugging
         }
     }
-
+     /**
+     * Displays the instructions screen of the game.
+     */
     private void showInstructions() {
         Stage instructionsStage = new Stage();
         instructionsStage.initModality(Modality.APPLICATION_MODAL);
