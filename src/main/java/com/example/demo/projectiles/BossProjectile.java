@@ -38,5 +38,14 @@ public class BossProjectile extends Projectile {
 	public void updateActor() {
 		updatePosition();
 	}
+
+	/**
+     * Returns the horizontal velocity of the projectile for testing.
+     * 
+     * @return The horizontal velocity.
+     */
+    public int getHorizontalVelocity() {
+        return horizontalVelocity; 
+    }
 	
 }
