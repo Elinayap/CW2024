@@ -15,9 +15,9 @@ import java.util.concurrent.TimeUnit;
 
 public class ShopTest {
 
-    //Correctly display the shop
+    // Display the shop
  @Test
-    void testShopShow() throws InterruptedException {
+    void testShopDisplay() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
 
         Platform.startup(() -> {

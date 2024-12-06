@@ -1,7 +1,6 @@
 package com.example.demo.UI;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
 import java.util.concurrent.CountDownLatch;
@@ -18,7 +17,7 @@ public class MainMenuTest {
 
     //Display of main menu
     @Test
-    void testMainMenuShow() throws InterruptedException {
+    void testMainMenuDisplay() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
 
         Platform.startup(() -> {
