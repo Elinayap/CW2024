@@ -1,17 +1,22 @@
 package com.example.demo.projectiles;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.concurrent.CountDownLatch;
-
+import java.util.concurrent.TimeUnit;
 import com.example.demo.actors.Boss;
 import com.example.demo.assets.ShieldImage;
-import com.example.demo.projectiles.BossProjectile;
-
 import javafx.application.Platform;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class BossProjectileTest {
+
+    @BeforeAll
+    static void setupJavaFX() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+        Platform.startup(latch::countDown);
+        latch.await(1, TimeUnit.SECONDS); 
+    }
 
     @Test
     void testProjectileVelocity_LevelThree() throws InterruptedException {
@@ -21,18 +26,17 @@ public class BossProjectileTest {
 
         //This starts the JavaFX runtime if it isn't already running
         // It is important because tests usually run outside the JavaFX application environment
-        Platform.startup(() -> {
+        Platform.runLater(() -> {
             try {
                 ShieldImage shieldImage = new ShieldImage(0, 0);
                 Boss boss = new Boss(shieldImage, "LevelThree");
 
                 BossProjectile projectile = (BossProjectile) boss.fireProjectile();
 
-                assertNotNull(projectile, "Projectile will not be null.");
-                //System.out.println("Projectile velocity: " + projectile.getHorizontalVelocity());
-                assertEquals(-50, projectile.getHorizontalVelocity(), "Projectile velocity should be -50 in Level Three.");
+                assertNotNull(projectile);
+                assertEquals(-50, projectile.getHorizontalVelocity());
             } finally {
-                latch.countDown(); // Signal the test can proceed
+                latch.countDown(); 
             }
         });
 

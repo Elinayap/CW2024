@@ -15,7 +15,7 @@ public class UserProjectile extends Projectile {
     private static final String SHOOTING_SOUND = "/com/example/demo/audios/shooting.wav";
     private static AudioClip shootingSound;
 
-    private boolean isFired = false; 
+    boolean isFired = false; 
 
     static {
         try {
