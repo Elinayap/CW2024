@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.mock;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import com.example.demo.controller.Controller;
 import javafx.application.Platform;
@@ -11,12 +13,19 @@ import javafx.stage.Stage;
 
 public class PauseScreenTest {
 
+    @BeforeAll
+    static void setupJavaFX() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+        Platform.startup(latch::countDown);
+        latch.await(1, TimeUnit.SECONDS); 
+    }
+
     // Display pause menu
     @Test
     void testPauseMenuDisplay() throws InterruptedException {
     CountDownLatch latch = new CountDownLatch(1);
 
-    Platform.startup(() -> {
+    Platform.runLater(() -> {
         try {
             Stage stage = new Stage();
             Controller controller = mock(Controller.class);
@@ -36,7 +45,7 @@ public class PauseScreenTest {
     void testResumeButton() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
 
-        Platform.startup(() -> {
+        Platform.runLater(() -> {
             try {
                 Stage stage = new Stage();
                 Controller mockController = mock(Controller.class);
@@ -60,7 +69,7 @@ public class PauseScreenTest {
      void testSettingsButton() throws InterruptedException {
          CountDownLatch latch = new CountDownLatch(1);
  
-         Platform.startup(() -> {
+         Platform.runLater(() -> {
              try {
                  Stage stage = new Stage();
                  Controller mockController = mock(Controller.class);
@@ -84,7 +93,7 @@ public class PauseScreenTest {
     void testExitButton() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
 
-        Platform.startup(() -> {
+        Platform.runLater(() -> {
             try {
                 Stage stage = new Stage();
                 Controller mockController = mock(Controller.class);
