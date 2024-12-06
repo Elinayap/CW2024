@@ -157,7 +157,7 @@ public class Controller implements Observer {
 	/**
      * Displays the pause screen and pauses the game.
      */
-	private void showPauseScreen() {
+	void showPauseScreen() {
 		//Set pause game flag
 		isGamePaused = true;
 		//Pause timeline in current level
@@ -170,7 +170,7 @@ public class Controller implements Observer {
 	/**
      * Resumes the game.
      */
-	private void resumeGame() {
+	void resumeGame() {
 		//Clear the game flag
 		isGamePaused = false;
 		//Resume timeline in current level

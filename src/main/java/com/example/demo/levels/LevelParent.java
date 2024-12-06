@@ -323,7 +323,7 @@ public abstract class LevelParent extends Observable {
     /**
      * Removes all destroyed actors from the game.
      */
-    private void removeAllDestroyedActors() {
+    void removeAllDestroyedActors() {
         removeDestroyedActors(friendlyUnits);
         removeDestroyedActors(enemyUnits);
         removeDestroyedActors(userProjectiles);
@@ -374,7 +374,7 @@ public abstract class LevelParent extends Observable {
      * Handles collisions between the user's projectiles and enemy planes.
      * Updates score and remove the destroyed enemies.
      */
-    private void handleUserProjectileCollisions() {
+    void handleUserProjectileCollisions() {
         List<ActiveActorDestructible> destroyedProjectiles = new ArrayList<>();
         List<ActiveActorDestructible> destroyedEnemies = new ArrayList<>();
     
@@ -418,7 +418,7 @@ public abstract class LevelParent extends Observable {
     /**
      * Handles collisions between enemy projectiles and friendly units.
      */
-    private void handleEnemyProjectileCollisions() {
+    void handleEnemyProjectileCollisions() {
         handleCollisions(enemyProjectiles, friendlyUnits);
     }
 
@@ -443,7 +443,7 @@ public abstract class LevelParent extends Observable {
      * Handles cases where enemies move out of screen.
      * Deducts all hearts from the user and triggers game over.
      */
-    private void handleEnemyPenetration() {
+    void handleEnemyPenetration() {
         for (ActiveActorDestructible enemy : new ArrayList<>(enemyUnits)) {
             if (enemyHasPenetratedDefenses(enemy)) {
                 System.out.println("Enemy exited the screen! Deducting all hearts.");
