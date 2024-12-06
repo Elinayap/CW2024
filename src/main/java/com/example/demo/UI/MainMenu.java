@@ -167,7 +167,7 @@ public class MainMenu {
     /**
      * Starts the game by calling the launchGame method in Controller.
      */
-    private void startGame() {
+    void startGame() {
         System.out.println("Starting the game");
         try {
             controller.launchGame();
@@ -179,7 +179,7 @@ public class MainMenu {
      /**
      * Displays the instructions screen of the game.
      */
-    private void showInstructions() {
+    void showInstructions() {
         Stage instructionsStage = new Stage();
         instructionsStage.initModality(Modality.APPLICATION_MODAL);
         instructionsStage.initStyle(StageStyle.TRANSPARENT);
