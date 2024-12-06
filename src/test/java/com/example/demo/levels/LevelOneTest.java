@@ -50,7 +50,7 @@ public class LevelOneTest {
         Platform.runLater(() -> {
             try {
                 Stage stage = new Stage();
-                LevelOne levelOne = new LevelOne(600, 800, stage);
+                LevelOne levelOne = new LevelOne(750, 1300, stage);
 
                 assertDoesNotThrow(levelOne::startGame);
             } finally {

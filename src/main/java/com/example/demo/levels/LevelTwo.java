@@ -147,4 +147,14 @@ public class LevelTwo extends LevelParent {
             return levelView;
         }
 
+
+    /**
+     * Returns the boss object for LevelTwo.
+     * Use in testing.
+     *
+     * @return The boss object.
+     */
+    public Boss getBoss() {
+        return boss;
+    }
 }

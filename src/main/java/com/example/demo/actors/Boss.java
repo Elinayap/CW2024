@@ -187,7 +187,7 @@ public class Boss extends FighterPlane {
 	/**
      * Activates the shield and show the shield image.
      */
-	private void activateShield() {
+	public void activateShield() {
 		isShielded = true;
 		//Show the shield image
 		shieldImage.showShield(); 
@@ -196,7 +196,7 @@ public class Boss extends FighterPlane {
 	/**
      * Deactivates the shield and hide the shield image.
      */
-	private void deactivateShield() {
+	public void deactivateShield() {
 		isShielded = false;
 		framesWithShieldActivated = 0;
 		shieldImage.hideShield(); // Hide the shield image
