@@ -132,7 +132,7 @@ public class LevelTwo extends LevelParent {
          *
          * @return true if the user has reached the kill target; false otherwise.
          */
-        private boolean userHasReachedKillTarget() {
+        boolean userHasReachedKillTarget() {
 
             return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE && !isChangedState();
         }

@@ -1,9 +1,10 @@
-package com.example.demo.actors;
+package com.example.demo.projectiles;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.concurrent.CountDownLatch;
 
+import com.example.demo.actors.Boss;
 import com.example.demo.assets.ShieldImage;
 import com.example.demo.projectiles.BossProjectile;
 
