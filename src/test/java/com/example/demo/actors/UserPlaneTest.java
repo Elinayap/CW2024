@@ -9,8 +9,17 @@ import org.junit.jupiter.api.Test;
 import com.example.demo.projectiles.UserProjectile;
 import javafx.application.Platform;
 
+/**
+ * Junit tests for the {@link UserPlane} class.
+ */
 public class UserPlaneTest {
 
+    /**
+     * Sets up the JavaFX environment needed for testing.
+     * Runs before all tests to start the JavaFX application thread.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -18,7 +27,12 @@ public class UserPlaneTest {
         latch.await(1, TimeUnit.SECONDS); 
     }
 
-    // Firing projectile should be at tip of plane
+    /**
+     * Tests that a projectile fired by the user's plane is positioned at the tip of the plane.
+     * Ensures the position of the projectile  aligns with the tip of plane.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testUserPlaneFireProjectile() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -37,7 +51,12 @@ public class UserPlaneTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // Sync projectile with plane
+    /**
+     * Tests if the synchronization of the position of projectile with the plane.
+     * Ensures that the projectile is aligned with the plane when not fired.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testSyncProjectileUserPlane() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -57,7 +76,12 @@ public class UserPlaneTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // Initialization of user plane
+    /**
+     * Tests the initialization of the user's plane.
+     * Ensures the plane's health and kill count are initialized correctly.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testUserPlaneInitialization() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);

@@ -10,11 +10,20 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import com.example.demo.assets.ShieldImage;
 import com.example.demo.projectiles.BossProjectile;
-
 import javafx.application.Platform;
 
+
+/**
+ * Junit tests for the {@link Boss} class.
+ */
 public class BossTest {
 
+    /**
+     * Sets up the JavaFX environment needed for testing.
+     * Runs before all tests to start the JavaFX application thread.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -22,7 +31,12 @@ public class BossTest {
         latch.await(1, TimeUnit.SECONDS); 
     }
 
-    // Initialization of boss 
+    /**
+     * Tests the initialization of Boss.
+     * Ensures the Boss starts with the correct health and it will not be destroyed.
+     *
+     * @throws InterruptedException if the JavaFX thread is interrupted.
+     */
     @Test
     void testBossInitialization() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -41,7 +55,12 @@ public class BossTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // Boss take damage with no shield
+     /**
+     * Tests boss to take damage with no shield
+     * Ensures the boss's health decreases when taking damage.
+     *
+     * @throws InterruptedException if the JavaFX thread is interrupted.
+     */
      @Test
     void testBossTakeDamageNoShield() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -62,7 +81,12 @@ public class BossTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-     // Boss take damage with shield
+    /**
+     * Tests for boss that does not take damage with shield.
+     * Ensures the boss's health does not decreases when taking damage.
+     *
+     * @throws InterruptedException if the JavaFX thread is interrupted.
+     */
     @Test
     void testBossTakeDamageWithShield() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -83,7 +107,12 @@ public class BossTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // Speed of projectile in LevelThree
+    /**
+     * Tests the speed of the projectile in LevelThree.
+     * Ensures the horizontal velocity matches the expected value.
+     *
+     * @throws InterruptedException if the JavaFX thread is interrupted.
+     */
     @Test
     void testBossSpeedFireProjectileLevelThree() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);

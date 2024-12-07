@@ -7,9 +7,17 @@ import javafx.application.Platform;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * Junit tests for the {@link UserProjectile} class.
+ */
 public class UserProjectileTest {
 
+    /**
+     * Sets up the JavaFX environment needed for testing.
+     * Runs before all tests to start the JavaFX application thread.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -17,7 +25,12 @@ public class UserProjectileTest {
         latch.await(1, TimeUnit.SECONDS); 
     }
 
-    //Synchronization between user projectile and plane
+    /**
+     * Tests the synchronization of projectile with the plane.
+     * Ensures that the position of projectile matches the movement of plane.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testUserProjectileSyncWithPlane() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -41,7 +54,12 @@ public class UserProjectileTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // User projectile initialization
+    /**
+     * Test the initialization of an projectile.
+     * Ensures that the initial position of the projectile is placed correctly.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testUserProjectileInitialization() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);

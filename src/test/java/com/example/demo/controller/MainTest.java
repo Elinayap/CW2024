@@ -9,8 +9,17 @@ import com.example.demo.UI.MainMenu;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
+/**
+ * Junit tests for the {@link Main} class.
+ */
 public class MainTest {
 
+    /**
+     * Sets up the JavaFX environment needed for testing.
+     * Runs before all tests to start the JavaFX application thread.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -18,7 +27,12 @@ public class MainTest {
         latch.await(1, TimeUnit.SECONDS); 
     }
 
-    // Launch game
+    /**
+     * Tests the launch of the {@link Main} method.
+     * Ensures user can launch game without errors.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testMainLaunch() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -38,7 +52,12 @@ public class MainTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // Display main menu
+    /**
+     * Tests the display of the main menu.
+     * Ensures the main menu can be displayed without errors.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testMainMenuDisplay() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);

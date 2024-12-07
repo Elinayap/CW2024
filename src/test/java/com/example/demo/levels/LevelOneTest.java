@@ -9,8 +9,17 @@ import org.junit.jupiter.api.Test;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
+/**
+ * Junit tests for the {@link LevelOne} class.
+ */
 public class LevelOneTest {
 
+    /**
+     * Sets up the JavaFX environment needed for testing.
+     * Runs before all tests to start the JavaFX application thread.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -18,7 +27,12 @@ public class LevelOneTest {
         latch.await(1, TimeUnit.SECONDS); 
     }
 
-    // Deduct player's health if damage is taken
+    /**
+     * Test how the damage is handled in LevelOne
+     * Ensures that the user's health decreases by 1 when damage is taken.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testDamageHandling() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -42,7 +56,11 @@ public class LevelOneTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // LevelOne Start Game
+    /**
+     * Tests the start game in LevelOne.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testStartGame() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);

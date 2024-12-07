@@ -5,9 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Junit tests for the {@link GameState} class.
+ */
 public class GameStateTest {
 
-    //Test all default values
+    /**
+     * Tests all the default values.
+     * Ensures all the game state are in the default values.
+     */
     @Test
     void testDefaultGameStateValues() {
         GameState gameState = GameState.getInstance();
@@ -17,7 +23,11 @@ public class GameStateTest {
         assertFalse(gameState.isShopLocked());
     }
 
-    // Shop purchases count
+    /**
+     * Tests the function of the shop item purchase count.
+     * Ensures the purchase count is increment correctly.
+     * When game reset, make sure purchase count also reset.
+     */
     @Test
     void testShopItemPurchaseCount() {
         GameState gameState = GameState.getInstance();
@@ -34,7 +44,10 @@ public class GameStateTest {
         assertEquals(0, gameState.getShopItem1PurchaseCount());
     }
     
-    // Shop status
+    /**
+     * Tests the shop status.
+     * Ensure the shop can be lock or unlock.
+     */
     @Test
     void testShopLockedStatus() {
         GameState gameState = GameState.getInstance();
@@ -45,6 +58,11 @@ public class GameStateTest {
         assertFalse(gameState.isShopLocked());
     }
 
+    /**
+     * Tests function of level 2 hearts.
+     * Includes adding extra hearts and reset hearts to default.
+     * Ensures the heart count are added correctly.
+     */
     @Test
     void testLevel2HeartsExtraHearts() {
         GameState gameState = GameState.getInstance();

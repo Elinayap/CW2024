@@ -11,8 +11,17 @@ import com.example.demo.levels.LevelParent;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
+/**
+ * Junit tests for the {@link GameEndScreen} class.
+ */
 public class GameWinScreenTest {
 
+    /**
+     * Sets up the JavaFX environment needed for testing.
+     * Runs before all tests to start the JavaFX application thread.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -20,7 +29,11 @@ public class GameWinScreenTest {
         latch.await(1, TimeUnit.SECONDS); 
     }
 
-    // Display Game Win Screen in LevelOne and LevelTwo
+    /**
+     * Test if the GameWinScreen can be displayed for LevelOne and LevelTwo.
+     * 
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testGameWinScreenDisplay() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -39,7 +52,11 @@ public class GameWinScreenTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // Next Level Button 
+    /**
+     * Test the function of the next level button.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testNextLevelButton() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -61,7 +78,11 @@ public class GameWinScreenTest {
         });
         latch.await(1, TimeUnit.SECONDS);
     }
-      // Display LevelThree win screen
+    /**
+     * Test if the GameWinScreen can be displayed for LevelThree.
+     * 
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testLevel3WinScreenDisplay() throws InterruptedException {
     CountDownLatch latch = new CountDownLatch(1);

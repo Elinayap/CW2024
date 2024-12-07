@@ -13,11 +13,18 @@ import org.junit.jupiter.api.Test;
 import com.example.demo.destructible.ActiveActorDestructible;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-
+/**
+ * Junit tests for the {@link LevelParent} class.
+ */
 public class LevelParentTest {
 
+    /**
+     * Sets up the JavaFX environment needed for testing.
+     * Runs before all tests to start the JavaFX application thread.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -25,7 +32,12 @@ public class LevelParentTest {
         latch.await(1, TimeUnit.SECONDS); 
     }
 
-    // Initialize Level
+    /**
+     * Test the initialization of a level.
+     * Ensures that the scene and root are not null.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testLevelInitialization() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -44,7 +56,12 @@ public class LevelParentTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // When enemies moved out screen boundaries
+    /**
+     * Tests when an enemy moves out of the screen boundaries.
+     * Ensures that the user's health is reduced.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
      @Test
     void testEnemyPenetration() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -64,7 +81,12 @@ public class LevelParentTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // Go to next level
+    /**
+     * Tests the transition to the next level.
+     * Ensures the transition to the next level is correct and the status is updated.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testNextLevelTransition() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -81,8 +103,13 @@ public class LevelParentTest {
         latch.await(1, TimeUnit.SECONDS);
         }
 
-    // Collision of projectile with enemies
-    //Projectile and enemies should be removed after collisons
+
+    /**
+     * Test the collisions between a user's projectile and an enemy.
+     * Ensures that the projectile and the enemy are removed from the screen after a collision.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testProjectileCollisionWithEnemy() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -107,7 +134,12 @@ public class LevelParentTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // Remove destroyed actors from screen
+    /**
+     * Test when removing the destroyed actors from the screen.
+     * Ensures that destroyed actors will not appear on screen.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testRemoveDestroyedActors() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);

@@ -16,8 +16,17 @@ import com.example.demo.assets.ShieldImage;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
+/**
+ * Junit tests for the {@link LevelTwo} class.
+ */
 public class LevelTwoTest {
 
+    /**
+     * Sets up the JavaFX environment needed for testing.
+     * Runs before all tests to start the JavaFX application thread.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -25,9 +34,14 @@ public class LevelTwoTest {
         latch.await(1, TimeUnit.SECONDS); 
     }
 
-    // User going to next level
+    /**
+     * Tests if the user can go to next level.
+     * Ensures user reaches kill target to proceed to next level.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
-    void testUserAdvancingToNextLevel() throws InterruptedException {
+    void testUserGoToNextLevel() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
 
         Platform.runLater(() -> {
@@ -45,7 +59,12 @@ public class LevelTwoTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-     // Activate shield
+    /**
+     * Tests the activation of the shield in LevelTwo.
+     * Ensures that the shield can correctly activates.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testShieldActivation() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -65,7 +84,12 @@ public class LevelTwoTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    //Boss take damage when player attacks
+    /**
+     * Tests when the boss take damage when player attacks
+     * Ensures the boss is destroyed when taking the damage.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testBossDestruction() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -73,7 +97,7 @@ public class LevelTwoTest {
         Platform.runLater(() -> {
             try {
                 Stage stage = new Stage();
-                LevelTwo levelTwo = new LevelTwo(600, 800, stage);
+                LevelTwo levelTwo = new LevelTwo(750, 1300, stage);
 
                 levelTwo.spawnEnemyUnits(); 
                 assertFalse(levelTwo.getBoss().isDestroyed());

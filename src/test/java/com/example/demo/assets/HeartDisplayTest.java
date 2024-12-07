@@ -7,8 +7,17 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import javafx.application.Platform;
 
+/**
+ * Junit tests for  {@link HeartDisplay} class.
+ */
 public class HeartDisplayTest {
 
+    /**
+     * Sets up the JavaFX environment needed for testing.
+     * Runs before all tests to start the JavaFX application thread.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -16,7 +25,12 @@ public class HeartDisplayTest {
         latch.await(1, TimeUnit.SECONDS); 
     }
 
-    // Deduct hearts by 1
+    /**
+     * Tests the removing heart from the {@link HeartDisplay} method.
+     * Ensures that the heart count is decremented by 1 correctly.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
      @Test
     void testRemoveHeart() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -35,7 +49,12 @@ public class HeartDisplayTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // Add hearts 
+    /**
+     * Tests the adding heart from the {@link HeartDisplay} method.
+     * Ensures that the heart count is incremented by 1 correctly.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testAddHeart() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -53,7 +72,12 @@ public class HeartDisplayTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // Reset the hearts
+    /**
+     * Tests the resetting heart from the {@link HeartDisplay} method.
+     * Ensures that the heart count is the same as the default value.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testResetHearts() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);

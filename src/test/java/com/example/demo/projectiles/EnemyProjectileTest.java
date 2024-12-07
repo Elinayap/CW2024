@@ -7,8 +7,17 @@ import javafx.application.Platform;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Junit tests for the {@link EnemyProjectile} class.
+ */
 public class EnemyProjectileTest {
 
+    /**
+     * Sets up the JavaFX environment needed for testing.
+     * Runs before all tests to start the JavaFX application thread.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -16,7 +25,12 @@ public class EnemyProjectileTest {
         latch.await(1, TimeUnit.SECONDS); 
     }
 
-    // Test if the position of the projectile updates correctly based on its velocity
+    /**
+     * Tests if the position of the projectile is updated correctly.
+     * Ensures that the projectile moves horizontally based on its velocity.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testEnemyProjectileUpdatePos() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -37,7 +51,12 @@ public class EnemyProjectileTest {
         latch.await(1, TimeUnit.SECONDS);
     }
 
-    // Initialize EnemyProjectile
+    /**
+     * Test the initialization of an projectile.
+     * Ensures that the initial position of the projectile is placed correctly.
+     *
+     * @throws InterruptedException if the JavaFX setup is interrupted.
+     */
     @Test
     void testEnemyProjectileInitialization() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
