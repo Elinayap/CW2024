@@ -85,11 +85,18 @@ public class Boss extends FighterPlane {
 		return bossFiresInCurrentFrame() ? new BossProjectile(getProjectileInitialPosition(),velocity) : null;
 	}
 
+	/**
+ 	 * Determines the velocity of the projectile in the current level.
+ 	 *
+ 	 * @return The velocity of the projectile.
+ 	 *         Returns -24 for LevelThree which provide a faster speed than LevelTwo.
+ 	 *         Returns -15 as the default velocity for other levels.
+ 	 */
 	private int speedProjectileVelocity() {
 		if ("LevelThree".equals(currentLevel)) {
-			return -24; // Faster velocity for Level Three
+			return -24; 
 		}
-		return -15; // Default velocity for other levels
+		return -15; 
 	}
 	
 	/**
