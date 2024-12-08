@@ -27,6 +27,7 @@ public class LevelThree extends LevelParent {
     private ShieldImage shieldImage;
     public static final int SHIELD_SIZE = 200;
     private static final double BOMB_PROBABILITY = 0.02;
+    private boolean hasCollidedWithBomb = false;
 
     /**
      * Constructs the LevelThree object.
@@ -83,6 +84,16 @@ public class LevelThree extends LevelParent {
         if (userIsDestroyed()) {
             loseGame();
         } else if (boss.isDestroyed()) {
+
+             // Unlock achievement for defeating the boss in Level Three
+             GameState.getInstance().addAchievement(" Boss Defeated in Level Three");
+            //  System.out.println("Achievement Unlocked: Boss Defeated in Level Three");
+
+             // Unlock Bomb Dodger achievement if no collisions occurred
+        if (!hasCollidedWithBomb) {
+            GameState.getInstance().addAchievement(" Bomb Dodger in Level Three");
+            // System.out.println("Achievement Unlocked: Bomb Dodger in Level Three");
+        }
             winGame(null);
         }
     }
@@ -148,6 +159,7 @@ public class LevelThree extends LevelParent {
         bombs.forEach(bomb -> {
             // Check if the bomb intersects with the user plane
             if (bomb.getBoundsInParent().intersects(getUser().getBoundsInParent())) {
+                hasCollidedWithBomb = true;
                 getUser().takeDamage();
                 playBombSound(); 
 
@@ -190,6 +202,7 @@ public class LevelThree extends LevelParent {
             levelView.resetHearts(PLAYER_INITIAL_HEALTH); // Reset hearts to initial value
         }
         GameState.getInstance().setLevel1Hearts(PLAYER_INITIAL_HEALTH);
+        hasCollidedWithBomb = false;
         System.out.println("Game started with hearts: " + PLAYER_INITIAL_HEALTH);
     }
 

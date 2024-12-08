@@ -91,6 +91,15 @@ public class GameWinScreen {
                 scoreLabel.setFont(buttonFont);
                 scoreLabel.setStyle("-fx-text-fill: #000000;");
 
+               // Achievement label (added here to include lines like others)
+                Label achievementLabel = null;
+                if (GameState.getInstance().getAchievements().contains("All Enemies Defeated in Level One")) {
+                    achievementLabel = new Label("Achievement: All Enemies Defeated");
+                    achievementLabel.setFont(buttonFont);
+                    achievementLabel.setStyle("-fx-text-fill: green;"); // Green color for the achievement
+}
+
+
                 // Shop button
                 Button shopButton = createStyledButton("Shop", buttonFont);
                 //Ensure other keys does not trigger the screen 
@@ -129,7 +138,7 @@ public class GameWinScreen {
                     new MainMenu(displayStage, controller).show();
                 });
 
-                layout.getChildren().addAll(titleLabel, scoreLabel, nextLevelButton, shopButton, mainMenuButton);
+                layout.getChildren().addAll(titleLabel, scoreLabel,achievementLabel, nextLevelButton, shopButton, mainMenuButton);
                 rootLayout.setCenter(layout);
 
                 Scene gameWinScene = new Scene(rootLayout, 500, 500);
@@ -245,6 +254,23 @@ public class GameWinScreen {
                 Label scoreLabel = new Label("Your Score: " + score);
                 scoreLabel.setFont(buttonFont);
                 scoreLabel.setStyle("-fx-text-fill: #000000;");
+
+                // Achievement label
+                Label achievementLabel = null;
+                if (GameState.getInstance().getAchievements().contains("All Enemies Defeated in Level One"))
+                {
+                    achievementLabel = new Label("Achievement: All Enemies Defeated");
+                    achievementLabel.setFont(buttonFont);
+                    achievementLabel.setStyle("-fx-text-fill: green;"); 
+                }
+                // Achievement label (Bomb Dodger)
+                Label bombDodgerLabel = null;
+                if (GameState.getInstance().getAchievements().contains("Achievement: Bomb Dodger in Level Three")) 
+                {
+                    bombDodgerLabel = new Label("Achievement: Bomb Dodger");
+                    bombDodgerLabel.setFont(buttonFont);
+                    bombDodgerLabel.setStyle("-fx-text-fill: green;"); 
+                }
     
                 Button mainMenuButton = new Button("Return to Menu");
                 mainMenuButton.setFont(buttonFont);
@@ -270,7 +296,13 @@ public class GameWinScreen {
                     new MainMenu(displayStage, controller).show();
                 });
     
-                layout.getChildren().addAll(titleLabel, scoreLabel, mainMenuButton);
+                // Add elements to layout
+                layout.getChildren().addAll(titleLabel, scoreLabel,achievementLabel);
+                if (bombDodgerLabel != null) 
+                { // Add Bomb Dodger label if it exists
+                    layout.getChildren().add(bombDodgerLabel);
+                }
+                layout.getChildren().addAll( mainMenuButton);
                 rootLayout.setCenter(layout);
     
                 Scene gameWinScene = new Scene(rootLayout, 500, 500);

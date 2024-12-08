@@ -1,5 +1,8 @@
 package com.example.demo.GameState;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * This class is to manage game state.
  * Track the player's health and other game variables.
@@ -11,6 +14,7 @@ public class GameState {
     private int shopItem1PurchaseCount; 
     private boolean shopLocked; 
     private static GameState instance = null; 
+    private Set<String> achievements; // Store achievements
 
     /**
      * Private constructor ensure only one instance is created.
@@ -146,6 +150,17 @@ public class GameState {
         System.out.println("Shop locked status set to: " + locked);
     }
 
+     public void addAchievement(String achievement) {
+        if (achievements.add(achievement)) {
+            System.out.println("Achievement unlocked: " + achievement);
+        }
+    }
+
+    public Set<String> getAchievements() {
+        return new HashSet<>(achievements);
+    }
+
+
     /**
      * Resets all game state to their default values.
      * Includes player's health, shop status, and purchase counts.
@@ -155,6 +170,7 @@ public class GameState {
         this.level2Hearts = 5;  // Default hearts for Level 2
         this.shopItem1PurchaseCount = 0; // Reset shop purchases
         this.shopLocked = false; // Unlock shop
+        this.achievements = new HashSet<>();
         System.out.println("GameState reset to initial values.");
     }
 }

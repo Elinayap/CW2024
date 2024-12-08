@@ -32,7 +32,7 @@ public class GameEndScreen {
     }
 
     /**
-     * Displays the game end screen with the final score and options to return to the main menu.
+     * Displays the game end screen with the final score, achievement earned and options to return to the main menu.
      *
      * @param displayStage The primary stage on which the game is displayed.
      * @param score        The final score win by the player.
@@ -84,6 +84,11 @@ public class GameEndScreen {
                 scoreLabel.setFont(buttonFont);
                 scoreLabel.setStyle("-fx-text-fill: #000000;");
 
+                // Achievement label
+                Label achievementLabel = new Label("No achievement earned");
+                achievementLabel.setFont(buttonFont);
+                achievementLabel.setStyle("-fx-text-fill: grey;"); 
+
                 Button mainMenuButton = new Button("Return to Menu");
                 mainMenuButton.setFont(buttonFont);
                 mainMenuButton.setPrefWidth(200);
@@ -109,7 +114,7 @@ public class GameEndScreen {
                 });
                 
 
-                layout.getChildren().addAll(titleLabel, scoreLabel, mainMenuButton);
+                layout.getChildren().addAll(titleLabel, scoreLabel,achievementLabel, mainMenuButton);
                 rootLayout.setCenter(layout);
 
                 Scene gameEndScene = new Scene(rootLayout, 500, 500);

@@ -73,6 +73,10 @@ public class LevelTwo extends LevelParent {
         if (userIsDestroyed()) {
             loseGame();
         } else if (boss.isDestroyed()) {
+
+        // Unlock achievement for defeating the boss
+        GameState.getInstance().addAchievement(" Boss Defeated in Level Two");
+        // System.out.println("Achievement Unlocked: Boss Defeated in Level Two");
             winGame(NEXT_LEVEL); 
         }
     }

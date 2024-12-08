@@ -45,6 +45,10 @@ public class LevelOne extends LevelParent {
         if (userIsDestroyed()) {
             loseGame(); // Trigger game-over logic only when health is zero
         } else if (userHasReachedKillTarget() && !isTransitioning) {
+            // Check if all enemies are destroyed
+        GameState.getInstance().addAchievement("All Enemies Defeated in Level One");
+        // System.out.println("Achievement unlocked: All Enemies Defeated in Level One");
+        winGame(NEXT_LEVEL);
             winGame(NEXT_LEVEL); // Trigger win condition only when user meets the kill target
         }
     }
