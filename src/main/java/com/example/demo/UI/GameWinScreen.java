@@ -91,14 +91,13 @@ public class GameWinScreen {
                 scoreLabel.setFont(buttonFont);
                 scoreLabel.setStyle("-fx-text-fill: #000000;");
 
-               // Achievement label (added here to include lines like others)
+               // Achievement label
                 Label achievementLabel = null;
                 if (GameState.getInstance().getAchievements().contains("All Enemies Defeated in Level One")) {
                     achievementLabel = new Label("Achievement: All Enemies Defeated");
                     achievementLabel.setFont(buttonFont);
-                    achievementLabel.setStyle("-fx-text-fill: green;"); // Green color for the achievement
-}
-
+                    achievementLabel.setStyle("-fx-text-fill: green;"); 
+                }
 
                 // Shop button
                 Button shopButton = createStyledButton("Shop", buttonFont);

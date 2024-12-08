@@ -66,7 +66,9 @@ public class LevelTwo extends LevelParent {
     }
 
     /**
-     * Checks whether the game is over if the user died or boss is destroyed.
+     * Checks whether the game is over if the user died or the boss is destroyed.
+     * Unlocks "Boss Defeated in Level Two" achievement if the boss is defeated.
+     * Then proceed to next level.
      */
     @Override
     protected void checkIfGameOver() {
@@ -74,9 +76,7 @@ public class LevelTwo extends LevelParent {
             loseGame();
         } else if (boss.isDestroyed()) {
 
-        // Unlock achievement for defeating the boss
         GameState.getInstance().addAchievement(" Boss Defeated in Level Two");
-        // System.out.println("Achievement Unlocked: Boss Defeated in Level Two");
             winGame(NEXT_LEVEL); 
         }
     }

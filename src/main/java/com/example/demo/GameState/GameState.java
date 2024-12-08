@@ -150,12 +150,22 @@ public class GameState {
         System.out.println("Shop locked status set to: " + locked);
     }
 
+    /**
+     * Adds an achievement to the set of achievements if have not unlock it.
+     *
+     * @param achievement The name of the achievement to add.
+     */
      public void addAchievement(String achievement) {
         if (achievements.add(achievement)) {
             System.out.println("Achievement unlocked: " + achievement);
         }
     }
 
+    /**
+     * Gets the set of all achievements earned.
+     *
+     * @return  new {@link HashSet} containing all earned achievements.
+     */
     public Set<String> getAchievements() {
         return new HashSet<>(achievements);
     }
@@ -163,7 +173,7 @@ public class GameState {
 
     /**
      * Resets all game state to their default values.
-     * Includes player's health, shop status, and purchase counts.
+     * Includes player's health, shop status, purchase counts, and  all achievements earned.
      */
     public void resetAll() {
         this.level1Hearts = 5;  // Default hearts for Level 1
