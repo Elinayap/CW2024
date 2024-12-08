@@ -86,12 +86,12 @@ public class LevelThree extends LevelParent {
         } else if (boss.isDestroyed()) {
 
              // Unlock achievement for defeating the boss in Level Three
-             GameState.getInstance().addAchievement(" Boss Defeated in Level Three");
+             GameState.getInstance().addAchievement("Achievement: Boss Defeated in Level Three");
             //  System.out.println("Achievement Unlocked: Boss Defeated in Level Three");
 
              // Unlock Bomb Dodger achievement if no collisions occurred
         if (!hasCollidedWithBomb) {
-            GameState.getInstance().addAchievement(" Bomb Dodger in Level Three");
+            GameState.getInstance().addAchievement("Achievement: Bomb Dodger in Level Three");
             // System.out.println("Achievement Unlocked: Bomb Dodger in Level Three");
         }
             winGame(null);
