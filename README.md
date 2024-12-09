@@ -395,7 +395,11 @@ Edited Boss class to include the ShieldImage which allows it to show or hide the
 
 8. **GameState**
 Enhanced to manage and access Level Two hearts, including functionality to lock and unlock the shop based on the purchase count. This ensures consistency in health and purchase counts across all levels.
+---
+### **Level Parent class**
 
-
+#### **Changes Made:**
+1.	**isPaused**
+Track whether the game is paused.
 
 
