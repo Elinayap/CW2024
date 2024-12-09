@@ -24,6 +24,11 @@
       <artifactId>javafx-fxml</artifactId>
       <version>19.0.2</version>
     </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-media</artifactId>
+      <version>19.0.2</version>
+    </dependency>
 
 <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -36,7 +41,21 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
-    </dependency>  </dependencies>
+    </dependency>  
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.5.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+        <version>5.5.0</version>
+        <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
 
   <build>
     <plugins>
@@ -59,6 +78,7 @@
             <id>default-cli</id>
             <configuration>
               <mainClass>com.example.demo/com.example.demo.controller.Main</mainClass>
+              <executable>C:\Users\elina\.jdks\corretto-19.0.2\bin\java</executable>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
