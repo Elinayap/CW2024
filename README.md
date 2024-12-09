@@ -259,9 +259,142 @@ Displays the “Game Over” screen for all levels, showing the user’s score a
 
 2.	**loadCustomFont(String fontPath, int size)**
 Load custom fonts from the specified file path, and if the custom fonts fail to load, fall back to the default font.
+---
+### **Shop class**
+Shop class allow users to purchase in-game items such as extra hearts. Users can purchase extra hearts at Level 1, and access a pop-up message if certain actions are unavailable. This ensures that the shop has limited access and can be locked once certain conditions are met. It is located in the com.example.demo.UI package.
 
+#### Sub-components:
+1.	**show()**
+Display the shop interface. It includes components such as close button, which allow users to close shop and return to game. It also provides a buy item 1 button. When user purchase the item, this method updates the game’s heart display and increase the purchase count. If they purchase more than two times, the shop is locked to prevent users from purchasing more hearts. To ensure a good user experience, applying setFocusTraversable(false) to ensure other keys does not trigger the screen.
 
+2.	**createCloseButton(Stage shopStage)**
+Create a styled close button to close the shop.
 
+3.	**loadFont(String fontPath, int size)**
+Load custom fonts from the specified file path, and if the custom fonts fail to load, fall back to the default font.
+
+4.	**showShopPopup(String title, String message)**
+Display a pop-up message when certain conditions are met. It also provides a close button to close the pop-up. setFocusTraversable(false) is also applied to ensure other keys does not trigger the screen.
+---
+### **LevelThree class**
+The LevelThree class extends LevelParent and introduces a more challenging gameplay experience. In this level, players must defeat a shielded boss while dealing with randomly spawning bombs. Additionally, sound effects are integrated to enhance user immersion and provide auditory feedback during gameplay. It is located in the com.example.demo.levels packag
+
+#### Sub-components:
+1.	**updateScene()**
+Update the level by checking the bomb collisions and randomly spawning bombs. Using bombCollision() method to check for collisions between bombs and users.
+
+2.	**spawnBomb()**
+Spawn bombs at random positions on the screen, one at a time. Existing bombs are cleared from the scene to avoid overlapping. A new bombImage object is then created and added to the root. Bombs are spawned in visible areas.
+
+3.	**bombCollision()**
+Manage collisions between the user and bombs. Check if any bomb collides with the user’s bounding box; if a collision is detected, reduce the user’s hearts and update the LevelView to reflect the reduced heart count. Finally, remove the bomb from the screen after the collision.
+
+4.	**playBombSound()**
+Playing a sound effect after user collides when a bomb. Ensures the game does not crash if the sound file not found or corrupted by catching exceptions.
+
+5.	**startGame()**
+Initializes game state for Level Three. Reset user’s hearts to initial health value and updates the GameState object to set the player’s initial health for Level One to initial health value. A debug message is printed to confirm the game starts with the correct health value.
+
+6.	**activeShield()**
+Activate the boss's shield to prevent it from taking damage. Calls showShield() method at the shieldImage object to make the shield visible.
+
+7.	**deactivateShield()**
+Deactivate the boss’s shield to allow it to take damage. Calls hideShield() method at shieldImage object to remove the shield.
+
+8. **checkIfGameOver()**
+Checks whether the user has lost all their hearts or if the boss has been defeated. If the boss is defeated, the "Boss Defeated in Level Three" achievement is unlocked. Additionally, if the user avoids all bomb collisions, the "Bomb Dodger in Level Three" achievement is unlocked.
+
+9. **updateScene()**
+Updates the level by randomly spawning bombs based on a mathematical probability and handling bomb collisions using the bombCollision() method.
+---
+### **LevelViewLevelThree class**
+This class is derived from the original LevelViewLevelTwo code, with no modifications made. It is located in the com.example.demo.levels package.
+---
+### **GameState class**
+GameState manage the game’s state across different levels and interactions. It tracks the users health, shop purchases and other game variables. This class is located in the com.example.demo.GameState package.
+
+#### Sub components:
+1.	**updateScene()**
+Ensure that a single instance of the GameState class is created and shared across all other classes, allowing them to access the same GameState instance.
+
+2.	**Level health**
+Manages the player’s hearts across multiple levels, allowing updates and resets based on gameplay events.
+The variables level1Hearts and level2Hearts are used to track the hearts in each level. Methods like setLevel1Hearts(int hearts) and addLevel2Hearts(int extraHearts) update the player’s health dynamically during gameplay.
+Additionally, resetLevel1Hearts() and resetLevel2Hearts() ensure that each level starts with an initial health of 5.
+
+3.	**Shop**
+The Shop class manages user interactions with the in-game shop and ensures it is locked under specific conditions. It tracks the number of times an item has been purchased using shopItem1PurchaseCount, preventing further access to the shop once certain conditions are met by utilizing methods like isShopLocked() and setShopLocked(Boolean locked). Additionally, the resetShop() method resets all purchase counts and lock statuses when the game is restarted, ensuring the shop is restored to its initial state.
+
+4. **Achievements**
+Tracks the achievements unlocked by users during gameplay. The addAchievement(String achievement) method is used to add new achievements to the list.
+
+5.	**resetAll()**
+Resets both level1Hearts and level2Hearts to default value of 5 and clear the purchase count for the item, and unlock the shop when user restart the game.
+---
+### **bombImage class**
+This class handles the display of the image size, and positioning of the bomb to the screen. It is located at com.example.demo.assets.
+
+#### Sub components:
+1.	**Static constants**
+IMAGE_NAME stores the file path of the bomb image, while BOMB_SIZE is used to define the size of the bomb.
+
+2.	**Public(bombImage(double xPosition, double yPosition))**
+this.setLayoutX(xPosition) and this.setLayoutY(yPosition) are used to position the bomb image based on the specified x and y coordinates in the game. this.setImage loads the image from the specified file path. this.setVisible(false) ensures that the bomb is initially not visible on the screen and is displayed only when necessary. this.setFitHeight(BOMB_SIZE) and this.setFitWidth(BOMB_SIZE) define the dimensions of the bomb image.
+---
+### **5.5 Modified Java Classes**
+
+### **UserProjectile class**
+
+#### Changes made: 
+1.	**Sound effect**
+Added shooting.wav as the shooting sound. A static block was introduced to load the sound file path, ensuring the sound is ready to play when a projectile is fired. The playSound method is used to play the shooting sound when the projectile is created, providing auditory feedback to the user. To enhance the user experience by adding auditory feedback.
+
+2.	**Projectile movement**
+The isFired flag determines whether the projectile is synchronized with the plane or has already been fired. The updatePosition method ensures the projectile moves horizontally only after it has been fired. This provides precise control over the projectile's movement, preventing unintended motion before it is fired.
+
+3.	**Synchronize with plane**
+The syncWithPlane method is used to align the projectile with the plane. It calculates the x and y positions based on the plane's height and width.To ensure the projectile sync to the movement of the plane.
+
+4.	**fire() method**
+Added this method to set the isFired flag to true, enable the projectile to move on its own once launched.
+---
+### **LevelViewLevelTwo class**
+
+#### Changes made: 
+1.	**HeartDisplay**
+Added HeartDisplay to show the user’s remaining hearts on screen. Updated the constructor to set up HeartDisplay with the initial hearts and its position. addHeartDisplayToRoot() method is to add the heart display the game root. This feature is to clarify the hearts on the screen which can improve the overall gameplay experience.
+
+3.	**updateHeartDisplay**
+This method is to update the heart display onto the screen. This ensures the heart display updated with the user’s current health, giving user instant feedback during the game.
+
+4.	**private int hearts**
+Added this to store the current number of hearts. To allows the LevelViewLevelTwo class to update the HeartDisplay when the player’s health changes.
+---
+### **LevelTwo class**
+#### Changes made: 
+1. **Shield Image**
+ShieldImage object is added to boss like a shield. Shield image is initialized at (0,0) and match its position with the boss plane using layoutXProperty and layoutYProperty. To ensure the shield match the position of the boss plane.
+
+2. **Boss with the shield**
+Updated the boss to add the function of the shield by passing ShieldImage object to its constructor. To ensure the boss can have interactive defensive abilities.
+
+3. **Game State**
+GameState used to get the player’s health for Level 2 and set the player’s health when the level starts. The instantiateLevelView method has been updated to display the player’s health by using GameState. This is to ensure the consistency of health across other levels.
+
+4. **Active and deactivate shield**
+Added activateShield() and deactivateShield() methods to show and hide the shield.
+
+5. **checkIfGameOver()**
+Edited checkIfGameOver() method to go to next level if the boss is defeated. Ensure after user defeated the boss then move to next level.
+
+6. **Heart reset**
+Updated startGame() to reset the player initial health to initial value using GameState. To ensure each levels displayed the initial value of initial player health.
+
+7. **Boss class**
+Edited Boss class to include the ShieldImage which allows it to show or hide the shield
+
+8. **GameState**
+Enhanced to manage and access Level Two hearts, including functionality to lock and unlock the shop based on the purchase count. This ensures consistency in health and purchase counts across all levels.
 
 
 
