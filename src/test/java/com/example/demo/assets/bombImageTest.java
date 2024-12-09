@@ -9,16 +9,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import javafx.application.Platform;
 
-/**
- * Junit tests for the {@link bombImage} class.
- */
+
 public class bombImageTest {
 
     /**
      * Sets up the JavaFX environment needed for testing.
      * Runs before all tests to start the JavaFX application thread.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
@@ -30,8 +26,6 @@ public class bombImageTest {
     /**
      * Tests if the boss image is visible.
      * Ensures for the bomb image can be setVisible to true or false.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
      @Test
     void testBombImageVisibility() throws InterruptedException {
@@ -55,8 +49,6 @@ public class bombImageTest {
     /**
      * Tests the initialization of bomb image.
      * Ensures the the bomb image is at the correct position, size and the visibility.
-     *
-     * @throws InterruptedException if the test is interrupted while waiting for the JavaFX thread.
      */
     @Test
     void testBombImageInitialization() throws InterruptedException {

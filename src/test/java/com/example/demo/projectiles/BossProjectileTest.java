@@ -9,16 +9,12 @@ import javafx.application.Platform;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-/**
- * Junit tests for the {@link BossProjectile} class.
- */
 public class BossProjectileTest {
 
+    
     /**
      * Sets up the JavaFX environment needed for testing.
      * Runs before all tests to start the JavaFX application thread.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
@@ -30,8 +26,6 @@ public class BossProjectileTest {
     /**
      * Test the velocity of the projectile in LevelThree.
      * Make sure the velocity of projectile is same as the one in LevelThree.
-     *
-     * @throws InterruptedException if the test is interrupted while waiting for the JavaFX thread.
      */
     @Test
     void testProjectileVelocity_LevelThree() throws InterruptedException {

@@ -12,16 +12,12 @@ import javafx.application.Platform;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-/**
- * Junit tests for the {@link Controller} class.
- */
+
 public class ControllerTest {
 
     /**
      * Sets up the JavaFX environment needed for testing.
      * Runs before all tests to start the JavaFX application thread.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
@@ -31,10 +27,8 @@ public class ControllerTest {
     }
 
     /**
-     * Tests that the {@link Controller#PlayMusic()} method plays background music correctly.
-     * Ensures that the {@link MediaPlayer} can play background music without any errors.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
+     * Tests that the PlayMusic() method plays background music correctly.
+     * Ensures that the MediaPlayer can play background music without any errors.
      */
      @Test
     void testPlayMusic() throws InterruptedException {
@@ -58,10 +52,8 @@ public class ControllerTest {
     }
 
     /**
-     * Tests that the {@link Controller#setVolume(double)} method set the volume of music correctly.
+     * Tests if is setting the volume of music correctly.
      * Ensures the volume can be set to expected value.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testSetVolume() throws InterruptedException {
@@ -84,10 +76,8 @@ public class ControllerTest {
     }
 
     /**
-     * Tests the {@link Controller#showPauseScreen()} and {@link Controller#resumeGame()} methods.
+     * Tests the showPauseScreen() and resumeGame() methods.
      * Ensures that the game can be paused and resumed without any errors.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testPauseAndResumeGame() throws InterruptedException {
@@ -110,10 +100,8 @@ public class ControllerTest {
     }
 
     /**
-     * Tests the {@link Controller#returnToMenu()} method.
+     * Tests the returnToMenu() method.
      * Ensures there is no errors when returning to menu.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testReturnToMenu() throws InterruptedException {

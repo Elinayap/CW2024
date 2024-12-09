@@ -14,16 +14,12 @@ import static org.mockito.Mockito.mock;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Junit tests for the {@link Shop} class.
- */
+
 public class ShopTest {
 
     /**
      * Sets up the JavaFX environment needed for testing.
      * Runs before all tests to start the JavaFX application thread.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
@@ -34,8 +30,6 @@ public class ShopTest {
 
     /**
      * Test if the Shop can be displayed.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testShopDisplay() throws InterruptedException {
@@ -59,8 +53,6 @@ public class ShopTest {
     /**
      * Tests when the shop is locked.
      * Ensure Shop still able to display when setShopLocked is true.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testShopLocked() throws InterruptedException {
@@ -84,8 +76,6 @@ public class ShopTest {
 
     /**
      * Test the displayed of pop up message.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testShowShopPopup() throws InterruptedException {

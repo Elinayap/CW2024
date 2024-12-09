@@ -10,16 +10,12 @@ import com.example.demo.controller.Controller;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
-/**
- * Junit tests for the {@link MainMenu} class.
- */
+
 public class MainMenuTest {
 
-    /**
+     /**
      * Sets up the JavaFX environment needed for testing.
      * Runs before all tests to start the JavaFX application thread.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
      @BeforeAll
     static void setupJavaFX() throws InterruptedException {
@@ -30,8 +26,6 @@ public class MainMenuTest {
 
     /**
      * Test if the MainMenu can be displayed.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testMainMenuDisplay() throws InterruptedException {
@@ -52,8 +46,6 @@ public class MainMenuTest {
 
     /**
      * Test the function of the Start Game button.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testStartGameButton() throws InterruptedException {
@@ -78,8 +70,6 @@ public class MainMenuTest {
 
     /**
      * Test the function of the Instructions button.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
      @Test
     void testInstructionsButton() throws InterruptedException {
@@ -103,8 +93,6 @@ public class MainMenuTest {
 
     /**
      * Test the function of the Quit Game button.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testQuitGameButton() throws InterruptedException {

@@ -8,16 +8,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import javafx.application.Platform;
 
-/**
- * Junit tests for the {@link ShieldImage} class.
- */
+
 public class ShieldImageTest {
 
     /**
      * Sets up the JavaFX environment needed for testing.
      * Runs before all tests to start the JavaFX application thread.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
@@ -28,9 +24,8 @@ public class ShieldImageTest {
 
     /**
      * Tests if the shield image is displayed.
-     * Ensures that the shield is visible after {@link ShieldImage#showShield()} method is called.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
+     * Ensures that the shield is visible after showShield() method is called.
+    
      */
      @Test
     void testShowShield() throws InterruptedException {
@@ -50,7 +45,7 @@ public class ShieldImageTest {
 
     /**
      * Tests if the shield image is hidden.
-     * Ensures that the shield is hidden after {@link ShieldImage#hideShield()} method is called.
+     * Ensures that the shield is hidden after hideShield() method is called.
      *
      * @throws InterruptedException if the JavaFX setup is interrupted.
      */

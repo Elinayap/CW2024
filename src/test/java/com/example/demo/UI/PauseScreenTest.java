@@ -11,16 +11,11 @@ import com.example.demo.controller.Controller;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
-/**
- * Junit tests for the {@link PauseScreen} class.
- */
 public class PauseScreenTest {
 
-     /**
+    /**
      * Sets up the JavaFX environment needed for testing.
      * Runs before all tests to start the JavaFX application thread.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
@@ -31,8 +26,6 @@ public class PauseScreenTest {
 
     /**
      * Test if the PauseScreen can be displayed.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testPauseScreenDisplay() throws InterruptedException {
@@ -55,8 +48,6 @@ public class PauseScreenTest {
 
     /**
      * Test the function of the Resume button.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testResumeButton() throws InterruptedException {
@@ -83,8 +74,6 @@ public class PauseScreenTest {
 
     /**
      * Test the function of the Settings button.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
      @Test
      void testSettingsButton() throws InterruptedException {
@@ -111,8 +100,6 @@ public class PauseScreenTest {
 
     /**
      * Test the function of the Exit button.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testExitButton() throws InterruptedException {

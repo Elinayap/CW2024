@@ -14,16 +14,11 @@ import com.example.demo.destructible.ActiveActorDestructible;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 
-/**
- * Junit tests for the {@link LevelParent} class.
- */
 public class LevelParentTest {
 
-    /**
+     /**
      * Sets up the JavaFX environment needed for testing.
      * Runs before all tests to start the JavaFX application thread.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @BeforeAll
     static void setupJavaFX() throws InterruptedException {
@@ -35,8 +30,6 @@ public class LevelParentTest {
     /**
      * Test the initialization of a level.
      * Ensures that the scene and root are not null.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testLevelInitialization() throws InterruptedException {
@@ -59,8 +52,6 @@ public class LevelParentTest {
     /**
      * Tests when an enemy moves out of the screen boundaries.
      * Ensures that the user's health is reduced.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
      @Test
     void testEnemyPenetration() throws InterruptedException {
@@ -84,8 +75,6 @@ public class LevelParentTest {
     /**
      * Tests the transition to the next level.
      * Ensures the transition to the next level is correct and the status is updated.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testNextLevelTransition() throws InterruptedException {
@@ -107,8 +96,6 @@ public class LevelParentTest {
     /**
      * Test the collisions between a user's projectile and an enemy.
      * Ensures that the projectile and the enemy are removed from the screen after a collision.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testProjectileCollisionWithEnemy() throws InterruptedException {
@@ -137,8 +124,6 @@ public class LevelParentTest {
     /**
      * Test when removing the destroyed actors from the screen.
      * Ensures that destroyed actors will not appear on screen.
-     *
-     * @throws InterruptedException if the JavaFX setup is interrupted.
      */
     @Test
     void testRemoveDestroyedActors() throws InterruptedException {
