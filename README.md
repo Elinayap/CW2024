@@ -135,14 +135,53 @@ Both user and enemy planes have health represented by hearts that decrease upon 
 - **Enemy plane penetration**
 Deducted all the user’s hearts after enemy planes exit the screen in Levelone.
 
-### 5.2 Implemented but not working properly
+### **5.2 Implemented but not working properly**
 
-- **Main menu screen**
+### **Main menu screen**
 After the game win or lose screen is displayed, users can click on the "Return to Menu" button. This action bring them back to the main menu screen, where they can choose to start a new game, view  instructions, or quit game. However, the main menu screen sometimes does not display correctly, showing an incomplete interface which only showing partially of the play button.
+
 #### Possible causes: 
 This issue may be caused by incorrect  scene initialization, issues with rendering the background image, or incomplete loading of UI components. This could also result from improper resizing or misalignment of UI elements during screen transitions or a potential logic error in reinitializing the main menu layout.
 
-#### Possible solution: 
-1. **Correct scene initialization**
-Ensure the main menu scene is fully initialized with all components and layout correctly set before transitioning.
+  #### Possible solution: 
+  1. **Correct scene initialization**
+     Ensure the main menu scene is fully initialized with all components and layout correctly set before transitioning.
+  2. **Ensure all the UI components are loaded**
+      Ensure all UI components, including all other buttons are fully loaded and rendered before  displaying the main menu screen.
+---
+### **Stationary bullet issue**
+A single bullet fired by the plane remains fixed on the screen, failing to follow its expected trajectory. While other bullets move and synchronize properly with the plane.
+
+#### **Possible causes**
+This issue could caused by improper detachment of the bullet after firing, causing it to stay stationary on the screen. There might also be a synchronization issue where the projectile is tied with the movement of the plane, preventing it from functioning independently. Additionally, the issue might be related to object state conflict as the activeProjectile state might not be properly managed.
+
+#### **Possible solution**
+1. **Ensure proper detachment**
+Modify the projectile so it will be entirely separated from the plane once fired. Check the activeProjectile variable is cleared immediately after the bullet is fired.
+
+2. **Fix synchronization problem**
+Modify the synchronization problem to apply only to projectiles still attached to the plane, ensure that it does not interfere with bullets that have already been fired.
+
+3. **Fix object state conflict**
+Modify the activeProjectile lifecycle to ensure the smooth state transitions from initialization to firing and detachment to avoid the conflicts.
+
+### 5.3 Features Not Implemented
+
+### **Add extra hearts in LevelThree**
+After encounter these challenges, I decided to change the rules for shop function in LevelThree. In this final level, users will no longer be able to purchase extra hearts. 
+
+#### Reasons: 
+1. **Conflict with the bomb collision**
+The bombCollision() method updates the heart display without considering the dynamically added hearts. When attempting to fix this issue, it caused the bomb collision functionality to stop working, so further adjustments were outside the current scope. 
+
+2. **Complexity of shield and bombs**
+Level 3 includes features such as a shield and random bomb spawning, which increase the complexity of UI updates, making it challenging to synchronize dynamic heart additions.
+---
+### **Restart level button**
+I planned to include a restart level button in every level, allowing users to retry after losing the game. But, I replaced this button with a "Return to Menu" button, allowing users to go back to the main menu and restart the game from there.
+
+#### Reason:
+1.	**Time constraints**
+This feature was not implemented due to time constraints and the focus on ensuring other key features were working properly. Leaving it insufficient time to implement and test the feature across all the levels.
+
 
