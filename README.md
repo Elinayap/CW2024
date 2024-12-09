@@ -164,7 +164,7 @@ Modify the synchronization problem to apply only to projectiles still attached t
 
 3. **Fix object state conflict**
 Modify the activeProjectile lifecycle to ensure the smooth state transitions from initialization to firing and detachment to avoid the conflicts.
-
+---
 ### 5.3 Features Not Implemented
 
 ### **Add extra hearts in LevelThree**
@@ -183,5 +183,86 @@ I planned to include a restart level button in every level, allowing users to re
 #### Reason:
 1.	**Time constraints**
 This feature was not implemented due to time constraints and the focus on ensuring other key features were working properly. Leaving it insufficient time to implement and test the feature across all the levels.
+---
+**Additional boss in LevelThree**
+The addition of a second boss in Level 3 was initially planned but ultimately left out. 
+
+#### Reason:
+1.	**Too difficult for users**
+Having two bosses along with randomly bomb spawns and speed up projectiles created an overly chaotic environment, making it difficult for users to focus on both bosses and bombs at the same time.
+---
+### **5.4 New Java Classes**
+
+### **MainMenu class**
+The MainMenu class serves as the entry point for the game. It provides the main menu where users can start the game, view instructions, or quit game. Additionally, it manages the display of custom elements, including background images, fonts, and cursors. It is located in the com.example.demo.UI package.
+
+#### Sub-components:
+1.	**startGame()**
+Uses Controller class to launch the game.
+
+2.	**showInstructions()**
+Displays a screen to show the instructions to users.
+
+3.	####**createStyledButton()**
+Create the style of the buttons including the hover effects and default cursors.
+
+4.	**show()**
+Displays the main menu screen with custom background, title, and buttons.
+---
+### **PauseScreen class**
+Displaying pause screen, allow users to pause the game and access options such as resuming the game, adjusting settings, or exiting the game. Additionally, it also provides a settings menu to adjust the volume. It is located in the com.example.demo.UI package.
+
+#### Sub-components:
+1.	**show()**
+Displays the pause screen with custom background, title, and buttons.
+
+2.	**createStyledButton()**
+Create the style of the buttons including the hover effects and default cursors.
+
+3.	**showSettings()**
+Display the settings screen with a volume slider to adjust the volume.
+
+4.	**resumeButton Action**
+Allows the users to resume the game by closing the pause screen and running the provided resume action.
+
+5.	**settingsButton Action**
+Opens the settings menu to allow users to adjust the volume for the background music.
+
+6.	**exitButton Action**
+Closes the pause screen and the game, ending the session.
+---
+### **GameWinScreen class**
+The GameWinScreen class is responsible for displaying the “You Win” screen when a user successfully completes a level. It also displays the achievements earned by the user upon successfully completing the level. It provides option to go to the next level, shop, or return to main menu. It is located in the com.example.demo.UI package.
+
+#### Sub-components:
+1.	**showGameWinScreen(Stage displayStage, int score, LevelParent currentLevel, Runnable onNextLevel)**
+Displays the “You Win” screen for Level 1 and Level 2, featuring a “You Win” message, the user’s score, and buttons for proceeding to the next level, accessing the shop, or returning to the main menu. Includes the functionality to prevent users from accessing shop in Level 2 by showing a pop-up message.
+
+2.	**Showlvl3WinScreen(Stage displayStage, int score)**
+Displays the “You Win” screen for Level 3, featuring a “You Win” message, the user’s score, achievements earned, and a button to return to main menu.
+
+3.	**createStyledButton(String text, Font font)**
+Create the style of the buttons including the hover effects and default cursors.
+
+4.	**loadCustomFont(String fontPath, int size)**
+Load custom fonts from the specified file path, and if the custom fonts fail to load, fall back to the default font.
+
+5. **Achievements Display**
+Displays the achievements earned during the level. When the boss or all enemies are defeated, the "All Enemies Defeated" achievement is unlocked. If the user avoids colliding with any bombs in Level Three, the "Bomb Dodger" achievement is unlocked.
+---
+### **GameEndScreen class**
+The GameEndScreen class is responsible for displaying the “Game Over” screen when the user loses the game. It also displays there is no achievements earned by the user as they failed to complete the level and provides an option to return to main menu. It is located in the com.example.demo.UI package.
+
+### Sub-components:
+1.	**showGameEndScreen(Stage displayStage, int score)**
+Displays the “Game Over” screen for all levels, showing the user’s score and a label indicating that no achievements were unlocked due to failing to complete the game. It also includes a button to return to the main menu.
+
+2.	**loadCustomFont(String fontPath, int size)**
+Load custom fonts from the specified file path, and if the custom fonts fail to load, fall back to the default font.
+
+
+
+
+
 
 
