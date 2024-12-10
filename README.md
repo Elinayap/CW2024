@@ -1,8 +1,25 @@
-# 1. Title
-Sky Battle
+## Table of Contents
+
+1. [Github](#github)
+2. [Introduction](#introduction)
+3. [Compilation Instructions](#compilation-instructions)
+4. [Game Instructions](#game-instructions)
+5. [Features](#features)
+   - [5.1 Implemented and Working Properly](#51-implemented-and-working-properly)
+   - [5.2 Implemented but Not Working Properly](#52-implemented-but-not-working-properly)
+   - [5.3 Features Not Implemented](#53-features-not-implemented)
+   - [5.4 New Java Classes](#54-new-java-classes)
+   - [5.5 Modified Java Classes](#55-modified-java-classes)
+   - [5.6 Unexpected Problems](#56-unexpected-problems)
+
+
+
+# 1. Github
+
 
 ## 2. Introduction
 My name is Yap Jia Hui and my student id is 20501037. 
+Sky battle is a 2D arcade game where player can control the plane, and shooting down all the enemies while dodging the incoming projectiles. There are total of 3 levels and the game get harder with each level. The objective is to survive as long as possible to reach to the end of the game.
 
 ## 3. Compilation Instructions
 1. Clone the repository at Elinayap/CW2024  
@@ -21,8 +38,8 @@ My name is Yap Jia Hui and my student id is 20501037.
 -  Destroy as many enemies as you can without being hit by enemy’s projectiles
 -  Defeat the enemies to proceed to next level
 
-## 5. Implemented Features and Working Properly
-### 5.1 Features Working Properly
+## 5.Features
+### 5.1 Implemented and Working Properly
 
 - **Fonts of the texts:**
 Changing the fonts of the title to matched the overall theme of the game.The new font enhance the consistency with the game style.
@@ -549,7 +566,7 @@ Updated to show and hide the shield image using shieldImage.showShield() and shi
 2.	**takeDamage() class:**
 Updated the class to only take damage if the shield is not visible. To ensure the boss does not take damage when there is shield.
 ---
-### **5.5 Unexpected Problems**
+### **5.6 Unexpected Problems**
 #### **Java JDK Issue:**
 After downloading the Java JDK provided by my lecturer, I was unable to use it in IntelliJ as it displayed an error stating that the Java JDK was not found. To resolve this, I downloaded a JDK from Temurin Eclipse, which successfully allowed me to run my game. However, after adding the sound file, I encountered issues and was unable to run the game. I then decided to try Visual Studio Code to run my game, and it successfully built and ran without any problems. I believe this is due to the built-in functions available in Visual Studio Code, as I did not need to download any additional tools for it to work. But after completing half of the game, I can rerun the game using IntelliJ.
 
