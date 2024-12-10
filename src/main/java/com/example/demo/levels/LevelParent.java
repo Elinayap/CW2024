@@ -391,7 +391,7 @@ public abstract class LevelParent extends Observable {
                     if (enemy.isDestroyed()) {
                         destroyedEnemies.add(enemy); 
                         if (this instanceof LevelOne) {
-                            addScore(40);
+                            addScore(5);
                         }
                         if (this instanceof LevelTwo) {
                             addScore(60);
