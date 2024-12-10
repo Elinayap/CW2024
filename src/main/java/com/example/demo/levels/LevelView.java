@@ -1,8 +1,7 @@
 package com.example.demo.levels;
 
-import com.example.demo.assets.GameOverImage;
 import com.example.demo.assets.HeartDisplay;
-import com.example.demo.assets.WinImage;
+
 
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -17,16 +16,10 @@ public class LevelView {
 
     private static final double HEART_DISPLAY_X_POSITION = 5;
     private static final double HEART_DISPLAY_Y_POSITION = 25;
-    private static final int WIN_IMAGE_X_POSITION = 355;
-    private static final int WIN_IMAGE_Y_POSITION = 175;
-    private static final int LOSS_SCREEN_X_POSITION = -160;
-    private static final int LOSS_SCREEN_Y_POSITION = -375;
     private static final double SCORE_LABEL_X_POSITION = 700; // Position the score label
     private static final double SCORE_LABEL_Y_POSITION = 25;
 
     private final Group root;
-    private final WinImage winImage;
-    private final GameOverImage gameOverImage;
     private final HeartDisplay heartDisplay;
     private final Label scoreLabel; // Add a score label
 
@@ -39,8 +32,6 @@ public class LevelView {
     public LevelView(Group root, int heartsToDisplay) {
         this.root = root;
         this.heartDisplay = new HeartDisplay(HEART_DISPLAY_X_POSITION, HEART_DISPLAY_Y_POSITION, heartsToDisplay);
-        this.winImage = new WinImage(WIN_IMAGE_X_POSITION, WIN_IMAGE_Y_POSITION);
-        this.gameOverImage = new GameOverImage(LOSS_SCREEN_X_POSITION, LOSS_SCREEN_Y_POSITION);
 
         this.scoreLabel = new Label("Score: 0");
         this.scoreLabel.setFont(new Font("Arial", 20));
@@ -54,30 +45,6 @@ public class LevelView {
      */
     public void showHeartDisplay() {
         root.getChildren().add(heartDisplay.getContainer());
-    }
-
-    /**
-     * Displays the win image on the screen.
-     */
-    public void showWinImage() {
-        root.getChildren().add(winImage);
-        winImage.showWinImage();
-    }
-
-    /**
-     * Displays the game over image on the screen.
-     */
-    public void showGameOverImage() {
-        if (!root.getChildren().contains(gameOverImage)) {
-            root.getChildren().add(gameOverImage);
-        }
-    }
-
-    /**
-     * Clears all game view except the game over image.
-     */
-    public void clearGameView() {
-        root.getChildren().removeIf(node -> node != gameOverImage);
     }
 
     /**
