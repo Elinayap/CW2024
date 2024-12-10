@@ -402,150 +402,150 @@ Enhanced to manage and access Level Two hearts, including functionality to lock 
 1.	**isPaused**
 Track whether the game is paused.
 
-2. **IsUpdated**
+2. **IsUpdated:**
 Ensure the state transition occurs only once which helps to manage the game state of the game.
 
-3. **isChangedState**
+3. **isChangedState:**
 Check if the game state is changed for smooth level transitions which helps to manage the game state of the game.
 
-4. **isGameOver**
+4. **isGameOver:**
 Track if the game has ended which helps to manage the game state of the game.
 
-5. **playerScore**
+5. **playerScore:**
 Track the user’s score for the levels which helps to manage the game state of the game.
 
-6. **Methods for pause and resume**
+6. **Methods for pause and resume:**
 Allow users to pause and resume the game to enhance the user experience.
 
-7. **Game initialization**
+7. **Game initialization:**
 Updated instantiateLevelView() to ensure LevelView is initialized properly and throws an exception if null. initializeScene() to initialize LevelView with score and heart displays. To ensure it does not have any runtime errors and proper initialization.
 
-8. **Added keys movement**
+8. **Added keys movement:**
 Added Keycode.LEFT and Keycode.RIGHT to allow plane to move left and right. Allow the user plane to have more controls.
 
-9. **Collisions**
+9. **Collisions:**
 Added the handlePlaneCollisions() to deduct hearts when user collides with enemies and check if the user is destroyed. Added handleUserProjectileCollisions() to add scores when enemies are destroyed based on the current level. To enhance the game by taking damage for collisions and awarding score for defeating the enemies.
 
 10. **Showing win screen and end screen**
 Updated winGame() to show the game win screen in Level 3 using GameWinScreen.showlvl3WinScreen() and show transition to next level for other levels. Updated loseGame() to show the game end screen. To enhance the gameplay experience and ensure a seamless transition between levels.
 
-11. **Score**
+11. **Score:**
 addScore(int points) method is to adds points when enemies are defeated. resetScore() is to reset the score at new level when the game restart. Updated updateLevelView() to update the score display. To allow users to view the final score for their performance.
 
-12. **Enemy**
+12. **Enemy:**
 handleEnemyPenetration() used to deduct all the hearts if an enemy exits the screen. Updated removeAllDestroyedActors() to clean up the destroyed actors. To fix the error when enemy exits the screen and ensure proper handling of the game objects.
 
-13. **Level transition**
+13. **Level transition:**
 Updated checkIfGameOver() to go to next level if all enemies are defeated and trigger game over screen if user is destroyed. To maintain smooth level transitions and gameplay. 
 
-14. **Debugging message**
+14. **Debugging message:**
 Added debugging messages to track score updates, heart deductions, and level transitions to ensure the game logic functions correctly.
 ---
-### **Level One class**
+### **Level One class:**
 #### **Changes Made:**
 1. **Target score**
 Check if player’s health (userIsDestroyed()) and whether the kill target has been reached (userHasReachedKillTarget()) and check if it reached the target score. To ensure the user reaches the score and kill target to proceed to next level.
 
-2. **Achievement**
+2. **Achievement:**
 The achievement "All Enemies Defeated in Level One" is unlocked when the user successfully destroys all the enemies in Level One. Once all enemies are defeated, this achievement will be displayed.
 ---
 ### **Level View class**
 ##### **Changes Made**:
-1.	**Added score label**
+1.	**Added score label:**
 Display the score label and positioned at the top right. To update the score points to users.
 
-2. **Style of score label**
+2. **Style of score label:**
 Display score label in default text.
 
-3.	**Score**
+3.	**Score:**
 updateScore(int score) method to update the displayed score and add score label to game root.
 
-4. **Heart display**
+4. **Heart display:**
 Added updateHeartDisplay(int hearts) to update the hearts based on the remaining player’s health. resetHearts(int heartsToDisplay) method to reset the heart display to the default value.
 ---
 ### **Controller class**
 #### **Changes Made:**
-1.	**Added PlayMusic()**
+1.	**Added PlayMusic():**
 Manage the playback of music and loop the music to enhance user experience by providing background music during gameplay.
 
-2. **Added stopMusic()**
+2. **Added stopMusic():**
 Stops and disposes of the current music, to stop the music when user click on return to menu.
 
-3. **Added getMediaPlayer()**
+3. **Added getMediaPlayer():**
 Get the current MediaPlayer instance.
 
-4. **setVolume(double volume)**
+4. **setVolume(double volume):**
 Adjust the volume of the music.
 
-5. **handleKeyPress(KeyCode code)**
+5. **handleKeyPress(KeyCode code):**
 Method to detect the ESCAPE key to trigger the pause screen to provide users with ability to pause the game 
 
-6. **showPauseScreen()**
+6. **showPauseScreen():**
 Display the pause screen, allow user to pause game and and access options like settings or resume gameplay.
 
-7. **resumeGame()**
+7. **resumeGame():**
 Resume the gameplay and continuing with the current timeline.
 
-8. **openSettings()**
+8. **openSettings():**
 Method to open the settings screen, to adjust the volume of music.
 
-9. **Game state**
+9. **Game state:**
 Called GameState.getInstance().resetAll() to reset the game state. To maintain a consistent game state when restarting game.
 
-10. **goToLevel()**
+10. **goToLevel():**
 Modified goToLevel() to include a Stage parameter for creating levels and updated the level transition process to add key event handlers for the pause feature.
 
-11. **Shop**
+11. **Shop:**
 Added openShop() for the current level.
 
-12. **Return to menu**
+12. **Return to menu:**
 Added returnToMenu() to stop the current music, resets the game state and restarts the music when returning to menu.
 ---
 ### **HeartDisplay class**
 #### **Changes Made:**
-1.	**Added file path**
+1.	**Added file path:**
 Updated the HEART_IMAGE_NAME to a new image file. It is flexibility as can just change the file path of the image.
 
-2.	**Final heartContainer**
+2.	**Final heartContainer:**
 Apply final to the heartContainer to ensure it does not reassigned again. 
 
-3.	**Update Heart Count**
+3.	**Update Heart Count:**
 Add hearts based on the count, clear the current hearts, and throws an exception if heart count is less than 0 or the image is not found. Allows the number of hearts to adjust based on the player's health, clears old hearts to avoid duplication, and includes error handling to prevent crashes.
 
-4.	**Remove heart**
+4.	**Remove heart:**
 Remove the hearts in the last container. It is clear and easier for user to understand.
 
-5. **addHeart()**
+5. **addHeart():**
 Add the player’s health when they gain hearts. It is easier to add the hearts without reset the display.
 
-6.	**resetHearts(int heartsToDisplay)**
+6.	**resetHearts(int heartsToDisplay):**
 Calls updateHeartCount() to reset the number of hearts displayed. Ensure the health is updated correctly.
 ---
 ### **User plane class**
 #### **Changes Made:**
-1.	**Add horizontal movement**
+1.	**Add horizontal movement:**
 Added horizontalVelocityMultiplier to control the movement horizontally. Used X_LEFT_BOUND and X_RIGHT_BOUND to define the horizontal boundaries. Added moveLeft(), moveRight(), and stopHorizontalMove() to make it move along the x-axis. Update updatePosition() to control the horizontal movement. This allow the users to move both vertically and horizontally.
 
-2.	**Sync projectile with plane**
+2.	**Sync projectile with plane:**
 Using UserProjectile activeProjectile to synchronize the projectile with the plane. Added the assignProjectile(UserProjectile projectile) method to link with the projectile and user plane. Updated updatePosition() to sync with the position of the plane and fireProjectile() to launch new projectile and clear the current one after it is fired. Ensure the projectile follows the movement of the user plane, providing a more precise shooting.
 
-3.	**Position projectile at tip of plane**
+3.	**Position projectile at tip of plane:**
 Adjust fireProjectile() to shoot at the tip of plane and center the projectile vertically. Ensuring the projectiles are properly aligned with the plane.
 
-4.	**Vertical and Horizontal movement**
+4.	**Vertical and Horizontal movement:**
 Separate the movement for moveVertical() and moveHorizontal() to make it easier to understand.
 
-5.	**Moving inside the screen**
+5.	**Moving inside the screen:**
 Updated updatePosition() to move vertically and horizontally without moving out of the screen.
 
-6.	**Track kill count**
+6.	**Track kill count:**
 Added getKillCount() to align with getNumberOfKills() for consistency. To allow  the game to track the kill count.
-
+---
 ### **Boss class**
 #### **Changes Made:**
-1.	**activiteShield() and deactivateShield()**
+1.	**activiteShield() and deactivateShield():**
 Updated to show and hide the shield image using shieldImage.showShield() and shieldImage.hideShield(). To show the shield to users to show that the boss will not take any damage.
 
-2.	**takeDamage() class**
+2.	**takeDamage() class:**
 Updated the class to only take damage if the shield is not visible. To ensure the boss does not take damage when there is shield.
 
