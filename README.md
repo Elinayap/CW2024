@@ -1,8 +1,8 @@
 # 1. Title
 Sky Battle
 
-## 2. Project Description
-Sky battle is a 2D arcade game where player can control the plane, and shooting down all the enemies while dodging the incoming projectiles. There are total of 3 levels and the game get harder with each level. The objective is to survive as long as possible to reach to the end of the game.
+## 2. Introduction
+My name is Yap Jia Hui and my student id is 20501037. 
 
 ## 3. Compilation Instructions
 1. Clone the repository at Elinayap/CW2024  
