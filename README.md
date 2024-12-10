@@ -24,120 +24,120 @@ Sky battle is a 2D arcade game where player can control the plane, and shooting 
 ## 5. Implemented Features and Working Properly
 ### 5.1 Features Working Properly
 
-- **Fonts of the texts**
+- **Fonts of the texts:**
 Changing the fonts of the title to matched the overall theme of the game.The new font enhance the consistency with the game style.
 
-- **Colour of the texts**
+- **Colour of the texts:**
 Changing the colour of texts to make it to match the game aesthetic.
 
-- **Main menu page**
+- **Main menu page:**
 Creating main menu page to provide users with structured starting point, rather than immediately entering the game. It allow users to choose options such as start game, viewing instructions and quit game.
 
-- **UI of the buttons**
+- **UI of the buttons:**
 The old button style does not match the overall game’s aesthetic. By updating the style to improve the consistency of the game.
 
-- **Custom cursor**
+- **Custom cursor:**
 Changing the cursor style to enhances the user experience by providing a more interactive interface. A custom cursor style is added when users enter the game or hover over the buttons.
 
-- **Play button**
+- **Play button:**
 Users can click on the play button to start the game.
 
-- **Instruction button**
+- **Instruction button:**
 Users can read the instructions to get a brief of what is going on before playing the game.
 
-- **Quit game button**
+- **Quit game button:**
 Users can click on the quit game button to exit the game.
 
-- **Change the image of hearts**
+- **Change the image of hearts:**
 Previous  heart images may have lacked visual appeal to match the game overall aesthetic. Replacing them makes the design more consistent.
 
-- **Sound effect for shooting**
+- **Sound effect for shooting:**
 Sound effect is added when the user shoots. It delivers instant audio feedback to enhance gameplay experience.
 
-- **User plane controls**
+- **User plane controls:**
 Users can control their plane to move forward and backward instead of just going upwards and downwards.
 
-- **Adjust position of user projectile**
+- **Adjust position of user projectile:**
 Adjusting the position of user projectile to follow the movement of the user plane instead of staying at the same position without following the user plane.
 
-- **Score label**
+- **Score label:**
 The score label is added to the screen for LevelOne, LevelTwo, and LevelThree. It updates dynamically as users defeat enemies, reflecting the specific points earned for each level.
 
-- **Pause screen**
+- **Pause screen:**
 When users press on the ESCAPE key, they can pause and choose from the options such as resume, settings, or exit without disrupting the gameplay. This feature enhances the gaming experience by offering more control and flexibility. 
 
-- **Resume button**
+- **Resume button:**
 Creating resume button allow users to take a break and then return to the game without losing the game process.
 
-- **Settings button**
+- **Settings button:**
 Creating settings button allow users to adjust the background music as they play , giving them control over their gaming experience.
 
-- **Volume slider**
+- **Volume slider:**
 Adding volume slider in settings for users to adjust the volume of the background music.
 
-- **Collision handling in LevelOne**
+- **Collision handling in LevelOne:**
 The player loses hearts when enemies exit the screen. This feature add a strategic element, requiring users to efficiently handle enemies and stop them from leaving the screen.
 
-- **Win screen**
+- **Win screen:**
 The win screen provides users with options such as proceeding to the next level, accessing the shop, or returning to the main menu. Additionally, it displays the user's final score, allowing them to track their performance.
 
-- **Go to next level button**
+- **Go to next level button:**
 After defeating the enemies, players can take a short break instead of immediately proceeding to the next level.
 
-- **Shop in LevelOne**
+- **Shop in LevelOne:**
 Users can purchase hearts by clicking the shop button. However, users are limited to buying a maximum of 2 hearts during LevelOne only. Buying hearts is not allowed in LevelTwo, as it is the final level of the game.
 
-- **Shop in LevelTwo**
+- **Shop in LevelTwo:**
 In Level 2, the shop is restricted to all users. A popup message notifies players that heart purchases are unavailable, ensuring clarity and maintaining the challenge of the level.
 
-- **Created Game State**
+- **Created Game State:**
 Implemented a game state management system using the GameState class to efficiently track player health (hearts), shop purchases, and level-specific data. This ensures the  smooth transitions between levels.
 
-- **Return to menu button**
+- **Return to menu button:**
 Users can return to main menu if they choose not to proceed to the next level or wish to exit the game. This allows players to reset their game process.
 
-- **Game lose screen**
+- **Game lose screen:**
 The game lose screen allows users to view their final score, providing a clear end to the gameplay session. After losing, users can choose to return to the main menu and restart the game.
 
-- **Stop background music**
+- **Stop background music:**
 The background music is stopped when users return to the main menu to prevent overlapping audio. To ensures users have smoother user experience and avoids any audio-related distractions when playing the game.
 
-- **Created LevelThree**
+- **Created LevelThree:**
 LevelThree introduces an additional feature with the inclusion of bombs. These bombs appear randomly and users need to avoid the collisions. Additionally, the projectile velocity increases. This added feature increase the difficulty of the level, making it more challenging.
 
-- **Added background image to LevelThree**
+- **Added background image to LevelThree:**
 A captivating background image has been added into LevelThree to improve the game's visual appeal and create a more engaging gameplay experience.
 
-- **Added bomb sound effect to LevelThree**
+- **Added bomb sound effect to LevelThree:**
 A bomb sound effect has been added to LevelThree to enhance the audio experience and providing auditory feedback when a bomb collision occurs.
 
-- **Added bombs to LevelThree**
+- **Added bombs to LevelThree:**
 Bombs have been introduced in Level Three, spawning randomly to increase the challenge for players. These bombs must be avoided to prevent user from taking damage.
 
-- **Achievement Added to LevelOne**
+- **Achievement Added to LevelOne:**
 Achievements have been integrated into LevelOne. When the user meets the kill target, they will be awarded the "All Enemies Defeated in Level One" achievement. To rewards the users for completing LevelOne.
 
-- **Achievement Added to LevelTwo**
+- **Achievement Added to LevelTwo:**
 Achievement is now awarded in Level Two when the user successfully defeats the boss. They will be awarded the "All Enemies Defeated in Level Two" achievement. To rewards the users for completing LevelTwo.
 
-- **Achievements Added to LevelThree**
+- **Achievements Added to LevelThree:**
 An achievement will be added to LevelThree when the user successfully defeats the boss. Additionally, if the user completes LevelThree without colliding with any bombs, they will earn the "Bomb Dodger" achievement. 
 
-- **Speed up projectile in LevelThree**
+- **Speed up projectile in LevelThree:**
 In LevelThree, the projectile speed is increased to enhance the level's difficulty, providing a greater challenge for players and testing their reaction time.
 
-- **Hearts and score reset**
+- **Hearts and score reset:**
 The user's hearts and score points are properly reset when returning to the main menu, ensuring a consistent gameplay experience.
 
-- **Health and damage handling**
+- **Health and damage handling:**
 Both user and enemy planes have health represented by hearts that decrease upon collisions. When the user's hearts reach zero, the game over screen is triggered, ending the gameplay session.
 
-- **Enemy plane penetration**
+- **Enemy plane penetration:**
 Deducted all the user’s hearts after enemy planes exit the screen in Levelone.
 
 ### **5.2 Implemented but not working properly**
 
-### **Main menu screen**
+### **Main menu screen:**
 After the game win or lose screen is displayed, users can click on the "Return to Menu" button. This action bring them back to the main menu screen, where they can choose to start a new game, view  instructions, or quit game. However, the main menu screen sometimes does not display correctly, showing an incomplete interface which only showing partially of the play button.
 
 #### Possible causes: 
@@ -149,86 +149,86 @@ This issue may be caused by incorrect  scene initialization, issues with renderi
   2. **Ensure all the UI components are loaded**
       Ensure all UI components, including all other buttons are fully loaded and rendered before  displaying the main menu screen.
 ---
-### **Stationary bullet issue**
+### **Stationary bullet issue:**
 A single bullet fired by the plane remains fixed on the screen, failing to follow its expected trajectory. While other bullets move and synchronize properly with the plane.
 
-#### **Possible causes**
+#### **Possible causes:**
 This issue could caused by improper detachment of the bullet after firing, causing it to stay stationary on the screen. There might also be a synchronization issue where the projectile is tied with the movement of the plane, preventing it from functioning independently. Additionally, the issue might be related to object state conflict as the activeProjectile state might not be properly managed.
 
-#### **Possible solution**
-1. **Ensure proper detachment**
+#### **Possible solution:**
+1. **Ensure proper detachment:**
 Modify the projectile so it will be entirely separated from the plane once fired. Check the activeProjectile variable is cleared immediately after the bullet is fired.
 
-2. **Fix synchronization problem**
+2. **Fix synchronization problem:**
 Modify the synchronization problem to apply only to projectiles still attached to the plane, ensure that it does not interfere with bullets that have already been fired.
 
-3. **Fix object state conflict**
+3. **Fix object state conflict:**
 Modify the activeProjectile lifecycle to ensure the smooth state transitions from initialization to firing and detachment to avoid the conflicts.
 ---
 ### 5.3 Features Not Implemented
 
-### **Add extra hearts in LevelThree**
+### **Add extra hearts in LevelThree:**
 After encounter these challenges, I decided to change the rules for shop function in LevelThree. In this final level, users will no longer be able to purchase extra hearts. 
 
 #### Reasons: 
-1. **Conflict with the bomb collision**
+1. **Conflict with the bomb collision:**
 The bombCollision() method updates the heart display without considering the dynamically added hearts. When attempting to fix this issue, it caused the bomb collision functionality to stop working, so further adjustments were outside the current scope. 
 
-2. **Complexity of shield and bombs**
+2. **Complexity of shield and bombs:**
 Level 3 includes features such as a shield and random bomb spawning, which increase the complexity of UI updates, making it challenging to synchronize dynamic heart additions.
 ---
-### **Restart level button**
+### **Restart level button:**
 I planned to include a restart level button in every level, allowing users to retry after losing the game. But, I replaced this button with a "Return to Menu" button, allowing users to go back to the main menu and restart the game from there.
 
 #### Reason:
-1.	**Time constraints**
+1.	**Time constraints:**
 This feature was not implemented due to time constraints and the focus on ensuring other key features were working properly. Leaving it insufficient time to implement and test the feature across all the levels.
 ---
-**Additional boss in LevelThree**
+**Additional boss in LevelThree:**
 The addition of a second boss in Level 3 was initially planned but ultimately left out. 
 
 #### Reason:
-1.	**Too difficult for users**
+1.	**Too difficult for users:**
 Having two bosses along with randomly bomb spawns and speed up projectiles created an overly chaotic environment, making it difficult for users to focus on both bosses and bombs at the same time.
 ---
 ### **5.4 New Java Classes**
 
-### **MainMenu class**
+### **MainMenu class:**
 The MainMenu class serves as the entry point for the game. It provides the main menu where users can start the game, view instructions, or quit game. Additionally, it manages the display of custom elements, including background images, fonts, and cursors. It is located in the com.example.demo.UI package.
 
 #### Sub-components:
 1.	**startGame()**
 Uses Controller class to launch the game.
 
-2.	**showInstructions()**
+2.	**showInstructions():**
 Displays a screen to show the instructions to users.
 
-3.	####**createStyledButton()**
+3.	####**createStyledButton():**
 Create the style of the buttons including the hover effects and default cursors.
 
-4.	**show()**
+4.	**show():**
 Displays the main menu screen with custom background, title, and buttons.
 ---
-### **PauseScreen class**
+### **PauseScreen class:**
 Displaying pause screen, allow users to pause the game and access options such as resuming the game, adjusting settings, or exiting the game. Additionally, it also provides a settings menu to adjust the volume. It is located in the com.example.demo.UI package.
 
 #### Sub-components:
-1.	**show()**
+1.	**show():**
 Displays the pause screen with custom background, title, and buttons.
 
-2.	**createStyledButton()**
+2.	**createStyledButton():**
 Create the style of the buttons including the hover effects and default cursors.
 
-3.	**showSettings()**
+3.	**showSettings():**
 Display the settings screen with a volume slider to adjust the volume.
 
-4.	**resumeButton Action**
+4.	**resumeButton Action:**
 Allows the users to resume the game by closing the pause screen and running the provided resume action.
 
-5.	**settingsButton Action**
+5.	**settingsButton Action:**
 Opens the settings menu to allow users to adjust the volume for the background music.
 
-6.	**exitButton Action**
+6.	**exitButton Action:**
 Closes the pause screen and the game, ending the session.
 ---
 ### **GameWinScreen class**
@@ -238,168 +238,168 @@ The GameWinScreen class is responsible for displaying the “You Win” screen w
 1.	**showGameWinScreen(Stage displayStage, int score, LevelParent currentLevel, Runnable onNextLevel)**
 Displays the “You Win” screen for Level 1 and Level 2, featuring a “You Win” message, the user’s score, and buttons for proceeding to the next level, accessing the shop, or returning to the main menu. Includes the functionality to prevent users from accessing shop in Level 2 by showing a pop-up message.
 
-2.	**Showlvl3WinScreen(Stage displayStage, int score)**
+2.	**Showlvl3WinScreen(Stage displayStage, int score):**
 Displays the “You Win” screen for Level 3, featuring a “You Win” message, the user’s score, achievements earned, and a button to return to main menu.
 
-3.	**createStyledButton(String text, Font font)**
+3.	**createStyledButton(String text, Font font):**
 Create the style of the buttons including the hover effects and default cursors.
 
-4.	**loadCustomFont(String fontPath, int size)**
+4.	**loadCustomFont(String fontPath, int size):**
 Load custom fonts from the specified file path, and if the custom fonts fail to load, fall back to the default font.
 
-5. **Achievements Display**
+5. **Achievements Display:**
 Displays the achievements earned during the level. When the boss or all enemies are defeated, the "All Enemies Defeated" achievement is unlocked. If the user avoids colliding with any bombs in Level Three, the "Bomb Dodger" achievement is unlocked.
 ---
-### **GameEndScreen class**
+### **GameEndScreen class:**
 The GameEndScreen class is responsible for displaying the “Game Over” screen when the user loses the game. It also displays there is no achievements earned by the user as they failed to complete the level and provides an option to return to main menu. It is located in the com.example.demo.UI package.
 
 ### Sub-components:
 1.	**showGameEndScreen(Stage displayStage, int score)**
 Displays the “Game Over” screen for all levels, showing the user’s score and a label indicating that no achievements were unlocked due to failing to complete the game. It also includes a button to return to the main menu.
 
-2.	**loadCustomFont(String fontPath, int size)**
+2.	**loadCustomFont(String fontPath, int size):**
 Load custom fonts from the specified file path, and if the custom fonts fail to load, fall back to the default font.
 ---
-### **Shop class**
+### **Shop class:**
 Shop class allow users to purchase in-game items such as extra hearts. Users can purchase extra hearts at Level 1, and access a pop-up message if certain actions are unavailable. This ensures that the shop has limited access and can be locked once certain conditions are met. It is located in the com.example.demo.UI package.
 
 #### Sub-components:
-1.	**show()**
+1.	**show():**
 Display the shop interface. It includes components such as close button, which allow users to close shop and return to game. It also provides a buy item 1 button. When user purchase the item, this method updates the game’s heart display and increase the purchase count. If they purchase more than two times, the shop is locked to prevent users from purchasing more hearts. To ensure a good user experience, applying setFocusTraversable(false) to ensure other keys does not trigger the screen.
 
-2.	**createCloseButton(Stage shopStage)**
+2.	**createCloseButton(Stage shopStage):**
 Create a styled close button to close the shop.
 
-3.	**loadFont(String fontPath, int size)**
+3.	**loadFont(String fontPath, int size):**
 Load custom fonts from the specified file path, and if the custom fonts fail to load, fall back to the default font.
 
-4.	**showShopPopup(String title, String message)**
+4.	**showShopPopup(String title, String message):**
 Display a pop-up message when certain conditions are met. It also provides a close button to close the pop-up. setFocusTraversable(false) is also applied to ensure other keys does not trigger the screen.
 ---
-### **LevelThree class**
+### **LevelThree class:**
 The LevelThree class extends LevelParent and introduces a more challenging gameplay experience. In this level, players must defeat a shielded boss while dealing with randomly spawning bombs. Additionally, sound effects are integrated to enhance user immersion and provide auditory feedback during gameplay. It is located in the com.example.demo.levels packag
 
 #### Sub-components:
-1.	**updateScene()**
+1.	**updateScene():**
 Update the level by checking the bomb collisions and randomly spawning bombs. Using bombCollision() method to check for collisions between bombs and users.
 
-2.	**spawnBomb()**
+2.	**spawnBomb():**
 Spawn bombs at random positions on the screen, one at a time. Existing bombs are cleared from the scene to avoid overlapping. A new bombImage object is then created and added to the root. Bombs are spawned in visible areas.
 
-3.	**bombCollision()**
+3.	**bombCollision():**
 Manage collisions between the user and bombs. Check if any bomb collides with the user’s bounding box; if a collision is detected, reduce the user’s hearts and update the LevelView to reflect the reduced heart count. Finally, remove the bomb from the screen after the collision.
 
-4.	**playBombSound()**
+4.	**playBombSound():**
 Playing a sound effect after user collides when a bomb. Ensures the game does not crash if the sound file not found or corrupted by catching exceptions.
 
-5.	**startGame()**
+5.	**startGame():**
 Initializes game state for Level Three. Reset user’s hearts to initial health value and updates the GameState object to set the player’s initial health for Level One to initial health value. A debug message is printed to confirm the game starts with the correct health value.
 
-6.	**activeShield()**
+6.	**activeShield():**
 Activate the boss's shield to prevent it from taking damage. Calls showShield() method at the shieldImage object to make the shield visible.
 
-7.	**deactivateShield()**
+7.	**deactivateShield():**
 Deactivate the boss’s shield to allow it to take damage. Calls hideShield() method at shieldImage object to remove the shield.
 
-8. **checkIfGameOver()**
+8. **checkIfGameOver():**
 Checks whether the user has lost all their hearts or if the boss has been defeated. If the boss is defeated, the "Boss Defeated in Level Three" achievement is unlocked. Additionally, if the user avoids all bomb collisions, the "Bomb Dodger in Level Three" achievement is unlocked.
 
-9. **updateScene()**
+9. **updateScene():**
 Updates the level by randomly spawning bombs based on a mathematical probability and handling bomb collisions using the bombCollision() method.
 ---
-### **LevelViewLevelThree class**
+### **LevelViewLevelThree class:**
 This class is derived from the original LevelViewLevelTwo code, with no modifications made. It is located in the com.example.demo.levels package.
 ---
-### **GameState class**
+### **GameState class:**
 GameState manage the game’s state across different levels and interactions. It tracks the users health, shop purchases and other game variables. This class is located in the com.example.demo.GameState package.
 
 #### Sub components:
-1.	**updateScene()**
+1.	**updateScene():**
 Ensure that a single instance of the GameState class is created and shared across all other classes, allowing them to access the same GameState instance.
 
-2.	**Level health**
+2.	**Level health:**
 Manages the player’s hearts across multiple levels, allowing updates and resets based on gameplay events.
 The variables level1Hearts and level2Hearts are used to track the hearts in each level. Methods like setLevel1Hearts(int hearts) and addLevel2Hearts(int extraHearts) update the player’s health dynamically during gameplay.
 Additionally, resetLevel1Hearts() and resetLevel2Hearts() ensure that each level starts with an initial health of 5.
 
-3.	**Shop**
+3.	**Shop:**
 The Shop class manages user interactions with the in-game shop and ensures it is locked under specific conditions. It tracks the number of times an item has been purchased using shopItem1PurchaseCount, preventing further access to the shop once certain conditions are met by utilizing methods like isShopLocked() and setShopLocked(Boolean locked). Additionally, the resetShop() method resets all purchase counts and lock statuses when the game is restarted, ensuring the shop is restored to its initial state.
 
-4. **Achievements**
+4. **Achievements:**
 Tracks the achievements unlocked by users during gameplay. The addAchievement(String achievement) method is used to add new achievements to the list.
 
-5.	**resetAll()**
+5.	**resetAll():**
 Resets both level1Hearts and level2Hearts to default value of 5 and clear the purchase count for the item, and unlock the shop when user restart the game.
 ---
-### **bombImage class**
+### **bombImage class:**
 This class handles the display of the image size, and positioning of the bomb to the screen. It is located at com.example.demo.assets.
 
 #### Sub components:
-1.	**Static constants**
+1.	**Static constants:**
 IMAGE_NAME stores the file path of the bomb image, while BOMB_SIZE is used to define the size of the bomb.
 
-2.	**Public(bombImage(double xPosition, double yPosition))**
+2.	**Public(bombImage(double xPosition, double yPosition)):**
 this.setLayoutX(xPosition) and this.setLayoutY(yPosition) are used to position the bomb image based on the specified x and y coordinates in the game. this.setImage loads the image from the specified file path. this.setVisible(false) ensures that the bomb is initially not visible on the screen and is displayed only when necessary. this.setFitHeight(BOMB_SIZE) and this.setFitWidth(BOMB_SIZE) define the dimensions of the bomb image.
 ---
 ### **5.5 Modified Java Classes**
 
-### **UserProjectile class**
+### **UserProjectile class:**
 
 #### Changes made: 
 1.	**Sound effect**
 Added shooting.wav as the shooting sound. A static block was introduced to load the sound file path, ensuring the sound is ready to play when a projectile is fired. The playSound method is used to play the shooting sound when the projectile is created, providing auditory feedback to the user. To enhance the user experience by adding auditory feedback.
 
-2.	**Projectile movement**
+2.	**Projectile movement:**
 The isFired flag determines whether the projectile is synchronized with the plane or has already been fired. The updatePosition method ensures the projectile moves horizontally only after it has been fired. This provides precise control over the projectile's movement, preventing unintended motion before it is fired.
 
-3.	**Synchronize with plane**
+3.	**Synchronize with plane:**
 The syncWithPlane method is used to align the projectile with the plane. It calculates the x and y positions based on the plane's height and width.To ensure the projectile sync to the movement of the plane.
 
-4.	**fire() method**
+4.	**fire() method:**
 Added this method to set the isFired flag to true, enable the projectile to move on its own once launched.
 ---
-### **LevelViewLevelTwo class**
+### **LevelViewLevelTwo class:**
 
 #### Changes made: 
-1.	**HeartDisplay**
+1.	**HeartDisplay:**
 Added HeartDisplay to show the user’s remaining hearts on screen. Updated the constructor to set up HeartDisplay with the initial hearts and its position. addHeartDisplayToRoot() method is to add the heart display the game root. This feature is to clarify the hearts on the screen which can improve the overall gameplay experience.
 
-3.	**updateHeartDisplay**
+3.	**updateHeartDisplay:**
 This method is to update the heart display onto the screen. This ensures the heart display updated with the user’s current health, giving user instant feedback during the game.
 
-4.	**private int hearts**
+4.	**private int hearts:**
 Added this to store the current number of hearts. To allows the LevelViewLevelTwo class to update the HeartDisplay when the player’s health changes.
 ---
-### **LevelTwo class**
+### **LevelTwo class:**
 #### Changes made: 
 1. **Shield Image**
 ShieldImage object is added to boss like a shield. Shield image is initialized at (0,0) and match its position with the boss plane using layoutXProperty and layoutYProperty. To ensure the shield match the position of the boss plane.
 
-2. **Boss with the shield**
+2. **Boss with the shield:**
 Updated the boss to add the function of the shield by passing ShieldImage object to its constructor. To ensure the boss can have interactive defensive abilities.
 
-3. **Game State**
+3. **Game State:**
 GameState used to get the player’s health for Level 2 and set the player’s health when the level starts. The instantiateLevelView method has been updated to display the player’s health by using GameState. This is to ensure the consistency of health across other levels.
 
-4. **Active and deactivate shield**
+4. **Active and deactivate shield:**
 Added activateShield() and deactivateShield() methods to show and hide the shield.
 
-5. **checkIfGameOver()**
+5. **checkIfGameOver():**
 Edited checkIfGameOver() method to go to next level if the boss is defeated. Ensure after user defeated the boss then move to next level.
 
-6. **Heart reset**
+6. **Heart reset:**
 Updated startGame() to reset the player initial health to initial value using GameState. To ensure each levels displayed the initial value of initial player health.
 
-7. **Boss class**
+7. **Boss class:**
 Edited Boss class to include the ShieldImage which allows it to show or hide the shield
 
-8. **GameState**
+8. **GameState:**
 Enhanced to manage and access Level Two hearts, including functionality to lock and unlock the shop based on the purchase count. This ensures consistency in health and purchase counts across all levels.
 ---
-### **Level Parent class**
+### **Level Parent class:**
 
 #### **Changes Made:**
-1.	**isPaused**
+1.	**isPaused:**
 Track whether the game is paused.
 
 2. **IsUpdated:**
@@ -426,7 +426,7 @@ Added Keycode.LEFT and Keycode.RIGHT to allow plane to move left and right. Allo
 9. **Collisions:**
 Added the handlePlaneCollisions() to deduct hearts when user collides with enemies and check if the user is destroyed. Added handleUserProjectileCollisions() to add scores when enemies are destroyed based on the current level. To enhance the game by taking damage for collisions and awarding score for defeating the enemies.
 
-10. **Showing win screen and end screen**
+10. **Showing win screen and end screen:**
 Updated winGame() to show the game win screen in Level 3 using GameWinScreen.showlvl3WinScreen() and show transition to next level for other levels. Updated loseGame() to show the game end screen. To enhance the gameplay experience and ensure a seamless transition between levels.
 
 11. **Score:**
@@ -548,4 +548,9 @@ Updated to show and hide the shield image using shieldImage.showShield() and shi
 
 2.	**takeDamage() class:**
 Updated the class to only take damage if the shield is not visible. To ensure the boss does not take damage when there is shield.
+---
+### **5.5 Unexpected Problems**
+#### **Java JDK Issue:**
+After downloading the Java JDK provided by my lecturer, I was unable to use it in IntelliJ as it displayed an error stating that the Java JDK was not found. To resolve this, I downloaded a JDK from Temurin Eclipse, which successfully allowed me to run my game. However, after adding the sound file, I encountered issues and was unable to run the game. I then decided to try Visual Studio Code to run my game, and it successfully built and ran without any problems. I believe this is due to the built-in functions available in Visual Studio Code, as I did not need to download any additional tools for it to work. But after completing half of the game, I can rerun the game using IntelliJ.
+
 
