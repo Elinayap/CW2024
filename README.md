@@ -23,9 +23,9 @@
 #### Sky battle is a 2D arcade game where player can control the plane, and shooting down all the enemies while dodging the incoming projectiles. There are total of 3 levels and the game get harder with each level. The objective is to survive as long as possible to reach to the end of the game.
 ---
 ## 3. Compilation Instructions
-- SDK: 19 Amazon Corretto 19.0.2 or 21 Oracle OpenJDK21- aarch64 (if cannot run)
 - IDE: IntelliJ IDEA
-- JavaFX version: 
+- SDK: 19 Amazon Corretto 19.0.2 or 21 Oracle OpenJDK21- aarch64 (if cannot run)
+- JavaFX version: 19.0.2
 1. Clone the repository at [https://github.com/Elinayap/CW2024.git](https://github.com/Elinayap/CW2024.git)
 2. Import project into IntelliJ or visual studio code.
 3. Compile and run the program.
