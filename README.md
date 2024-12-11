@@ -573,10 +573,10 @@ Updated the class to only take damage if the shield is not visible. To ensure th
 ---
 ### **5.6 Deleted Java Classes**
 #### **WinImage class:**
-The WinImage class was removed because its features were replaced by the GameWinScreen, which offers a more interactive way to handle winning scenarios. Unlike the simple **WinImage**, which likely just showed a basic image, the GameWinScreen provides more functionality and flexibility. 
+#### The WinImage class was removed because its features were replaced by the GameWinScreen, which offers a more interactive way to handle winning scenarios. Unlike the simple **WinImage**, which likely just showed a basic image, the GameWinScreen provides more functionality and flexibility. 
 ---
 #### **GameOverImage class:**
-The GameOverImage class was removed because its features was replaced by the GameEndScreen, which handles game-over situations in a more interactive way. Instead of just showing a image like GameOverImage, the GameEndScreen provides more features to improve the user experience.
+#### The GameOverImage class was removed because its features was replaced by the GameEndScreen, which handles game-over situations in a more interactive way. Instead of just showing a image like GameOverImage, the GameEndScreen provides more features to improve the user experience.
 ---
 ### **5.7 Unexpected Problems**
 #### **Java JDK Issue:**
