@@ -10,25 +10,26 @@
    - [5.3 Features Not Implemented](#53-features-not-implemented)
    - [5.4 New Java Classes](#54-new-java-classes)
    - [5.5 Modified Java Classes](#55-modified-java-classes)
-   - [5.6 Unexpected Problems](#56-unexpected-problems)
+   - [5.6 Deleted Java Classes](#56-deleted-java-classes)
+   - [5.7 Unexpected Problems](#57-unexpected-problems)
 
 
 
 # 1. Github
-https://github.com/Elinayap/CW2024.git
+[https://github.com/Elinayap/CW2024.git](https://github.com/Elinayap/CW2024.git)
 
 ## 2. Introduction
-My name is Yap Jia Hui and my student id is 20501037. 
-Sky battle is a 2D arcade game where player can control the plane, and shooting down all the enemies while dodging the incoming projectiles. There are total of 3 levels and the game get harder with each level. The objective is to survive as long as possible to reach to the end of the game.
-
+#### My name is Yap Jia Hui and my student id is 20501037. 
+#### Sky battle is a 2D arcade game where player can control the plane, and shooting down all the enemies while dodging the incoming projectiles. There are total of 3 levels and the game get harder with each level. The objective is to survive as long as possible to reach to the end of the game.
+---
 ## 3. Compilation Instructions
 - SDK: 19 Amazon Corretto 19.0.2 or 21 Oracle OpenJDK21- aarch64 (if cannot run)
 - IDE: IntelliJ IDEA
 - JavaFX version: 
-1. Clone the repository at 
+1. Clone the repository at [https://github.com/Elinayap/CW2024.git](https://github.com/Elinayap/CW2024.git)
 2. Import project into IntelliJ or visual studio code.
 3. Compile and run the program.
-
+---
 ## 4. Game Instructions
 
 ### Controls
@@ -41,7 +42,7 @@ Sky battle is a 2D arcade game where player can control the plane, and shooting 
 ### Goals
 -  Destroy as many enemies as you can without being hit by enemy’s projectiles
 -  Defeat the enemies to proceed to next level
-
+---
 ## 5.Features
 ### 5.1 Implemented and Working Properly
 
@@ -155,7 +156,7 @@ Both user and enemy planes have health represented by hearts that decrease upon 
 
 - **Enemy plane penetration:**
 Deducted all the user’s hearts after enemy planes exit the screen in Levelone.
-
+---
 ### **5.2 Implemented but not working properly**
 
 ### **Main menu screen:**
@@ -329,7 +330,7 @@ Checks whether the user has lost all their hearts or if the boss has been defeat
 Updates the level by randomly spawning bombs based on a mathematical probability and handling bomb collisions using the bombCollision() method.
 ---
 ### **LevelViewLevelThree class:**
-This class is derived from the original LevelViewLevelTwo code, with no modifications made. It is located in the com.example.demo.levels package.
+This class is derived from the original LevelViewLevelTwo code, with no modifications made. It is located in the com.example.demo.view package.
 ---
 ### **GameState class:**
 GameState manage the game’s state across different levels and interactions. It tracks the users health, shop purchases and other game variables. This class is located in the com.example.demo.GameState package.
@@ -570,7 +571,14 @@ Updated to show and hide the shield image using shieldImage.showShield() and shi
 2.	**takeDamage() class:**
 Updated the class to only take damage if the shield is not visible. To ensure the boss does not take damage when there is shield.
 ---
-### **5.6 Unexpected Problems**
+### **5.6 Deleted Java Classes**
+#### **WinImage class:**
+The WinImage class was removed because its features were replaced by the GameWinScreen, which offers a more interactive way to handle winning scenarios. Unlike the simple **WinImage**, which likely just showed a basic image, the GameWinScreen provides more functionality and flexibility. 
+---
+#### **GameOverImage class:**
+The GameOverImage class was removed because its features was replaced by the GameEndScreen, which handles game-over situations in a more interactive way. Instead of just showing a image like GameOverImage, the GameEndScreen provides more features to improve the user experience.
+---
+### **5.7 Unexpected Problems**
 #### **Java JDK Issue:**
 After downloading the Java JDK provided by my lecturer, I was unable to use it in IntelliJ as it displayed an error stating that the Java JDK was not found. To resolve this, I downloaded a JDK from Temurin Eclipse, which successfully allowed me to run my game. However, after adding the sound file, I encountered issues and was unable to run the game. I then decided to try Visual Studio Code to run my game, and it successfully built and ran without any problems. I believe this is due to the built-in functions available in Visual Studio Code, as I did not need to download any additional tools for it to work. But after completing half of the game, I can rerun the game using IntelliJ.
 
