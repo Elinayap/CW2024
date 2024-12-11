@@ -188,18 +188,17 @@ Modify the synchronization problem to apply only to projectiles still attached t
 3. **Fix object state conflict:**
 Modify the activeProjectile lifecycle to ensure the smooth state transitions from initialization to firing and detachment to avoid the conflicts.
 ---
-### 5.3 Features Not Implemented
+### **Hearts Display in LevelThree:**
+In LevelThree, the hearts sometimes do not display correctly as 5, even though the user still takes 5 hits to die.
 
-### **Add extra hearts in LevelThree:**
-After encounter these challenges, I decided to change the rules for shop function in LevelThree. In this final level, users will no longer be able to purchase extra hearts. 
+#### **Possible causes:**
+The game state and the UI might not be in sync, so the hearts shown on the screen don't match the player's actual health. Or a bug in the code that updates the hearts on screen to display incorrectly.
 
-#### Reasons: 
-1. **Conflict with the bomb collision:**
-The bombCollision() method updates the heart display without considering the dynamically added hearts. When attempting to fix this issue, it caused the bomb collision functionality to stop working, so further adjustments were outside the current scope. 
-
-2. **Complexity of shield and bombs:**
-Level 3 includes features such as a shield and random bomb spawning, which increase the complexity of UI updates, making it challenging to synchronize dynamic heart additions.
+#### **Possible solution:**
+1. **Problem to update to screen:**
+Debug all the lines that related to the heart display to find out the causes.
 ---
+### 5.3 Features Not Implemented
 ### **Restart level button:**
 I planned to include a restart level button in every level, allowing users to retry after losing the game. But, I replaced this button with a "Return to Menu" button, allowing users to go back to the main menu and restart the game from there.
 
