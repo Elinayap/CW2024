@@ -1,8 +1,6 @@
-package com.example.demo.levels;
+package com.example.demo.view;
 
-import com.example.demo.assets.GameOverImage;
 import com.example.demo.assets.HeartDisplay;
-import com.example.demo.assets.WinImage;
 
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -25,8 +23,6 @@ public class LevelView {
     private static final double SCORE_LABEL_Y_POSITION = 25;
 
     private final Group root;
-    private final WinImage winImage;
-    private final GameOverImage gameOverImage;
     private final HeartDisplay heartDisplay;
     private final Label scoreLabel; // Add a score label
 
@@ -39,8 +35,6 @@ public class LevelView {
     public LevelView(Group root, int heartsToDisplay) {
         this.root = root;
         this.heartDisplay = new HeartDisplay(HEART_DISPLAY_X_POSITION, HEART_DISPLAY_Y_POSITION, heartsToDisplay);
-        this.winImage = new WinImage(WIN_IMAGE_X_POSITION, WIN_IMAGE_Y_POSITION);
-        this.gameOverImage = new GameOverImage(LOSS_SCREEN_X_POSITION, LOSS_SCREEN_Y_POSITION);
 
         this.scoreLabel = new Label("Score: 0");
         this.scoreLabel.setFont(new Font("Arial", 20));
@@ -56,29 +50,6 @@ public class LevelView {
         root.getChildren().add(heartDisplay.getContainer());
     }
 
-    /**
-     * Displays the win image on the screen.
-     */
-    public void showWinImage() {
-        root.getChildren().add(winImage);
-        winImage.showWinImage();
-    }
-
-    /**
-     * Displays the game over image on the screen.
-     */
-    public void showGameOverImage() {
-        if (!root.getChildren().contains(gameOverImage)) {
-            root.getChildren().add(gameOverImage);
-        }
-    }
-
-    /**
-     * Clears all game view except the game over image.
-     */
-    public void clearGameView() {
-        root.getChildren().removeIf(node -> node != gameOverImage);
-    }
 
     /**
      * Updates the heart display by removing hearts from the container.

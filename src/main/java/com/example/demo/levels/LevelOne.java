@@ -3,6 +3,7 @@ package com.example.demo.levels;
 import com.example.demo.GameState.GameState;
 import com.example.demo.actors.EnemyPlane;
 import com.example.demo.destructible.ActiveActorDestructible;
+import com.example.demo.view.LevelView;
 
 import javafx.stage.Stage;
 

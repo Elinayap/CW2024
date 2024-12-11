@@ -1,4 +1,4 @@
-package com.example.demo.levels;
+package com.example.demo.view;
 
 import com.example.demo.assets.HeartDisplay;
 import com.example.demo.assets.ShieldImage;

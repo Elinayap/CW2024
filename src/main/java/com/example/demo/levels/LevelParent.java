@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import com.example.demo.actors.FighterPlane;
 import com.example.demo.actors.UserPlane;
 import com.example.demo.destructible.ActiveActorDestructible;
+import com.example.demo.view.LevelView;
 import com.example.demo.GameState.GameState;
 import com.example.demo.UI.GameEndScreen;
 import com.example.demo.UI.GameWinScreen;

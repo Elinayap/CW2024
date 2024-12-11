@@ -7,6 +7,7 @@ import com.example.demo.GameState.GameState;
 import com.example.demo.actors.Boss;
 import com.example.demo.assets.ShieldImage;
 import com.example.demo.assets.bombImage;
+import com.example.demo.view.LevelView;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;

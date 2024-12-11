@@ -3,6 +3,8 @@ package com.example.demo.levels;
 import com.example.demo.GameState.GameState;
 import com.example.demo.actors.Boss;
 import com.example.demo.assets.ShieldImage;
+import com.example.demo.view.LevelView;
+import com.example.demo.view.LevelViewLevelTwo;
 
 import javafx.stage.Stage;
 
