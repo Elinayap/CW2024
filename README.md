@@ -22,8 +22,12 @@ My name is Yap Jia Hui and my student id is 20501037.
 Sky battle is a 2D arcade game where player can control the plane, and shooting down all the enemies while dodging the incoming projectiles. There are total of 3 levels and the game get harder with each level. The objective is to survive as long as possible to reach to the end of the game.
 
 ## 3. Compilation Instructions
-1. Clone the repository at Elinayap/CW2024  
-2. Open the project in visual studio code
+- SDK: 19 Amazon Corretto 19.0.2 or 21 Oracle OpenJDK21- aarch64 (if cannot run)
+- IDE: IntelliJ IDEA
+- JavaFX version: 
+1. Clone the repository at 
+2. Import project into IntelliJ or visual studio code.
+3. Compile and run the program.
 
 ## 4. Game Instructions
 
