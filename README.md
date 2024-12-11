@@ -226,7 +226,7 @@ Uses Controller class to launch the game.
 2.	**showInstructions():**
 Displays a screen to show the instructions to users.
 
-3.	####**createStyledButton():**
+3.	**createStyledButton():**
 Create the style of the buttons including the hover effects and default cursors.
 
 4.	**show():**
@@ -331,7 +331,7 @@ Checks whether the user has lost all their hearts or if the boss has been defeat
 Updates the level by randomly spawning bombs based on a mathematical probability and handling bomb collisions using the bombCollision() method.
 ---
 ### **LevelViewLevelThree class:**
-This class is derived from the original LevelViewLevelTwo code, with no modifications made. It is located in the com.example.demo.view package.
+#### This class is derived from the original LevelViewLevelTwo code, with no modifications made. It is located in the com.example.demo.view package.
 ---
 ### **GameState class:**
 GameState manage the game’s state across different levels and interactions. It tracks the users health, shop purchases and other game variables. This class is located in the com.example.demo.GameState package.
