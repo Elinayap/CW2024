@@ -206,7 +206,7 @@ I planned to include a restart level button in every level, allowing users to re
 1.	**Time constraints:**
 This feature was not implemented due to time constraints and the focus on ensuring other key features were working properly. Leaving it insufficient time to implement and test the feature across all the levels.
 ---
-**Additional boss in LevelThree:**
+### **Additional boss in LevelThree:**
 The addition of a second boss in Level 3 was initially planned but ultimately left out. 
 
 #### Reason:
