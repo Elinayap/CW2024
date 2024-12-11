@@ -137,13 +137,13 @@ A bomb sound effect has been added to LevelThree to enhance the audio experience
 Bombs have been introduced in Level Three, spawning randomly to increase the challenge for players. These bombs must be avoided to prevent user from taking damage.
 
 - **Achievement Added to LevelOne:**
-Achievements have been integrated into LevelOne. When the user meets the kill target, they will be awarded the "All Enemies Defeated in Level One" achievement. To rewards the users for completing LevelOne.
+Achievements have been integrated into LevelOne. When the user meets the kill target, they will be awarded the "All Enemies Defeated in Level One" achievement. To rewards the users for completing LevelOne. But if the user dies without completing the level, no achievements will be unlocked.
 
 - **Achievement Added to LevelTwo:**
-Achievement is now awarded in Level Two when the user successfully defeats the boss. They will be awarded the "All Enemies Defeated in Level Two" achievement. To rewards the users for completing LevelTwo.
+Achievement is now awarded in Level Two when the user successfully defeats the boss. They will be awarded the "All Enemies Defeated in Level Two" achievement. To rewards the users for completing LevelTwo. But if the user dies without completing the level, no achievements will be unlocked.
 
 - **Achievements Added to LevelThree:**
-An achievement will be added to LevelThree when the user successfully defeats the boss. Additionally, if the user completes LevelThree without colliding with any bombs, they will earn the "Bomb Dodger" achievement. 
+An achievement will be added to LevelThree when the user successfully defeats the boss. Additionally, if the user completes LevelThree without colliding with any bombs, they will earn the "Bomb Dodger" achievement. But if the user dies without completing the level, no achievements will be unlocked.
 
 - **Speed up projectile in LevelThree:**
 In LevelThree, the projectile speed is increased to enhance the level's difficulty, providing a greater challenge for players and testing their reaction time.
@@ -299,7 +299,7 @@ Load custom fonts from the specified file path, and if the custom fonts fail to 
 Display a pop-up message when certain conditions are met. It also provides a close button to close the pop-up. setFocusTraversable(false) is also applied to ensure other keys does not trigger the screen.
 ---
 ### **LevelThree class:**
-The LevelThree class extends LevelParent and introduces a more challenging gameplay experience. In this level, players must defeat a shielded boss while dealing with randomly spawning bombs. Additionally, sound effects are integrated to enhance user immersion and provide auditory feedback during gameplay. It is located in the com.example.demo.levels packag
+The LevelThree class extends LevelParent and introduces a more challenging gameplay experience. In this level, players must defeat a shielded boss while dealing with randomly spawning bombs. Additionally, sound effects are integrated to enhance user immersion and provide auditory feedback during gameplay. It is located in the com.example.demo.levels package.
 
 #### Sub-components:
 1.	**updateScene():**
