@@ -128,8 +128,8 @@ The background music is stopped when users return to the main menu to prevent ov
 - **Created LevelThree:**
 LevelThree introduces an additional feature with the inclusion of bombs. These bombs appear randomly and users need to avoid the collisions. Additionally, the projectile velocity increases. This added feature increase the difficulty of the level, making it more challenging.
 
-- **Added background image to LevelThree:**
-A captivating background image has been added into LevelThree to improve the game's visual appeal and create a more engaging gameplay experience.
+- **Added background image:**
+A captivating background image has been added to improve the game's visual appeal and create a more engaging gameplay experience.
 
 - **Added bomb sound effect to LevelThree:**
 A bomb sound effect has been added to LevelThree to enhance the audio experience and providing auditory feedback when a bomb collision occurs.
